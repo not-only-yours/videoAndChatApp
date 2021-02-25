@@ -1,7 +1,7 @@
 videoAndChatApp is an application where people can enter chats, chat on various topics and enter video conferences.
 
 
-Main Functionality
+Main Functionality:
 Authentication(Google)
 Every user can enter chats or create their own.
 Each user can start a video call in a separate chat, in the same chat a link will appear where other users can join.
