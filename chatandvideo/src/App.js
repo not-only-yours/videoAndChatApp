@@ -1,10 +1,11 @@
 import './App.css'
+import Leftpart from './Leftpart'
 
 function App() {
 	return (
 		<div className='app'>
 			<div className='app_body'>
-				{/*Тут будуть чати і можливість створити чат */}
+				<Leftpart />
 				{/*Тут буде вікно самого чату */}
 			</div>
 		</div>
