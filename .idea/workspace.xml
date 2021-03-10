@@ -27,7 +27,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/nodejs-zoom-clone-master" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -40,10 +40,10 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\User\WebstormProjects\videoAndChatApp" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\User\WebstormProjects\videoAndChatApp" />
     </key>
   </component>
@@ -58,6 +58,8 @@
       <workItem from="1615024441317" duration="887000" />
       <workItem from="1615037055554" duration="2937000" />
       <workItem from="1615364343021" duration="337000" />
+      <workItem from="1615395148563" duration="16000" />
+      <workItem from="1615395397603" duration="344000" />
     </task>
     <servers />
   </component>
@@ -69,6 +71,26 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="638" y="304" key="#ESLint/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1615037824886" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1615395162780">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1615395162780" />
+    <state width="1515" height="208" key="GridCell.Tab.0.bottom" timestamp="1615395041508">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="208" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1615395041508" />
+    <state width="1515" height="208" key="GridCell.Tab.0.center" timestamp="1615395041508">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="208" key="GridCell.Tab.0.center/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1615395041508" />
+    <state width="1515" height="208" key="GridCell.Tab.0.left" timestamp="1615395041508">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="208" key="GridCell.Tab.0.left/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1615395041508" />
+    <state width="1515" height="208" key="GridCell.Tab.0.right" timestamp="1615395041508">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="208" key="GridCell.Tab.0.right/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1615395041508" />
     <state x="277" y="57" key="SettingsEditor" timestamp="1614846837493">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
