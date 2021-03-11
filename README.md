@@ -43,6 +43,10 @@ npm i
 nodemon server.js
 ```
 
+```sh
+npm start
+```
+
 
 ## License
 
