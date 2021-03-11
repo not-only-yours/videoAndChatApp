@@ -5,8 +5,8 @@
 # Video and chat app
 
 =======
-##videoAndChatApp
->>>>>>> 42dc6a60d932f040e16172cdd499fb594740e9ac
+
+>>>>>>> 
 videoAndChatApp is an application where people can enter chats, chat on various topics and enter video conferences.
 
 ## Features
