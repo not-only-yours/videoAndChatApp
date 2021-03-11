@@ -24,8 +24,8 @@ videoAndChatApp is an application where people can enter chats, chat on various 
 Dillinger uses a number of open source projects to work properly:
 
 - React + firebase
-- Express
-- WebRTC
+- Express(will be changed in the future)
+- WebRTC + peerjs
 - socket.io
 
 
@@ -41,6 +41,10 @@ npm i
 
 ```sh
 nodemon server.js
+```
+
+```sh
+npm start
 ```
 
 
