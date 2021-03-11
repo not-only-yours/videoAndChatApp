@@ -45,26 +45,13 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint .",
+    "lint": "eslint src/. & eslint videoPart/.",
     "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
   },
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint && npm run format"
     }
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "plugin:prettier/recommended"
-    ]
-  },
-  "prettier": {
-    "printWidth": 85,
-    "arrowParens": "always",
-    "semi": true,
-    "tabWidth": 2
   },
   "lint-staged": {
     "*.+(js|jsx)": "eslint --fix",
