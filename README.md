@@ -1,17 +1,10 @@
-<<<<<<< HEAD
-
-
-
 # Video and chat app
 
-=======
-
->>>>>>> 
 videoAndChatApp is an application where people can enter chats, chat on various topics and enter video conferences.
 
 ## Features
 
--Authentication(Google)
+- Authentication(Google)
 - Create chat room
 - Make video call
 - Write message to room
