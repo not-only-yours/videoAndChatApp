@@ -4,6 +4,7 @@ import { IconButton } from "@material-ui/core";
 import AccessibleIcon from "@material-ui/icons/Accessible";
 import SearchIcon from "@material-ui/icons/Search";
 import InfoIcon from "@material-ui/icons/Info";
+import LeftChats from "./LeftChats";
 
 function Leftpart() {
   return (
@@ -25,14 +26,9 @@ function Leftpart() {
           <input type="text" placeholder="Print here dude" />
         </div>
       </div>
-      <div className="leftpart_chats">
-        <h1>Chat</h1>
-        <h1>Chat</h1>
-        <h1>Chat</h1>
-        <h1>Chat</h1>
-        <h1>Chat</h1>
-        <h1>Chat</h1>
-        <h1>Chat</h1>
+      <div className="left_chats">
+        <LeftChats addProp />
+        <LeftChats />
       </div>
     </div>
   );
