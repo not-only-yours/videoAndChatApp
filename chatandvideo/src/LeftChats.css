@@ -1,6 +1,6 @@
 .leftpart_chat {
   display: flex;
-  padding: 20px;
+  padding: 5px;
   cursor: pointer;
   border-bottom: 1px solid grey;
 }
