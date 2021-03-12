@@ -39,3 +39,11 @@
   border: none;
   margin-left: 10px;
 }
+
+.leftpart_chats {
+  flex: 1;
+  flex-direction: column;
+  background-color: lightblue;
+  overflow: scroll;
+  padding: 5px;
+}

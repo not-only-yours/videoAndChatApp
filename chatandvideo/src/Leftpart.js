@@ -26,8 +26,12 @@ function Leftpart() {
           <input type="text" placeholder="Print here dude" />
         </div>
       </div>
-      <div className="left_chats">
+      <div className="leftpart_chats">
         <LeftChats addProp />
+        <LeftChats />
+        <LeftChats />
+        <LeftChats />
+        <LeftChats />
         <LeftChats />
       </div>
     </div>
