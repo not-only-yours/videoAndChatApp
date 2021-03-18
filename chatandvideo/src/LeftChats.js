@@ -1,20 +1,24 @@
 import React from "react";
 import "./LeftChats.css";
 import { Avatar } from "@material-ui/core";
+import db from "./firebase";
 
-function LeftChats({ addProp }) {
+function LeftChats({ id, name, addProp }) {
   const createChat = () => {
     const roomName = prompt("Введіть назву чатіку");
     if (roomName) {
-      alert(`RoomName: ${roomName}`);
+      // alert(`RoomName: ${roomName}`);
       // створити в firebase базу і пушити сюди її
+      db.collection("rooms").add({
+        name: roomName,
+      });
     }
   };
   return !addProp ? (
     <div className="leftpart_chat">
       <Avatar />
       <div className="leftpartChat_info">
-        <h2>Назва чату</h2>
+        <h2>{name}</h2>
         <p>Останнє повідомлення</p>
       </div>
     </div>

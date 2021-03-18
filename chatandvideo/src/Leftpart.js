@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Leftpart.css";
 import { IconButton } from "@material-ui/core";
 import AccessibleIcon from "@material-ui/icons/Accessible";
 import SearchIcon from "@material-ui/icons/Search";
 import InfoIcon from "@material-ui/icons/Info";
 import LeftChats from "./LeftChats";
+import db from "./firebase";
 
 function Leftpart() {
+  const [rooms, setRooms] = useState([]);
+
+  useEffect(() => {
+    db.collection("rooms").onSnapshot((snapshot) =>
+      setRooms(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      )
+    );
+  }, []);
   return (
     <div className="leftpart">
       <div className="leftpart_header">
@@ -28,11 +41,9 @@ function Leftpart() {
       </div>
       <div className="leftpart_chats">
         <LeftChats addProp />
-        <LeftChats />
-        <LeftChats />
-        <LeftChats />
-        <LeftChats />
-        <LeftChats />
+        {rooms.map((room) => (
+          <LeftChats key={room.id} id={room.id} name={room.data.name} />
+        ))}
       </div>
     </div>
   );

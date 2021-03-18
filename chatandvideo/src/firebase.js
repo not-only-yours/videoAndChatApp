@@ -1,7 +1,8 @@
-/*eslint-disable */
+import firebase from "firebase";
 const firebaseConfig = {
   apiKey: "AIzaSyD3OrFbwg35jgpDfrCUnSauNwWjvB8D29A",
   authDomain: "chatpart-18f0f.firebaseapp.com",
+  databaseURL: "https://chatpart-18f0f-default-rtdb.firebaseio.com",
   projectId: "chatpart-18f0f",
   storageBucket: "chatpart-18f0f.appspot.com",
   messagingSenderId: "15268948799",
@@ -10,11 +11,12 @@ const firebaseConfig = {
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
+
 const db = firebaseApp.firestore();
 const auth = firebase.auth();
 const provider = new firebase.auth.GoogleAuthProvider();
 
+export { auth };
+export { provider };
 
-export {auth, provider};
 export default db;
-/*eslint-enable */
