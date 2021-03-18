@@ -8,7 +8,6 @@ function App() {
       <div className="app_body">
         <Leftpart />
         <Chat />
-        {/*Тут буде вікно самого чату */}
       </div>
     </div>
   );
