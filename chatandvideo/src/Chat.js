@@ -1,4 +1,5 @@
-import React, { useState, useParams, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "./Chat.css";
 import { Avatar, IconButton } from "@material-ui/core";
 import { VideoCall } from "@material-ui/icons";
@@ -7,15 +8,15 @@ import db from "./firebase";
 function Chat() {
   const [input, setInput] = useState("");
   const [roomName, setRoomName] = useState("");
-  // const { roomId } = useParams();
+  const { roomId } = useParams();
 
-  // useEffect(() => {
-  //   if (roomId) {
-  //     db.collection("rooms")
-  //       .doc(roomId)
-  //       .onSnapshot((snapshot) => setRoomName(snapshot.data().name));
-  //   }
-  // }, [roomId]);
+  useEffect(() => {
+    if (roomId) {
+      db.collection("rooms")
+        .doc(roomId)
+        .onSnapshot((snapshot) => setRoomName(snapshot.data().name));
+    }
+  }, [roomId]);
 
   const sendMessage = (e) => {
     e.preventDefault();
