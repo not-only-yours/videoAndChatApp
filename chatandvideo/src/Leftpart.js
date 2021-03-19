@@ -11,7 +11,7 @@ function Leftpart() {
   const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
-    db.collection("rooms").onSnapshot((snapshot) =>
+    const refresh = db.collection("rooms").onSnapshot((snapshot) =>
       setRooms(
         snapshot.docs.map((doc) => ({
           id: doc.id,
@@ -19,6 +19,10 @@ function Leftpart() {
         }))
       )
     );
+
+    return () => {
+      refresh();
+    };
   }, []);
   return (
     <div className="leftpart">

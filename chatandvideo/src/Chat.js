@@ -1,10 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useParams, useEffect } from "react";
 import "./Chat.css";
 import { Avatar, IconButton } from "@material-ui/core";
 import { VideoCall } from "@material-ui/icons";
+import db from "./firebase";
 
 function Chat() {
   const [input, setInput] = useState("");
+  const [roomName, setRoomName] = useState("");
+  // const { roomId } = useParams();
+
+  // useEffect(() => {
+  //   if (roomId) {
+  //     db.collection("rooms")
+  //       .doc(roomId)
+  //       .onSnapshot((snapshot) => setRoomName(snapshot.data().name));
+  //   }
+  // }, [roomId]);
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -18,7 +29,7 @@ function Chat() {
       <div className="chat_header">
         <Avatar />
         <div className="chat_headerInfo">
-          <h3>Room name</h3>
+          <h3>{roomName}</h3>
           <p>Last seen at ...</p>
         </div>
         <div className="chat_headerRight">
