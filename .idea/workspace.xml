@@ -19,7 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f003c63-2c4b-49e3-a76b-b34261c8e95d" name="Default Changelist" comment="" />
+    <list default="true" id="3f003c63-2c4b-49e3-a76b-b34261c8e95d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UMLdiagram.uml" beforeDir="false" afterPath="$PROJECT_DIR$/UMLdiagram.uml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,11 +65,11 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\User\WebstormProjects\videoAndChatApp\chatandvideo\images" />
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\User\WebstormProjects\videoAndChatApp" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\WebstormProjects\videoAndChatApp\chatandvideo\images" />
       <recent name="C:\Users\User\WebstormProjects\videoAndChatApp" />
     </key>
   </component>
@@ -178,6 +182,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="57" key="SettingsEditor/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1614846837493" />
+    <state x="0" y="0" width="1550" height="882" key="dock-window-1" timestamp="1616334675976">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="0" y="0" width="1550" height="882" key="dock-window-1/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1616334675976" />
+    <state x="45" y="-10" width="1550" height="882" maximized="true" key="dock-window-2" timestamp="1616339231030">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="45" y="-10" width="1550" height="882" maximized="true" key="dock-window-2/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1616339231030" />
     <state x="477" y="145" width="581" height="534" key="find.popup" timestamp="1616069151724">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
