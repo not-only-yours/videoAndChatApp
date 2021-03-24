@@ -18,7 +18,7 @@ Dillinger uses a number of open source projects to work properly:
 
 - React + firebase
 - Twilio
-- Twilio-gatsby
+
 
 
 ## Installation
