@@ -9,7 +9,7 @@ videoAndChatApp is an application where people can enter chats, chat on various 
 - Make video call
 - Write message to room
 - Connect to video call
--We plan to create features: interesting video masks / stickers for chat
+- We plan to create features: interesting video masks / stickers for chat
 
 
 ## Tech
