@@ -3,18 +3,21 @@ import { useParams } from "react-router-dom";
 import "./Chat.css";
 import { Avatar, IconButton } from "@material-ui/core";
 import { VideoCall } from "@material-ui/icons";
-import db from "./firebase";
+import { useBetween } from "use-between";
+import { useShareableState } from "./Leftpart.js";
 
 function Chat() {
   const [input, setInput] = useState("");
   const [roomName, setRoomName] = useState("");
   const { roomId } = useParams();
-
+  let { rooms, setRooms, count, setCount } = useBetween(useShareableState);
   useEffect(() => {
     if (roomId) {
-      db.collection("rooms")
-        .doc(roomId)
-        .onSnapshot((snapshot) => setRoomName(snapshot.data().name));
+      rooms.map((room) => {
+        if (roomId == room.id) {
+          setRoomName(room.name);
+        }
+      });
     }
   }, [roomId]);
 

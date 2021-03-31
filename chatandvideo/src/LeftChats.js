@@ -1,18 +1,26 @@
 import React from "react";
 import "./LeftChats.css";
 import { Avatar } from "@material-ui/core";
-import db from "./firebase";
 import { Link } from "react-router-dom";
+import { useBetween } from "use-between";
+import { useShareableState } from "./Leftpart.js";
 
 function LeftChats({ id, name, addProp }) {
+  let { rooms, setRooms, count, setCount } = useBetween(useShareableState);
   const createChat = () => {
     const roomName = prompt("Введіть назву чатіку");
     if (roomName) {
       // alert(`RoomName: ${roomName}`);
       // створити в firebase базу і пушити сюди її
-      db.collection("rooms").add({
+      let newRoom = {
+        id: count,
         name: roomName,
-      });
+      };
+      rooms.push(newRoom);
+      count = count + 1;
+      setCount(count);
+      setRooms(rooms);
+      console.log(rooms);
     }
   };
   return !addProp ? (
