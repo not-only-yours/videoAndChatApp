@@ -6,9 +6,11 @@ import SearchIcon from "@material-ui/icons/Search";
 import InfoIcon from "@material-ui/icons/Info";
 import LeftChats from "./LeftChats";
 import db from "./firebase";
+import { useStateValue } from "./StateProvider";
 
 function Leftpart() {
   const [rooms, setRooms] = useState([]);
+  const [{ user }, dispatch] = useStateValue();
 
   useEffect(() => {
     const refresh = db.collection("rooms").onSnapshot((snapshot) =>
@@ -26,7 +28,7 @@ function Leftpart() {
   return (
     <div className="leftpart">
       <div className="leftpart_header">
-        <AccessibleIcon />
+        <AccessibleIcon src={user?.photoURL} />
         <div className="leftpart_headerRight">
           <IconButton>
             <SearchIcon />

@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./LeftChats.css";
 import { Avatar } from "@material-ui/core";
 import db from "./firebase";
 import { Link } from "react-router-dom";
 
 function LeftChats({ id, name, addProp }) {
+  const [messages, setMessages] = useState("");
+  useEffect(() => {
+    if (id) {
+      db.collection("rooms")
+        .doc(id)
+        .collection("messages")
+        .orderBy("timestamp", "desc")
+        .onSnapshot((snapshot) =>
+          setMessages(snapshot.docs.map((doc) => doc.data()))
+        );
+    }
+  }, [id]);
   const createChat = () => {
     const roomName = prompt("Введіть назву чатіку");
     if (roomName) {
@@ -21,7 +33,7 @@ function LeftChats({ id, name, addProp }) {
         <Avatar />
         <div className="leftpartChat_info">
           <h2>{name}</h2>
-          <p>Останнє повідомлення</p>
+          <p>{messages[0]?.message}</p>
         </div>
       </div>
     </Link>
