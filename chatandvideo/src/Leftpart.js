@@ -5,30 +5,24 @@ import AccessibleIcon from "@material-ui/icons/Accessible";
 import SearchIcon from "@material-ui/icons/Search";
 import InfoIcon from "@material-ui/icons/Info";
 import LeftChats from "./LeftChats";
-import { useBetween } from "use-between";
-
-export const useShareableState = () => {
-  const [rooms, setRooms] = useState([
-    {
-      id: 1,
-      name: "Chat1",
-    },
-    {
-      id: 2,
-      name: "Chat2",
-    },
-  ]);
-  const [count, setCount] = useState(3);
-  return {
-    rooms,
-    setRooms,
-    count,
-    setCount,
-  };
-};
+import db from "./firebase";
 
 function Leftpart() {
-  const { rooms } = useBetween(useShareableState);
+  const [rooms, setRooms] = useState([]);
+
+  useEffect(() => {
+    const refresh = db.collection("rooms").onSnapshot((snapshot) =>
+      setRooms(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      )
+    );
+    return () => {
+      refresh();
+    };
+  }, []);
   return (
     <div className="leftpart">
       <div className="leftpart_header">
@@ -51,7 +45,7 @@ function Leftpart() {
       <div className="leftpart_chats">
         <LeftChats addProp />
         {rooms.map((room) => (
-          <LeftChats key={room.id} id={room.id} name={room.name} />
+          <LeftChats key={room.id} id={room.id} name={room.data.name} />
         ))}
       </div>
     </div>
