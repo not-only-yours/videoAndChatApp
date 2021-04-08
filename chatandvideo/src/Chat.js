@@ -52,10 +52,9 @@ function Chat() {
           <h3>{roomName}</h3>
           <p>
             Last seen{" "}
-            {
-              new Date(messages[messages.length - 1]?.timestamp?.toDate())
-                .toUTCString
-            }
+            {new Date(
+              messages[messages.length - 1]?.timestamp?.toDate()
+            ).toUTCString()}
           </p>
         </div>
         <div className="chat_headerRight">
