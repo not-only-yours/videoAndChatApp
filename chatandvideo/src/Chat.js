@@ -6,19 +6,47 @@ import { VideoCall } from "@material-ui/icons";
 import db from "./firebase";
 import { useStateValue } from "./StateProvider";
 import firebase from "firebase";
+import axios from "axios";
 
-function Chat() {
+function Chat({ storeToken, videoRoomName }) {
   const [input, setInput] = useState("");
   const [roomName, setRoomName] = useState("");
   const { roomId } = useParams();
   const [messages, setMessages] = useState([]);
   const [{ user }, dispatch] = useStateValue();
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const result = await axios({
+      method: "POST",
+      url: "https://shadow-wolf-1476.twil.io/create-token",
+      data: {
+        identity: user.displayName,
+      },
+    });
+    const jwt = result.data;
+
+    storeToken(jwt);
+    console.log(jwt);
+    if (jwt) {
+      db.collection("rooms")
+        .doc(roomId)
+        .collection("messages")
+        .add({
+          message: `${user.displayName} connected to the video Room. You can join him by clicking the icon`,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        });
+    }
+  };
+
   useEffect(() => {
     if (roomId) {
       db.collection("rooms")
         .doc(roomId)
-        .onSnapshot((snapshot) => setRoomName(snapshot.data().name));
+        .onSnapshot((snapshot) => {
+          setRoomName(snapshot.data().name);
+          videoRoomName(snapshot.data().name);
+        });
 
       db.collection("rooms")
         .doc(roomId)
@@ -58,7 +86,7 @@ function Chat() {
           </p>
         </div>
         <div className="chat_headerRight">
-          <IconButton>
+          <IconButton onClick={handleSubmit}>
             <VideoCall />
           </IconButton>
         </div>

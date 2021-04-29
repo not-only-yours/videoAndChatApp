@@ -33,6 +33,7 @@
 }
 
 .chat_body {
+  overflow: scroll;
   flex: 1;
   background-color: lightblue;
 }
