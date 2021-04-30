@@ -5,25 +5,15 @@ import AccessibleIcon from "@material-ui/icons/Accessible";
 import SearchIcon from "@material-ui/icons/Search";
 import InfoIcon from "@material-ui/icons/Info";
 import LeftChats from "./LeftChats";
-import db from "./firebase";
 import { useStateValue } from "./StateProvider";
+import { refreshDB } from "./service";
 
 function Leftpart() {
   const [rooms, setRooms] = useState([]);
   const [{ user }, dispatch] = useStateValue();
 
   useEffect(() => {
-    const refresh = db.collection("rooms").onSnapshot((snapshot) =>
-      setRooms(
-        snapshot.docs.map((doc) => ({
-          id: doc.id,
-          data: doc.data(),
-        }))
-      )
-    );
-    return () => {
-      refresh();
-    };
+    return refreshDB(setRooms);
   }, []);
   return (
     <div className="leftpart">

@@ -3,10 +3,8 @@ import { useParams } from "react-router-dom";
 import "./Chat.css";
 import { Avatar, IconButton } from "@material-ui/core";
 import { VideoCall } from "@material-ui/icons";
-import db from "./firebase";
 import { useStateValue } from "./StateProvider";
-import firebase from "firebase";
-import axios from "axios";
+import { send, jwtExists, roomNameExists, sendMessageFun } from "./service";
 
 function Chat({ storeToken, videoRoomName }) {
   const [input, setInput] = useState("");
@@ -17,55 +15,27 @@ function Chat({ storeToken, videoRoomName }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const result = await axios({
-      method: "POST",
-      url: "https://shadow-wolf-1476.twil.io/create-token",
-      data: {
-        identity: user.displayName,
-      },
-    });
-    const jwt = result.data;
+    send(user.displayName).then((result) => {
+      const jwt = result.data;
 
-    storeToken(jwt);
-    console.log(jwt);
-    if (jwt) {
-      db.collection("rooms")
-        .doc(roomId)
-        .collection("messages")
-        .add({
-          message: `${user.displayName} connected to the video Room. You can join him by clicking the icon`,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        });
-    }
+      storeToken(jwt);
+      console.log(jwt);
+      if (jwt) {
+        jwtExists(roomId, user.displayName);
+      }
+    });
   };
 
   useEffect(() => {
     if (roomId) {
-      db.collection("rooms")
-        .doc(roomId)
-        .onSnapshot((snapshot) => {
-          setRoomName(snapshot.data().name);
-          videoRoomName(snapshot.data().name);
-        });
-
-      db.collection("rooms")
-        .doc(roomId)
-        .collection("messages")
-        .orderBy("timestamp", "asc")
-        .onSnapshot((snapshot) =>
-          setMessages(snapshot.docs.map((doc) => doc.data()))
-        );
+      roomNameExists(roomId, videoRoomName, setRoomName, setMessages);
     }
   }, [roomId]);
 
   const sendMessage = (e) => {
     e.preventDefault();
 
-    db.collection("rooms").doc(roomId).collection("messages").add({
-      message: input,
-      name: user.displayName,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    });
+    sendMessageFun(roomId, input, user);
 
     console.log(input);
 
