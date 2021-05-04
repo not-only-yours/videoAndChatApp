@@ -1,16 +1,16 @@
 import "./App.css";
+import React from "react";
 import Leftpart from "./Leftpart";
 import Chat from "./Chat";
 import Login from "./Login";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { useState } from "react";
 import { useStateValue } from "./StateProvider";
 import Video from "./video";
 import "./video.css";
 function App() {
   const [{ user }, dispatch] = useStateValue();
-  const [token, setToken] = useState(false);
-  const [videoName, setVideoName] = useState("");
+  const [token, setToken] = React.useState(false);
+  const [videoName, setVideoName] = React.useState("");
 
   return (
     <div className="app">

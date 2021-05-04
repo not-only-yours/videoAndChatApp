@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App 1`] = `undefined`;
+
+exports[`App 2`] = `undefined`;
+
+exports[`LeftChats 1`] = `undefined`;
+
+exports[`LeftChats addProp 1`] = `undefined`;
+
+exports[`Leftpart 1`] = `undefined`;
+
+exports[`Login 1`] = `undefined`;

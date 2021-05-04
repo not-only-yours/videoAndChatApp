@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./LeftChats.css";
 import { Avatar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { createRoom, idExists } from "./service";
 
 function LeftChats({ id, name, addProp }) {
-  const [messages, setMessages] = useState("");
-  useEffect(() => {
+  const [messages, setMessages] = React.useState("");
+  React.useEffect(() => {
     if (id) {
       idExists(id, setMessages);
     }

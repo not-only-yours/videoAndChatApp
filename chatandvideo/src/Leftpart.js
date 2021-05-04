@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./Leftpart.css";
 import { IconButton } from "@material-ui/core";
 import AccessibleIcon from "@material-ui/icons/Accessible";
@@ -9,10 +9,10 @@ import { useStateValue } from "./StateProvider";
 import { refreshDB } from "./service";
 
 function Leftpart() {
-  const [rooms, setRooms] = useState([]);
+  const [rooms, setRooms] = React.useState([]);
   const [{ user }, dispatch] = useStateValue();
 
-  useEffect(() => {
+  React.useEffect(() => {
     return refreshDB(setRooms);
   }, []);
   return (

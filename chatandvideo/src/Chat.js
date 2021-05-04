@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import "./Chat.css";
 import { Avatar, IconButton } from "@material-ui/core";
@@ -7,10 +7,10 @@ import { useStateValue } from "./StateProvider";
 import { send, jwtExists, roomNameExists, sendMessageFun } from "./service";
 
 function Chat({ storeToken, videoRoomName }) {
-  const [input, setInput] = useState("");
-  const [roomName, setRoomName] = useState("");
+  const [input, setInput] = React.useState("");
+  const [roomName, setRoomName] = React.useState("");
   const { roomId } = useParams();
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = React.useState([]);
   const [{ user }, dispatch] = useStateValue();
 
   const handleSubmit = async (event) => {
@@ -26,7 +26,7 @@ function Chat({ storeToken, videoRoomName }) {
     });
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (roomId) {
       roomNameExists(roomId, videoRoomName, setRoomName, setMessages);
     }
