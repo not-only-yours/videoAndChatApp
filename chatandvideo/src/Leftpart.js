@@ -5,12 +5,13 @@ import AccessibleIcon from "@material-ui/icons/Accessible";
 import SearchIcon from "@material-ui/icons/Search";
 import InfoIcon from "@material-ui/icons/Info";
 import LeftChats from "./LeftChats";
-import { useStateValue } from "./StateProvider";
+
 import { refreshDB } from "./service";
 
 function Leftpart() {
+  const sp = require("./StateProvider");
   const [rooms, setRooms] = React.useState([]);
-  const [{ user }, dispatch] = useStateValue();
+  const [{ user }, dispatch] = sp.useStateValue();
 
   React.useEffect(() => {
     return refreshDB(setRooms);

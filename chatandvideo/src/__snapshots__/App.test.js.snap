@@ -1,59 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App 1`] = `
-<Router
-  history={
-    Object {
-      "action": "POP",
-      "block": [Function],
-      "createHref": [Function],
-      "go": [Function],
-      "goBack": [Function],
-      "goForward": [Function],
-      "length": 1,
-      "listen": [Function],
-      "location": Object {
-        "hash": "",
-        "pathname": "/",
-        "search": "",
-        "state": undefined,
-      },
-      "push": [Function],
-      "replace": [Function],
-    }
-  }
->
-  <App />
-</Router>
-`;
-
-exports[`App 2`] = `
-<Router
-  history={
-    Object {
-      "action": "POP",
-      "block": [Function],
-      "createHref": [Function],
-      "go": [Function],
-      "goBack": [Function],
-      "goForward": [Function],
-      "length": 1,
-      "listen": [Function],
-      "location": Object {
-        "hash": "",
-        "pathname": "/",
-        "search": "",
-        "state": undefined,
-      },
-      "push": [Function],
-      "replace": [Function],
-    }
-  }
->
-  <Video />
-</Router>
-`;
-
 exports[`LeftChats 1`] = `
 <a
   href="/rooms/undefined"
@@ -87,84 +33,19 @@ exports[`LeftChats 1`] = `
 `;
 
 exports[`LeftChats addProp 1`] = `
-<Router
-  history={
-    Object {
-      "action": "POP",
-      "block": [Function],
-      "createHref": [Function],
-      "go": [Function],
-      "goBack": [Function],
-      "goForward": [Function],
-      "length": 1,
-      "listen": [Function],
-      "location": Object {
-        "hash": "",
-        "pathname": "/",
-        "search": "",
-        "state": undefined,
-      },
-      "push": [Function],
-      "replace": [Function],
-    }
-  }
+<div
+  className="leftpart_chat"
+  onClick={[Function]}
 >
-  <LeftChats
-    addProp={true}
-  />
-</Router>
+  <h2>
+    Добавити новий чатік
+  </h2>
+</div>
 `;
 
-exports[`Leftpart 1`] = `
-<Router
-  history={
-    Object {
-      "action": "POP",
-      "block": [Function],
-      "createHref": [Function],
-      "go": [Function],
-      "goBack": [Function],
-      "goForward": [Function],
-      "length": 1,
-      "listen": [Function],
-      "location": Object {
-        "hash": "",
-        "pathname": "/",
-        "search": "",
-        "state": undefined,
-      },
-      "push": [Function],
-      "replace": [Function],
-    }
-  }
->
-  <Leftpart />
-</Router>
-`;
-
-exports[`Login 1`] = `
-<Router
-  history={
-    Object {
-      "action": "POP",
-      "block": [Function],
-      "createHref": [Function],
-      "go": [Function],
-      "goBack": [Function],
-      "goForward": [Function],
-      "length": 1,
-      "listen": [Function],
-      "location": Object {
-        "hash": "",
-        "pathname": "/",
-        "search": "",
-        "state": undefined,
-      },
-      "push": [Function],
-      "replace": [Function],
-    }
-  }
->
-  <Login />
-</Router>
+exports[`Video 1`] = `
+<div>
+  <div />
+  <div />
+</div>
 `;

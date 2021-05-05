@@ -78,33 +78,32 @@
 //     expect(component);
 //   });
 // });
-import React from "react";
 import LeftChats from "./LeftChats";
 import { BrowserRouter as Router } from "react-router-dom";
 import { shallow, configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Leftpart from "./Leftpart";
 import Login from "./Login";
-import Chat from "./Chat";
 import App from "./App";
 import Video from "./video";
 import { createSerializer } from "enzyme-to-json";
 import renderer from "react-test-renderer";
+import React from "react";
+import Chat from "./Chat";
 
 expect.addSnapshotSerializer(createSerializer({ mode: "deep" }));
 configure({ adapter: new Adapter() });
 
 beforeEach(() => {
+  const mockSetState = jest.fn();
   jest.mock("react", () => ({
-    useState: "usv",
-    useContext: () => "sdss",
+    useState: (initial) => [initial, mockSetState],
+    useContext: (initial) => [initial, mockSetState],
     useParams: "sss",
   }));
-
   jest.mock("./StateProvider", () => ({
-    useStateValue: () => "usv",
+    useStateValue: () => ["initial", mockSetState],
   }));
-
   jest.mock("react-router", () => ({
     useParams: jest.fn().mockReturnValue({ id: "123" }),
   }));
@@ -124,56 +123,11 @@ test("LeftChats", () => {
 });
 
 test("LeftChats addProp", () => {
-  const container = renderer
-    .create(
-      <Router>
-        <LeftChats addProp />
-      </Router>
-    )
-    .toJson();
+  const container = renderer.create(<LeftChats addProp />);
   expect(container).toMatchSnapshot();
 });
 
-test("Leftpart", () => {
-  const container = renderer
-    .create(
-      <Router>
-        <Leftpart />
-      </Router>
-    )
-    .toJson();
-  expect(container).toMatchSnapshot();
-});
-
-test("Login", () => {
-  const container = renderer
-    .create(
-      <Router>
-        <Login />
-      </Router>
-    )
-    .toJson();
-  expect(container).toMatchSnapshot();
-});
-
-test("App", () => {
-  const container = renderer
-    .create(
-      <Router>
-        <App />
-      </Router>
-    )
-    .toJson();
-  expect(container).toMatchSnapshot();
-});
-
-test("App", () => {
-  const container = renderer
-    .create(
-      <Router>
-        <Video />
-      </Router>
-    )
-    .toJson();
+test("Video", () => {
+  const container = renderer.create(<Video />).toJSON();
   expect(container).toMatchSnapshot();
 });

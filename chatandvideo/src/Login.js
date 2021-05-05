@@ -1,11 +1,11 @@
 import React from "react";
 import "./Login.css";
 import { Button } from "@material-ui/core";
-import { useStateValue } from "./StateProvider";
 import { signIn } from "./service";
 
 function Login() {
-  const [{}, dispatch] = useStateValue();
+  const sp = require("./StateProvider");
+  const [{}, dispatch] = sp.useStateValue();
   return (
     <div className="login">
       <div className="login_container">

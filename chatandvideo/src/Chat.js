@@ -3,15 +3,15 @@ import { useParams } from "react-router-dom";
 import "./Chat.css";
 import { Avatar, IconButton } from "@material-ui/core";
 import { VideoCall } from "@material-ui/icons";
-import { useStateValue } from "./StateProvider";
 import { send, jwtExists, roomNameExists, sendMessageFun } from "./service";
 
 function Chat({ storeToken, videoRoomName }) {
+  const sp = require("./StateProvider");
   const [input, setInput] = React.useState("");
   const [roomName, setRoomName] = React.useState("");
   const { roomId } = useParams();
   const [messages, setMessages] = React.useState([]);
-  const [{ user }, dispatch] = useStateValue();
+  const [{ user }, dispatch] = sp.useStateValue();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
