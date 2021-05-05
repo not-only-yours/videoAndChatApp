@@ -194,3 +194,44 @@ test("firebase", () => {
       expect(mockCollection).toHaveBeenCalledWith("rooms");
     });
 });
+
+test("Chat", () => {
+  const container = shallow(<Chat />);
+  container.find("button").simulate("click", { preventDefault: () => {} });
+  expect(container).toMatchSnapshot();
+});
+
+test("App", () => {
+  const container = shallow(<App />);
+  expect(container).toMatchSnapshot();
+});
+
+test("Login", () => {
+  const container = shallow(<Login />);
+  expect(container).toMatchSnapshot();
+});
+
+test("Leftpart", () => {
+  const container = shallow(<Leftpart />);
+  expect(container).toMatchSnapshot();
+});
+
+test("StateProvider", () => {
+  StateProvider({
+    reducer: "reducer",
+    initialState: "initialState",
+    children: "children",
+  });
+  expect(StateProvider).toBeCalled();
+});
+
+test("reducer", () => {
+  const actionTypes = {
+    SET_USER: "SET_USER",
+  };
+
+  reducer("aa", actionTypes.SET_USER);
+  expect(reducer);
+  reducer("aa", "sss");
+  expect(reducer);
+});
