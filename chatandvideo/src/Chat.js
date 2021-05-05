@@ -1,41 +1,46 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 import "./Chat.css";
 import { Avatar, IconButton } from "@material-ui/core";
 import { VideoCall } from "@material-ui/icons";
-import { send, jwtExists, roomNameExists, sendMessageFun } from "./service";
 
 function Chat({ storeToken, videoRoomName }) {
+  const rdom = require("react-router-dom");
+  const serv = require("./service");
   const sp = require("./StateProvider");
   const [input, setInput] = React.useState("");
   const [roomName, setRoomName] = React.useState("");
-  const { roomId } = useParams();
+  const { roomId } = rdom.useParams();
   const [messages, setMessages] = React.useState([]);
   const [{ user }, dispatch] = sp.useStateValue();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    send(user.displayName).then((result) => {
-      const jwt = result.data;
+    serv
+      .send(user.displayName)
+      .then((result) => {
+        const jwt = result.data;
 
-      storeToken(jwt);
-      console.log(jwt);
-      if (jwt) {
-        jwtExists(roomId, user.displayName);
-      }
-    });
+        storeToken(jwt);
+        console.log(jwt);
+        if (jwt) {
+          serv.jwtExists(roomId, user.displayName);
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   React.useEffect(() => {
     if (roomId) {
-      roomNameExists(roomId, videoRoomName, setRoomName, setMessages);
+      serv.roomNameExists(roomId, videoRoomName, setRoomName, setMessages);
     }
   }, [roomId]);
 
   const sendMessage = (e) => {
     e.preventDefault();
 
-    sendMessageFun(roomId, input, user);
+    serv.sendMessageFun(roomId, input, user);
 
     console.log(input);
 
@@ -84,7 +89,7 @@ function Chat({ storeToken, videoRoomName }) {
             type="text"
             placeholder="Type a message..."
           />
-          <button onClick={sendMessage} type="submit">
+          <button onClick={sendMessage} type="submit" id="button">
             Send a message
           </button>
         </form>

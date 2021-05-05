@@ -90,22 +90,62 @@ import { createSerializer } from "enzyme-to-json";
 import renderer from "react-test-renderer";
 import React from "react";
 import Chat from "./Chat";
+import {
+  send,
+  jwtExists,
+  roomNameExists,
+  sendMessageFun,
+  idExists,
+  createRoom,
+  signIn,
+  refreshDB,
+} from "./service";
+import { StateProvider } from "./StateProvider";
+import reducer from "./reducer";
 
 expect.addSnapshotSerializer(createSerializer({ mode: "deep" }));
 configure({ adapter: new Adapter() });
 
-beforeEach(() => {
+beforeAll(() => {
+  const { mockFirebase } = require("firestore-jest-mock");
+  mockFirebase({
+    database: {
+      rooms: [
+        {
+          roomId: "aaa",
+          name: "asa",
+          messages: [{ name: "aaa", message: "asa", timestamp: "2211122" }],
+        },
+      ],
+    },
+  });
+
   const mockSetState = jest.fn();
   jest.mock("react", () => ({
     useState: (initial) => [initial, mockSetState],
     useContext: (initial) => [initial, mockSetState],
-    useParams: "sss",
+    useRef: jest.fn(),
+    useEffect: jest.fn(),
+    useReducer: (initial, setter) => [initial, setter],
   }));
   jest.mock("./StateProvider", () => ({
     useStateValue: () => ["initial", mockSetState],
   }));
-  jest.mock("react-router", () => ({
-    useParams: jest.fn().mockReturnValue({ id: "123" }),
+  jest.mock("react-router-dom", () => ({
+    ...jest.requireActual("react-router-dom"),
+    useParams: () => ({
+      roomId: "group1",
+    }),
+  }));
+  jest.mock("./service", () => ({
+    jwtExists: jest.fn(),
+    roomNameExists: jest.fn(),
+    sendMessageFun: jest.fn(),
+    send: () => "dssdsd",
+    idExists: jest.fn(),
+    createRoom: jest.fn(),
+    refreshDB: jest.fn(),
+    signIn: () => "fdesd",
   }));
 });
 
@@ -130,4 +170,27 @@ test("LeftChats addProp", () => {
 test("Video", () => {
   const container = renderer.create(<Video />).toJSON();
   expect(container).toMatchSnapshot();
+});
+
+test("firebase", () => {
+  const { mockCollection } = require("firestore-jest-mock/mocks/firestore");
+  const user = {
+    displayName: "dsa",
+  };
+  sendMessageFun("sdfs", "dsds", user);
+  jwtExists("d", "sasa");
+  roomNameExists("roomId", "videoRoomName", "setRoomName", "setMessages");
+  send("user");
+  idExists("id", "setMessages");
+  createRoom("roomName");
+  signIn("dispatch");
+  const firebase = require("firebase");
+  const db = firebase.firestore();
+
+  return db
+    .collection("rooms")
+    .get()
+    .then((userDocs) => {
+      expect(mockCollection).toHaveBeenCalledWith("rooms");
+    });
 });
