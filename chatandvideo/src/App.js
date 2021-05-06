@@ -6,9 +6,9 @@ import Login from "./Login";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Video from "./video";
 import "./video.css";
+const sp = require("./StateProvider");
 
 function App() {
-  const sp = require("./StateProvider");
   const [{ user }, dispatch] = sp.useStateValue();
   const [token, setToken] = React.useState(false);
   const [videoName, setVideoName] = React.useState("");

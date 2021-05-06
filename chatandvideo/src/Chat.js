@@ -2,11 +2,11 @@ import React from "react";
 import "./Chat.css";
 import { Avatar, IconButton } from "@material-ui/core";
 import { VideoCall } from "@material-ui/icons";
+const rdom = require("react-router-dom");
+const serv = require("./service");
+const sp = require("./StateProvider");
 
 function Chat({ storeToken, videoRoomName }) {
-  const rdom = require("react-router-dom");
-  const serv = require("./service");
-  const sp = require("./StateProvider");
   const [input, setInput] = React.useState("");
   const [roomName, setRoomName] = React.useState("");
   const { roomId } = rdom.useParams();
@@ -17,8 +17,9 @@ function Chat({ storeToken, videoRoomName }) {
     event.preventDefault();
     serv
       .send(user.displayName)
-      .then((result) => {
-        const jwt = result.data;
+      .then((response) => response.json())
+      .then((response) => {
+        const jwt = response;
 
         storeToken(jwt);
         console.log(jwt);

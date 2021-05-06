@@ -1,7 +1,7 @@
 import { twillioConnect } from "./service";
+const re = require("react");
 
 function Video({ token, videoRoomName }) {
-  const re = require("react");
   const localVidRef = re.useRef();
   const remoteVidRef = re.useRef();
 

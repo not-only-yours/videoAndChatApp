@@ -7,9 +7,8 @@ import InfoIcon from "@material-ui/icons/Info";
 import LeftChats from "./LeftChats";
 
 import { refreshDB } from "./service";
-
+const sp = require("./StateProvider");
 function Leftpart() {
-  const sp = require("./StateProvider");
   const [rooms, setRooms] = React.useState([]);
   const [{ user }, dispatch] = sp.useStateValue();
 

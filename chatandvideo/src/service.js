@@ -26,7 +26,9 @@ export function roomNameExists(roomId, videoRoomName, setRoomName, setMessages) 
     .doc(roomId)
     .collection("messages")
     .orderBy("timestamp", "asc")
-    .onSnapshot((snapshot) => setMessages(snapshot.docs.map((doc) => doc.data())));
+    .onSnapshot((snapshot) => {
+      setMessages(snapshot.docs.map((doc) => doc.data()));
+    });
 }
 
 export function sendMessageFun(roomId, input, user) {
@@ -37,13 +39,26 @@ export function sendMessageFun(roomId, input, user) {
   });
 }
 
+// export const send = async (user) => {
+//   return axios({
+//     method: "POST",
+//     url: "https://shadow-wolf-1476.twil.io/create-token",
+//     data: {
+//       identity: user,
+//     },
+//   });
+// };
+
 export const send = async (user) => {
-  return axios({
-    method: "POST",
-    url: "https://shadow-wolf-1476.twil.io/create-token",
-    data: {
-      identity: user,
+  return fetch("https://shadow-wolf-1476.twil.io/create-token", {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
+    method: "POST",
+    body: JSON.stringify({
+      identity: user,
+    }),
   });
 };
 
@@ -52,7 +67,9 @@ export function idExists(id, setMessages) {
     .doc(id)
     .collection("messages")
     .orderBy("timestamp", "desc")
-    .onSnapshot((snapshot) => setMessages(snapshot.docs.map((doc) => doc.data())));
+    .onSnapshot((snapshot) => {
+      setMessages(snapshot.docs.map((doc) => doc.data()));
+    });
 }
 
 export function createRoom(roomName) {

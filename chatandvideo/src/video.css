@@ -1,8 +1,8 @@
 .video-container {
-    display: grid;
-    grid-auto-columns: auto;
+  display: grid;
+  grid-auto-columns: auto;
 }
 
 video {
-    max-width: 400px;
+  max-width: 400px;
 }
