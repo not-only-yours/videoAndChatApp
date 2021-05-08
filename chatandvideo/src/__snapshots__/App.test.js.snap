@@ -1,5 +1,58 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Chat 1`] = `
+<div
+  className="chat"
+>
+  <div
+    className="chat_header"
+  >
+    <WithStyles(ForwardRef(Avatar)) />
+    <div
+      className="chat_headerInfo"
+    >
+      <h3 />
+      <p>
+        Last seen
+         
+        Invalid Date
+      </p>
+    </div>
+    <div
+      className="chat_headerRight"
+    >
+      <WithStyles(ForwardRef(IconButton))
+        onClick={[Function]}
+      >
+        <Memo(ForwardRef(VideoCallIcon)) />
+      </WithStyles(ForwardRef(IconButton))>
+    </div>
+  </div>
+  <div
+    className="chat_body"
+  />
+  <div
+    className="chat_footer"
+  >
+    <form>
+      <input
+        onChange={[Function]}
+        placeholder="Type a message..."
+        type="text"
+        value=""
+      />
+      <button
+        id="button"
+        onClick={[Function]}
+        type="submit"
+      >
+        Send a message
+      </button>
+    </form>
+  </div>
+</div>
+`;
+
 exports[`LeftChats 1`] = `
 <a
   href="/rooms/undefined"
@@ -41,6 +94,110 @@ exports[`LeftChats addProp 1`] = `
     Добавити новий чатік
   </h2>
 </div>
+`;
+
+exports[`LeftChats key, id, name 1`] = `
+<Link
+  to="/rooms/11"
+>
+  <div
+    className="leftpart_chat"
+  >
+    <WithStyles(ForwardRef(Avatar)) />
+    <div
+      className="leftpartChat_info"
+    >
+      <h2>
+        name
+      </h2>
+      <p />
+    </div>
+  </div>
+</Link>
+`;
+
+exports[`Leftpart 1`] = `
+<div
+  className="leftpart"
+>
+  <div
+    className="leftpart_header"
+  >
+    <Memo(ForwardRef(AccessibleIcon)) />
+    <div
+      className="leftpart_headerRight"
+    >
+      <WithStyles(ForwardRef(IconButton))>
+        <Memo(ForwardRef(SearchIcon)) />
+      </WithStyles(ForwardRef(IconButton))>
+      <WithStyles(ForwardRef(IconButton))>
+        <Memo(ForwardRef(InfoIcon)) />
+      </WithStyles(ForwardRef(IconButton))>
+    </div>
+  </div>
+  <div
+    className="leftpart_search"
+  >
+    <div
+      className="leftpart_searchContainer"
+    >
+      <Memo(ForwardRef(SearchIcon)) />
+      <input
+        placeholder="Print here dude"
+        type="text"
+      />
+    </div>
+  </div>
+  <div
+    className="leftpart_chats"
+  >
+    <LeftChats
+      addProp={true}
+    />
+  </div>
+</div>
+`;
+
+exports[`Login 1`] = `
+<div
+  className="login"
+>
+  <div
+    className="login_container"
+  >
+    <img
+      alt="google"
+      src="https://img.icons8.com/clouds/100/000000/google-logo.png"
+    />
+    <div
+      className="login_text"
+    >
+      <h1>
+        Sign in to Google
+      </h1>
+    </div>
+    <WithStyles(ForwardRef(Button))
+      type="submit"
+    >
+      Sign in With Google
+    </WithStyles(ForwardRef(Button))>
+  </div>
+</div>
+`;
+
+exports[`StateProvider 1`] = `
+<ContextProvider
+  value={
+    Array [
+      Object {
+        "user": null,
+      },
+      [Function],
+    ]
+  }
+>
+  <App />
+</ContextProvider>
 `;
 
 exports[`Video 1`] = `

@@ -1,83 +1,3 @@
-// import { send } from "./service";
-// import React from "react";
-// import Adapter from "enzyme-adapter-react-16";
-// import { act } from "@testing-library/react";
-// import pretty from "pretty";
-// import LeftChats from "./LeftChats";
-// import { BrowserRouter } from "react-router-dom";
-// import Chat from "./Chat";
-// import { useStateValue } from "./StateProvider";
-// import { shallow, configure } from "enzyme";
-//
-// configure({ adapter: new Adapter() });
-//
-// let container = null;
-// let realUseContext;
-// let useContextMock;
-// beforeEach(() => {
-//   container = document.createElement("div");
-//   document.body.appendChild(container);
-//   jest.spyOn(React, "useState").mockImplementationOnce(() => React.useState("ddd"));
-//   realUseContext = React.useContext;
-//   useContextMock = React.useContext = jest.fn();
-// });
-//
-// afterEach(() => {
-//   // подчищаем после завершения
-//   unmountComponentAtNode(container);
-//   container.remove();
-//   container = null;
-//   React.useContext = realUseContext;
-// });
-//
-// test("axios reqest", () => {
-//   const user = `2`;
-//   jest.spyOn(global, "fetch").mockImplementation(() =>
-//     Promise.resolve({
-//       json: () => Promise.resolve(user),
-//     })
-//   );
-//
-//   expect(send(user));
-// });
-//
-// test("DOM element LeftChats", () => {
-//   act(() => {
-//     render(
-//       <BrowserRouter>
-//         <LeftChats />;
-//       </BrowserRouter>,
-//       container
-//     );
-//   });
-//
-//   expect(pretty(document.body.innerHTML));
-//
-//   act(() => {
-//     render(
-//       <BrowserRouter>
-//         <LeftChats id="dd" addProp="ss" name="dd" />;
-//       </BrowserRouter>,
-//       container
-//     );
-//   });
-//
-//   expect(pretty(document.body.innerHTML));
-// });
-//
-//
-//
-// describe("DOM element Chat", () => {
-//   // const state = require("./StateProvider");
-//   // useContextMock.mockReturnValue("Text");
-//   useStateValue.mockReturnValueOnce("Text");
-//   useContextMock.mockReturnValue("Test Value");
-//
-//   it("ddd", () => {
-//     const component = shallow(<Chat />);
-//     expect(component);
-//   });
-// });
 import LeftChats from "./LeftChats";
 import { BrowserRouter as Router } from "react-router-dom";
 import { shallow, configure } from "enzyme";
@@ -99,27 +19,19 @@ import {
   createRoom,
   signIn,
   refreshDB,
+  twillioConnect,
 } from "./service";
-import { StateProvider } from "./StateProvider";
-import reducer from "./reducer";
-
+import { StateContext, StateProvider, useStateValue } from "./StateProvider";
+import reducer, { actionTypes, initialState } from "./reducer";
+import "firebase/firestore";
+import FirestoreMock from "./mockedFirebase";
+import { auth, provider } from "./firebase";
+import IconButton from "@material-ui/core/IconButton";
+import sinon from "sinon";
 expect.addSnapshotSerializer(createSerializer({ mode: "deep" }));
 configure({ adapter: new Adapter() });
-
+const firestoreMock = new FirestoreMock();
 beforeAll(() => {
-  const { mockFirebase } = require("firestore-jest-mock");
-  mockFirebase({
-    database: {
-      rooms: [
-        {
-          roomId: "aaa",
-          name: "asa",
-          messages: [{ name: "aaa", message: "asa", timestamp: "2211122" }],
-        },
-      ],
-    },
-  });
-
   const mockSetState = jest.fn();
   jest.mock("react", () => ({
     useState: (initial) => [initial, mockSetState],
@@ -127,9 +39,13 @@ beforeAll(() => {
     useRef: jest.fn(),
     useEffect: jest.fn(),
     useReducer: (initial, setter) => [initial, setter],
+    createContext: jest.fn(),
   }));
   jest.mock("./StateProvider", () => ({
     useStateValue: () => ["initial", mockSetState],
+  }));
+  jest.mock("./Chat", () => ({
+    handleSubmit: jest.fn().mockResolvedValue("test"),
   }));
   jest.mock("react-router-dom", () => ({
     ...jest.requireActual("react-router-dom"),
@@ -141,11 +57,12 @@ beforeAll(() => {
     jwtExists: jest.fn(),
     roomNameExists: jest.fn(),
     sendMessageFun: jest.fn(),
-    send: () => "dssdsd",
+    send: jest.fn().mockResolvedValue("test"),
     idExists: jest.fn(),
     createRoom: jest.fn(),
     refreshDB: jest.fn(),
-    signIn: () => "fdesd",
+    signIn: jest.fn().mockResolvedValue("test"),
+    twillioConnect: (token, videoRoomName, localVidRef, remoteVidRef) => "aaa",
   }));
 });
 
@@ -162,9 +79,35 @@ test("LeftChats", () => {
   expect(container).toMatchSnapshot();
 });
 
-test("LeftChats addProp", () => {
-  const container = renderer.create(<LeftChats addProp />);
+test("LeftChats key, id, name", () => {
+  const room = {
+    id: "11",
+    data: {
+      name: "name",
+    },
+  };
+
+  const container = shallow(
+    <LeftChats key={room.id} id={room.id} name={room.data.name} />
+  );
   expect(container).toMatchSnapshot();
+});
+
+test("LeftChats addProp", () => {
+  const container = shallow(<LeftChats addProp />);
+  expect(container).toMatchSnapshot();
+});
+
+test("LeftChats onclick func", () => {
+  const app = shallow(<App />);
+  const instance = app.instance();
+  const spy = jest.spyOn(instance, "createChat");
+
+  instance.forceUpdate();
+
+  const p = app.find(".leftpart_chat");
+  p.simulate("click");
+  expect(spy).toHaveBeenCalled();
 });
 
 test("Video", () => {
@@ -173,7 +116,18 @@ test("Video", () => {
 });
 
 test("firebase", () => {
-  const { mockCollection } = require("firestore-jest-mock/mocks/firestore");
+  const firebase = require("firebase/app");
+  firebase.firestore = firestoreMock;
+  firestoreMock.reset();
+  firestoreMock.collection = {
+    rooms: [
+      {
+        roomId: "aaa",
+        name: "asa",
+        messages: [{ message: "asa", name: "aaa", timestamp: "2211122" }],
+      },
+    ],
+  };
   const user = {
     displayName: "dsa",
   };
@@ -183,16 +137,8 @@ test("firebase", () => {
   send("user");
   idExists("id", "setMessages");
   createRoom("roomName");
-  signIn("dispatch");
-  const firebase = require("firebase");
-  const db = firebase.firestore();
-
-  return db
-    .collection("rooms")
-    .get()
-    .then((userDocs) => {
-      expect(mockCollection).toHaveBeenCalledWith("rooms");
-    });
+  refreshDB("setRooms");
+  expect(signIn("dispatch"));
 });
 
 test("Chat", () => {
@@ -201,9 +147,11 @@ test("Chat", () => {
   expect(container).toMatchSnapshot();
 });
 
-test("App", () => {
-  const container = shallow(<App />);
-  expect(container).toMatchSnapshot();
+test("simulate click on material-ui iconbutton", () => {
+  const onSearchClick = sinon.spy();
+  const wrapper = shallow(<Chat onSearchClick={onSearchClick} />);
+  wrapper.find(IconButton).simulate("click", { preventDefault: () => {} });
+  expect(onSearchClick.called);
 });
 
 test("Login", () => {
@@ -217,12 +165,12 @@ test("Leftpart", () => {
 });
 
 test("StateProvider", () => {
-  StateProvider({
-    reducer: "reducer",
-    initialState: "initialState",
-    children: "children",
-  });
-  expect(StateProvider).toBeCalled();
+  const container = shallow(
+    <StateProvider initialState={initialState} reducer={reducer}>
+      <App />
+    </StateProvider>
+  );
+  expect(container).toMatchSnapshot();
 });
 
 test("reducer", () => {
@@ -230,8 +178,40 @@ test("reducer", () => {
     SET_USER: "SET_USER",
   };
 
-  reducer("aa", actionTypes.SET_USER);
+  reducer("aa", { type: actionTypes.SET_USER });
   expect(reducer);
   reducer("aa", "sss");
   expect(reducer);
 });
+
+test("state provider variables", () => {
+  expect(StateContext).toStrictEqual(React.createContext());
+  expect(useStateValue);
+});
+
+// test("app without user", () => {
+//   jest.mock("./App", () => ({
+//     user: undefined,
+//   }));
+//   const container = shallow(<App />);
+//   expect(container).toMatchSnapshot();
+// });
+
+// test("app with token", () => {
+//   jest.mock("./App", () => ({
+//     token: "sasa",
+//     user: "sasa",
+//   }));
+//   const cont = <App />;
+//   const container = renderer.create(cont);
+//   expect(container).toMatchSnapshot();
+// });
+//
+// test("app without token", () => {
+//   jest.mock("./App", () => ({
+//     token: undefined,
+//     user: "sasa",
+//   }));
+//   const container = renderer.create(<App />);
+//   expect(container).toMatchSnapshot();
+// });

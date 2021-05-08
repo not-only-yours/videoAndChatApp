@@ -2,34 +2,38 @@ import React from "react";
 import "./Chat.css";
 import { Avatar, IconButton } from "@material-ui/core";
 import { VideoCall } from "@material-ui/icons";
-const rdom = require("react-router-dom");
-const serv = require("./service");
-const sp = require("./StateProvider");
 
 function Chat({ storeToken, videoRoomName }) {
+  const serv = require("./service");
+  const rdom = require("react-router-dom");
+  const sp = require("./StateProvider");
   const [input, setInput] = React.useState("");
   const [roomName, setRoomName] = React.useState("");
-  const { roomId } = rdom.useParams();
   const [messages, setMessages] = React.useState([]);
   const [{ user }, dispatch] = sp.useStateValue();
+  const { roomId } = rdom.useParams();
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    serv
-      .send(user.displayName)
-      .then((response) => response.json())
-      .then((response) => {
-        const jwt = response;
+    try {
+      event.preventDefault();
+      serv
+        .send(user.displayName)
+        .then((response) => response.json())
+        .then((response) => {
+          const jwt = response;
 
-        storeToken(jwt);
-        console.log(jwt);
-        if (jwt) {
-          serv.jwtExists(roomId, user.displayName);
-        }
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+          storeToken(jwt);
+          console.log(jwt);
+          if (jwt) {
+            serv.jwtExists(roomId, user.displayName);
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   React.useEffect(() => {
