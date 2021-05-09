@@ -3,7 +3,7 @@ import "./Chat.css";
 import { Avatar, IconButton } from "@material-ui/core";
 import { VideoCall } from "@material-ui/icons";
 
-function Chat({ storeToken, videoRoomName }) {
+function Chat() {
   const serv = require("./service");
   const rdom = require("react-router-dom");
   const sp = require("./StateProvider");
@@ -11,26 +11,16 @@ function Chat({ storeToken, videoRoomName }) {
   const [roomName, setRoomName] = React.useState("");
   const [messages, setMessages] = React.useState([]);
   const [{ user }, dispatch] = sp.useStateValue();
+  const [{}, dispatchToken] = sp.useStateValue();
+  const [{}, dispatchRoomName] = sp.useStateValue();
   const { roomId } = rdom.useParams();
 
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
-      serv
-        .send(user.displayName)
-        .then((response) => response.json())
-        .then((response) => {
-          const jwt = response;
-
-          storeToken(jwt);
-          console.log(jwt);
-          if (jwt) {
-            serv.jwtExists(roomId, user.displayName);
-          }
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+      serv.send(user.displayName, dispatchToken).then(() => {
+        serv.jwtExists(roomId, user.displayName);
+      });
     } catch (e) {
       console.log(e);
     }
@@ -38,7 +28,7 @@ function Chat({ storeToken, videoRoomName }) {
 
   React.useEffect(() => {
     if (roomId) {
-      serv.roomNameExists(roomId, videoRoomName, setRoomName, setMessages);
+      serv.roomNameExists(roomId, dispatchRoomName, setRoomName, setMessages);
     }
   }, [roomId]);
 

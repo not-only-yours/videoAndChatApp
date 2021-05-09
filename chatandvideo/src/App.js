@@ -10,8 +10,7 @@ import "./video.css";
 function App() {
   const sp = require("./StateProvider");
   const [{ user }, dispatch] = sp.useStateValue();
-  const [token, setToken] = React.useState(false);
-  const [videoName, setVideoName] = React.useState("");
+  const [{ token }, dispatchToken] = sp.useStateValue();
 
   return (
     <div className="app">
@@ -23,16 +22,16 @@ function App() {
             <Leftpart />
             <Switch>
               <Route path="/rooms/:roomId">
-                <Chat storeToken={setToken} videoRoomName={setVideoName} />
+                <Chat />
               </Route>
               <Route path="/">
-                <Chat storeToken={setToken} videoRoomName={setVideoName} />
+                <Chat />
               </Route>
             </Switch>
           </Router>
         </div>
       ) : (
-        <Video token={token} videoRoomName={videoName} />
+        <Video />
       )}
     </div>
   );

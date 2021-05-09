@@ -1,14 +1,16 @@
 import { twillioConnect } from "./Autorization";
 const re = require("react");
 
-function Video({ token, videoRoomName }) {
+function Video() {
+  const sp = require("./StateProvider");
+  const [{ token }, dispatchToken] = sp.useStateValue();
+  const [{ roomName }, dispatchRoomName] = sp.useStateValue();
   const localVidRef = re.useRef();
   const remoteVidRef = re.useRef();
 
-  re.useEffect(
-    () => twillioConnect(token, videoRoomName, localVidRef, remoteVidRef),
-    [token]
-  );
+  re.useEffect(() => twillioConnect(token, roomName, localVidRef, remoteVidRef), [
+    token,
+  ]);
 
   return (
     <div>
