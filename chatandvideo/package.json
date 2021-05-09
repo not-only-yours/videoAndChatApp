@@ -79,7 +79,8 @@
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
       "!src/index.js",
-      "!src/mockedFirebase.js"
+      "!src/mockedFirebase.js",
+      "!src/Autorization.js"
     ]
   },
   "browserslist": {

@@ -1,4 +1,4 @@
-import { twillioConnect } from "./service";
+import { twillioConnect } from "./Autorization";
 const re = require("react");
 
 function Video({ token, videoRoomName }) {

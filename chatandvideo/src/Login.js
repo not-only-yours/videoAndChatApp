@@ -1,6 +1,7 @@
 import React from "react";
 import "./Login.css";
 import { Button } from "@material-ui/core";
+import { signIn } from "./Autorization";
 
 function Login() {
   const sp = require("./StateProvider");
@@ -16,7 +17,7 @@ function Login() {
         <div className="login_text">
           <h1>Sign in to Google</h1>
         </div>
-        <Button type="submit" onClick={serv.signIn(dispatch)}>
+        <Button type="submit" onClick={signIn(dispatch)}>
           Sign in With Google
         </Button>
       </div>
