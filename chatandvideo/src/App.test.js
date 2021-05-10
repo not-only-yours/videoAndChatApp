@@ -25,14 +25,18 @@ import { StateContext, StateProvider, useStateValue } from "./StateProvider";
 import reducer, { actionTypes, initialState } from "./reducer";
 import "firebase/firestore";
 import FirestoreMock from "./mockedFirebase";
-import { auth, provider } from "./firebase";
+import db, { auth, provider } from "./firebase";
 import IconButton from "@material-ui/core/IconButton";
 import sinon from "sinon";
+import { cleanup } from "@testing-library/react";
 expect.addSnapshotSerializer(createSerializer({ mode: "deep" }));
 configure({ adapter: new Adapter() });
 const firestoreMock = new FirestoreMock();
-beforeAll(() => {
+beforeEach(() => {
   const mockSetState = jest.fn();
+  jest.mock("./StateProvider", () => ({
+    useStateValue: () => ["initial", mockSetState],
+  }));
   jest.mock("react", () => ({
     useState: (initial) => [initial, mockSetState],
     useContext: (initial) => [initial, mockSetState],
@@ -40,9 +44,6 @@ beforeAll(() => {
     useEffect: jest.fn(),
     useReducer: (initial, setter) => [initial, setter],
     createContext: jest.fn(),
-  }));
-  jest.mock("./StateProvider", () => ({
-    useStateValue: () => ["initial", mockSetState],
   }));
   jest.mock("./Chat", () => ({
     handleSubmit: jest.fn().mockResolvedValue("test"),
@@ -65,8 +66,6 @@ beforeAll(() => {
     twillioConnect: (token, videoRoomName, localVidRef, remoteVidRef) => "aaa",
   }));
 });
-
-afterEach(() => {});
 
 test("LeftChats", () => {
   const container = renderer
@@ -99,15 +98,14 @@ test("LeftChats addProp", () => {
 });
 
 test("LeftChats onclick func", () => {
-  const app = shallow(<App />);
-  const instance = app.instance();
-  const spy = jest.spyOn(instance, "createChat");
-
-  instance.forceUpdate();
+  const app = shallow(<LeftChats />);
+  // jest.mock("./LeftChats", () => ({
+  //   createChat: jest.fn(() => {}),
+  // }));
 
   const p = app.find(".leftpart_chat");
-  p.simulate("click");
-  expect(spy).toHaveBeenCalled();
+  const ans = p.simulate("click");
+  expect(ans).toEqual({});
 });
 
 test("Video", () => {
@@ -138,7 +136,7 @@ test("firebase", () => {
   idExists("id", "setMessages");
   createRoom("roomName");
   refreshDB("setRooms");
-  expect(signIn("dispatch"));
+  expect(db.collection("rooms"));
 });
 
 test("Chat", () => {
@@ -189,29 +187,25 @@ test("state provider variables", () => {
   expect(useStateValue);
 });
 
-// test("app without user", () => {
-//   jest.mock("./App", () => ({
-//     user: undefined,
-//   }));
-//   const container = shallow(<App />);
-//   expect(container).toMatchSnapshot();
-// });
+test("app without user", () => {
+  const container = shallow(<App />);
+  expect(container).toMatchSnapshot();
+});
 
-// test("app with token", () => {
-//   jest.mock("./App", () => ({
-//     token: "sasa",
-//     user: "sasa",
-//   }));
-//   const cont = <App />;
-//   const container = renderer.create(cont);
-//   expect(container).toMatchSnapshot();
-// });
-//
-// test("app without token", () => {
-//   jest.mock("./App", () => ({
-//     token: undefined,
-//     user: "sasa",
-//   }));
-//   const container = renderer.create(<App />);
-//   expect(container).toMatchSnapshot();
-// });
+test("app with user, token", () => {
+  jest.resetModules();
+  jest.mock("./StateProvider", () => ({
+    useStateValue: () => [{ user: "adas", token: "sas" }, jest.fn()],
+  }));
+  const container = shallow(<App />);
+  expect(container).toMatchSnapshot();
+});
+
+test("app without token (with user)", () => {
+  jest.resetModules();
+  jest.mock("./StateProvider", () => ({
+    useStateValue: () => [{ user: "adas" }, jest.fn()],
+  }));
+  const container = shallow(<App />);
+  expect(container).toMatchSnapshot();
+});

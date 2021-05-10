@@ -177,6 +177,7 @@ exports[`Login 1`] = `
       </h1>
     </div>
     <WithStyles(ForwardRef(Button))
+      onClick={[Function]}
       type="submit"
     >
       Sign in With Google
@@ -190,6 +191,8 @@ exports[`StateProvider 1`] = `
   value={
     Array [
       Object {
+        "roomName": null,
+        "token": null,
         "user": null,
       },
       [Function],
@@ -204,5 +207,47 @@ exports[`Video 1`] = `
 <div>
   <div />
   <div />
+</div>
+`;
+
+exports[`app with user, token 1`] = `
+<div
+  className="app"
+>
+  <Video />
+</div>
+`;
+
+exports[`app without token (with user) 1`] = `
+<div
+  className="app"
+>
+  <div
+    className="app_body"
+  >
+    <BrowserRouter>
+      <Leftpart />
+      <Switch>
+        <Route
+          path="/rooms/:roomId"
+        >
+          <Chat />
+        </Route>
+        <Route
+          path="/"
+        >
+          <Chat />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  </div>
+</div>
+`;
+
+exports[`app without user 1`] = `
+<div
+  className="app"
+>
+  <Login />
 </div>
 `;
