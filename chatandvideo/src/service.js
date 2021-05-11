@@ -88,3 +88,12 @@ export function refreshDB(setRooms) {
     )
   );
 }
+
+export function vid(dispatchToken) {
+  return () => {
+    dispatchToken({
+      type: actionTypes.SET_TOKEN,
+      token: false,
+    });
+  };
+}

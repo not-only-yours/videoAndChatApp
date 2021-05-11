@@ -32,13 +32,20 @@ import { cleanup } from "@testing-library/react";
 expect.addSnapshotSerializer(createSerializer({ mode: "deep" }));
 configure({ adapter: new Adapter() });
 const firestoreMock = new FirestoreMock();
+
 beforeEach(() => {
   const mockSetState = jest.fn();
   jest.mock("./StateProvider", () => ({
     useStateValue: () => ["initial", mockSetState],
   }));
   jest.mock("react", () => ({
-    useState: (initial) => [initial, mockSetState],
+    useState: (initial) => [
+      [
+        { room: initial, id: "asa", data: { name: "aaa" } },
+        { room: initial, id: "asa", data: { name: "aaa" } },
+      ],
+      mockSetState,
+    ],
     useContext: (initial) => [initial, mockSetState],
     useRef: jest.fn(),
     useEffect: jest.fn(),
@@ -56,7 +63,6 @@ beforeEach(() => {
   }));
   jest.mock("./service", () => ({
     jwtExists: jest.fn(),
-    roomNameExists: jest.fn(),
     sendMessageFun: jest.fn(),
     send: jest.fn().mockResolvedValue("test"),
     idExists: jest.fn(),
@@ -131,7 +137,6 @@ test("firebase", () => {
   };
   sendMessageFun("sdfs", "dsds", user);
   jwtExists("d", "sasa");
-  roomNameExists("roomId", "videoRoomName", "setRoomName", "setMessages");
   send("user");
   idExists("id", "setMessages");
   createRoom("roomName");
@@ -208,4 +213,18 @@ test("app without token (with user)", () => {
   }));
   const container = shallow(<App />);
   expect(container).toMatchSnapshot();
+});
+
+test("service roomNameExists", () => {
+  const roomId = "aaa";
+  const dispatchRoomName = () => "nothing";
+  const setRoomName = () => "nothing";
+  const setMessages = () => "nothing";
+  roomNameExists(roomId, dispatchRoomName, setRoomName, setMessages);
+
+  db.collection("rooms")
+    .doc(roomId)
+    .onSnapshot((snapshot) => {
+      expect(snapshot.data().name).toEqual("asa");
+    });
 });

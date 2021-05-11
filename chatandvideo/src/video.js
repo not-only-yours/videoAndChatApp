@@ -1,4 +1,8 @@
-import { twillioConnect } from "./Autorization";
+import { signIn, twillioConnect } from "./Autorization";
+import { actionTypes } from "./reducer";
+import React from "react";
+import { vid } from "./service";
+import { Button } from "@material-ui/core";
 const re = require("react");
 
 function Video() {
@@ -14,8 +18,14 @@ function Video() {
 
   return (
     <div>
+      <p className="roomName">{roomName}</p>
       <div ref={localVidRef} />
       <div ref={remoteVidRef} />
+      <div className="exitButton">
+        <Button className="exitButton" type="submit" onClick={vid(dispatchToken)}>
+          Exit
+        </Button>
+      </div>
     </div>
   );
 }

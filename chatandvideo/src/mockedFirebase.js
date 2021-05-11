@@ -14,14 +14,27 @@ export default class FirestoreMock {
     this.mockGet = jest.fn(() => Promise.resolve(this._mockGetReturn));
 
     // methods that accepts callbacks
-    this.mockOnSnaptshot = jest.fn((success, error) =>
-      success(this._mockOnSnaptshotSuccess)
-    );
+    this.mockOnSnaptshot = jest.fn((success, error) => {
+      return new mockedSmapshot();
+    });
+    class mockedSmapshot {
+      data() {
+        return {
+          name: "asa",
+        };
+      }
+    }
 
     // return values
     this._mockAddReturn = null;
     this._mockGetReturn = null;
     this._mockOnSnaptshotSuccess = null;
+  }
+
+  data() {
+    return {
+      name: "sasa",
+    };
   }
 
   collection(c) {
