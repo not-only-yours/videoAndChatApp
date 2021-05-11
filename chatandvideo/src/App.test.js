@@ -1,6 +1,7 @@
 import LeftChats from "./LeftChats";
 import { BrowserRouter as Router } from "react-router-dom";
-import { shallow, configure } from "enzyme";
+import { MemoryRouter } from "react-router";
+import { shallow, configure, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Leftpart from "./Leftpart";
 import Login from "./Login";
@@ -179,11 +180,17 @@ test("StateProvider", () => {
 test("reducer", () => {
   const actionTypes = {
     SET_USER: "SET_USER",
+    SET_TOKEN: "SET_TOKEN",
+    SET_ROOMNAME: "SET_ROOMNAME",
   };
 
   reducer("aa", { type: actionTypes.SET_USER });
   expect(reducer);
   reducer("aa", "sss");
+  expect(reducer);
+  reducer("aa", { type: actionTypes.SET_TOKEN });
+  expect(reducer);
+  reducer("aa", { type: actionTypes.SET_ROOMNAME });
   expect(reducer);
 });
 
