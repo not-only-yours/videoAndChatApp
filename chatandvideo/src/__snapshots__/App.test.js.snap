@@ -98,7 +98,7 @@ exports[`LeftChats addProp 1`] = `
 
 exports[`LeftChats key, id, name 1`] = `
 <Link
-  to="/rooms/11"
+  to="/rooms/true"
 >
   <div
     className="leftpart_chat"
@@ -114,6 +114,17 @@ exports[`LeftChats key, id, name 1`] = `
     </div>
   </div>
 </Link>
+`;
+
+exports[`LeftChats onclick func 1`] = `
+<div
+  className="leftpart_chat"
+  onClick={[Function]}
+>
+  <h2>
+    Добавити новий чатік
+  </h2>
+</div>
 `;
 
 exports[`Leftpart 1`] = `
@@ -205,8 +216,39 @@ exports[`StateProvider 1`] = `
 
 exports[`Video 1`] = `
 <div>
+  <p
+    className="roomName"
+  />
   <div />
   <div />
+  <div
+    className="exitButton"
+  >
+    <button
+      className="MuiButtonBase-root MuiButton-root MuiButton-text exitButton"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="submit"
+    >
+      <span
+        className="MuiButton-label"
+      >
+        Exit
+      </span>
+    </button>
+  </div>
 </div>
 `;
 
@@ -251,3 +293,5 @@ exports[`app without user 1`] = `
   <Login />
 </div>
 `;
+
+exports[`simulate click on material-ui iconbutton 1`] = `[Function]`;

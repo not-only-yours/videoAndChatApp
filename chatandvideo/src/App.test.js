@@ -87,14 +87,13 @@ test("LeftChats", () => {
 
 test("LeftChats key, id, name", () => {
   const room = {
-    id: "11",
+    id: true,
     data: {
       name: "name",
     },
   };
-
   const container = shallow(
-    <LeftChats key={room.id} id={room.id} name={room.data.name} />
+    <LeftChats id={room.id} name={room.data.name} addProp={false} />
   );
   expect(container).toMatchSnapshot();
 });
@@ -105,14 +104,12 @@ test("LeftChats addProp", () => {
 });
 
 test("LeftChats onclick func", () => {
-  const app = shallow(<LeftChats />);
+  const app = shallow(<LeftChats addProp={true} />);
   // jest.mock("./LeftChats", () => ({
   //   createChat: jest.fn(() => {}),
   // }));
-
-  const p = app.find(".leftpart_chat");
-  const ans = p.simulate("click");
-  expect(ans).toEqual({});
+  const ans = app.find(".leftpart_chat").simulate("click");
+  expect(ans).toMatchSnapshot();
 });
 
 test("Video", () => {
@@ -142,7 +139,15 @@ test("firebase", () => {
   idExists("id", "setMessages");
   createRoom("roomName");
   refreshDB("setRooms");
-  expect(db.collection("rooms"));
+  expect(firestoreMock.collection).toEqual({
+    rooms: [
+      {
+        messages: [{ message: "asa", name: "aaa", timestamp: "2211122" }],
+        name: "asa",
+        roomId: "aaa",
+      },
+    ],
+  });
 });
 
 test("Chat", () => {
@@ -155,7 +160,7 @@ test("simulate click on material-ui iconbutton", () => {
   const onSearchClick = sinon.spy();
   const wrapper = shallow(<Chat onSearchClick={onSearchClick} />);
   wrapper.find(IconButton).simulate("click", { preventDefault: () => {} });
-  expect(onSearchClick.called);
+  expect(onSearchClick).toMatchSnapshot();
 });
 
 test("Login", () => {
@@ -184,19 +189,21 @@ test("reducer", () => {
     SET_ROOMNAME: "SET_ROOMNAME",
   };
 
-  reducer("aa", { type: actionTypes.SET_USER });
-  expect(reducer);
-  reducer("aa", "sss");
-  expect(reducer);
-  reducer("aa", { type: actionTypes.SET_TOKEN });
-  expect(reducer);
-  reducer("aa", { type: actionTypes.SET_ROOMNAME });
-  expect(reducer);
+  const a = reducer("aa", { type: actionTypes.SET_USER });
+  expect(a).toEqual({ 0: "a", 1: "a", user: undefined });
+  const b = reducer("aa", "sss");
+  expect(b).toEqual("aa");
+  const c = reducer("aa", { type: actionTypes.SET_TOKEN });
+  expect(c).toEqual({ 0: "a", 1: "a", user: undefined });
+  const d = reducer("aa", { type: actionTypes.SET_ROOMNAME });
+  expect(d).toEqual({ 0: "a", 1: "a", user: undefined });
 });
 
 test("state provider variables", () => {
   expect(StateContext).toStrictEqual(React.createContext());
-  expect(useStateValue);
+  const sp = require("./StateProvider");
+  sp.useStateValue();
+  expect(React.useContext).toBeInstanceOf(Function);
 });
 
 test("app without user", () => {
