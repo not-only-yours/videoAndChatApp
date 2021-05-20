@@ -42,7 +42,7 @@ export function sendMessageFun(roomId, input, user) {
   });
 }
 
-export const send = async (user, dispatchToken) => {
+export const send = async (user, dispatch) => {
   return fetch("https://shadow-wolf-1476.twil.io/create-token", {
     headers: {
       Accept: "application/json",
@@ -55,7 +55,7 @@ export const send = async (user, dispatchToken) => {
   })
     .then((response) => response.json())
     .then((response) => {
-      dispatchToken({
+      dispatch({
         type: actionTypes.SET_TOKEN,
         token: response,
       });
@@ -97,3 +97,30 @@ export function vid(dispatchToken) {
     });
   };
 }
+
+Array.prototype.mymap = function (callback /*, thisArg*/) {
+  var T, A, k;
+  if (this == null) {
+    throw new TypeError("this is null or not defined");
+  }
+  var O = Object(this);
+  var len = O.length >>> 0;
+  if (typeof callback !== "function") {
+    throw new TypeError(callback + " is not a function");
+  }
+  if (arguments.length > 1) {
+    T = arguments[1];
+  }
+  A = new Array(len);
+  k = 0;
+  while (k < len) {
+    var kValue, mappedValue;
+    if (k in O) {
+      kValue = O[k];
+      mappedValue = callback.call(T, kValue, k, O);
+      A[k] = mappedValue;
+    }
+    k++;
+  }
+  return A;
+};

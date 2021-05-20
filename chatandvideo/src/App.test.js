@@ -242,3 +242,33 @@ test("service roomNameExists", () => {
       expect(snapshot.data().name).toEqual("asa");
     });
 });
+
+describe("An Array", function () {
+  describe("mymap", function () {
+    var arr;
+
+    beforeEach(function () {
+      arr = [1, 2, 3, 4, 5];
+    });
+
+    it("should return null if no arguments are used", function () {
+      expect(arr.mymap()).toBe(null);
+    });
+
+    it("should return itself if the block does nothing", function () {
+      expect(
+        arr.mymap(function (a) {
+          return a;
+        })
+      ).toEqual([1, 2, 3, 4, 5]);
+    });
+
+    it("should return +1 to each element", function () {
+      expect(
+        arr.mymap(function (a) {
+          return a + 1;
+        })
+      ).toEqual([2, 3, 4, 5, 6]);
+    });
+  });
+});

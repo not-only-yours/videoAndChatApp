@@ -9,8 +9,7 @@ import "./video.css";
 
 function App() {
   const sp = require("./StateProvider");
-  const [{ user }, dispatch] = sp.useStateValue();
-  const [{ token }, dispatchToken] = sp.useStateValue();
+  const [{ user, token }, dispatch] = sp.useStateValue();
 
   return (
     <div className="app">

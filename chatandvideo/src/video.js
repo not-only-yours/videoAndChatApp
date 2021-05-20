@@ -7,8 +7,7 @@ const re = require("react");
 
 function Video() {
   const sp = require("./StateProvider");
-  const [{ token }, dispatchToken] = sp.useStateValue();
-  const [{ roomName }, dispatchRoomName] = sp.useStateValue();
+  const [{ token, roomName }, dispatch] = sp.useStateValue();
   const localVidRef = re.useRef();
   const remoteVidRef = re.useRef();
 
@@ -22,7 +21,7 @@ function Video() {
       <div ref={localVidRef} />
       <div ref={remoteVidRef} />
       <div className="exitButton">
-        <Button className="exitButton" type="submit" onClick={vid(dispatchToken)}>
+        <Button className="exitButton" type="submit" onClick={vid(dispatch)}>
           Exit
         </Button>
       </div>

@@ -11,14 +11,12 @@ function Chat() {
   const [roomName, setRoomName] = React.useState("");
   const [messages, setMessages] = React.useState([]);
   const [{ user }, dispatch] = sp.useStateValue();
-  const [{}, dispatchToken] = sp.useStateValue();
-  const [{}, dispatchRoomName] = sp.useStateValue();
   const { roomId } = rdom.useParams();
 
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
-      serv.send(user.displayName, dispatchToken).then(() => {
+      serv.send(user.displayName, dispatch).then(() => {
         serv.jwtExists(roomId, user.displayName);
       });
     } catch (e) {
@@ -28,7 +26,7 @@ function Chat() {
 
   React.useEffect(() => {
     if (roomId) {
-      serv.roomNameExists(roomId, dispatchRoomName, setRoomName, setMessages);
+      serv.roomNameExists(roomId, dispatch, setRoomName, setMessages);
     }
   }, [roomId]);
 
@@ -62,7 +60,7 @@ function Chat() {
         </div>
       </div>
       <div className="chat_body">
-        {messages.map((message) => (
+        {messages.mymap((message) => (
           <p
             className={`chat_message ${
               message.name === user.displayName && "chat_reciever"
