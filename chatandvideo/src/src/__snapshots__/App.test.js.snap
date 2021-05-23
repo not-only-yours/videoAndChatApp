@@ -1,0 +1,297 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chat 1`] = `
+<div
+  className="chat"
+>
+  <div
+    className="chat_header"
+  >
+    <WithStyles(ForwardRef(Avatar)) />
+    <div
+      className="chat_headerInfo"
+    >
+      <h3 />
+      <p>
+        Last seen
+         
+        Invalid Date
+      </p>
+    </div>
+    <div
+      className="chat_headerRight"
+    >
+      <WithStyles(ForwardRef(IconButton))
+        onClick={[Function]}
+      >
+        <Memo(ForwardRef(VideoCallIcon)) />
+      </WithStyles(ForwardRef(IconButton))>
+    </div>
+  </div>
+  <div
+    className="chat_body"
+  />
+  <div
+    className="chat_footer"
+  >
+    <form>
+      <input
+        onChange={[Function]}
+        placeholder="Type a message..."
+        type="text"
+        value=""
+      />
+      <button
+        id="button"
+        onClick={[Function]}
+        type="submit"
+      >
+        Send a message
+      </button>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`LeftChats 1`] = `
+<a
+  href="/rooms/undefined"
+  onClick={[Function]}
+>
+  <div
+    className="leftpart_chat"
+  >
+    <div
+      className="MuiAvatar-root MuiAvatar-circle MuiAvatar-colorDefault"
+    >
+      <svg
+        aria-hidden={true}
+        className="MuiSvgIcon-root MuiAvatar-fallback"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+        />
+      </svg>
+    </div>
+    <div
+      className="leftpartChat_info"
+    >
+      <h2 />
+      <p />
+    </div>
+  </div>
+</a>
+`;
+
+exports[`LeftChats addProp 1`] = `
+<div
+  className="leftpart_chat"
+  onClick={[Function]}
+>
+  <h2>
+    Добавити новий чатік
+  </h2>
+</div>
+`;
+
+exports[`LeftChats key, id, name 1`] = `
+<Link
+  to="/rooms/true"
+>
+  <div
+    className="leftpart_chat"
+  >
+    <WithStyles(ForwardRef(Avatar)) />
+    <div
+      className="leftpartChat_info"
+    >
+      <h2>
+        name
+      </h2>
+      <p />
+    </div>
+  </div>
+</Link>
+`;
+
+exports[`LeftChats onclick func 1`] = `
+<div
+  className="leftpart_chat"
+  onClick={[Function]}
+>
+  <h2>
+    Добавити новий чатік
+  </h2>
+</div>
+`;
+
+exports[`Leftpart 1`] = `
+<div
+  className="leftpart"
+>
+  <div
+    className="leftpart_header"
+  >
+    <Memo(ForwardRef(AccessibleIcon)) />
+    <div
+      className="leftpart_headerRight"
+    >
+      <WithStyles(ForwardRef(IconButton))>
+        <Memo(ForwardRef(SearchIcon)) />
+      </WithStyles(ForwardRef(IconButton))>
+      <WithStyles(ForwardRef(IconButton))>
+        <Memo(ForwardRef(InfoIcon)) />
+      </WithStyles(ForwardRef(IconButton))>
+    </div>
+  </div>
+  <div
+    className="leftpart_search"
+  >
+    <div
+      className="leftpart_searchContainer"
+    >
+      <Memo(ForwardRef(SearchIcon)) />
+      <input
+        placeholder="Print here dude"
+        type="text"
+      />
+    </div>
+  </div>
+  <div
+    className="leftpart_chats"
+  >
+    <LeftChats
+      addProp={true}
+    />
+  </div>
+</div>
+`;
+
+exports[`Login 1`] = `
+<div
+  className="login"
+>
+  <div
+    className="login_container"
+  >
+    <img
+      alt="google"
+      src="https://img.icons8.com/clouds/100/000000/google-logo.png"
+    />
+    <div
+      className="login_text"
+    >
+      <h1>
+        Sign in to Google
+      </h1>
+    </div>
+    <WithStyles(ForwardRef(Button))
+      onClick={[Function]}
+      type="submit"
+    >
+      Sign in With Google
+    </WithStyles(ForwardRef(Button))>
+  </div>
+</div>
+`;
+
+exports[`StateProvider 1`] = `
+<ContextProvider
+  value={
+    Array [
+      Object {
+        "roomName": null,
+        "token": null,
+        "user": null,
+      },
+      [Function],
+    ]
+  }
+>
+  <App />
+</ContextProvider>
+`;
+
+exports[`Video 1`] = `
+<div>
+  <p
+    className="roomName"
+  />
+  <div />
+  <div />
+  <div
+    className="exitButton"
+  >
+    <button
+      className="MuiButtonBase-root MuiButton-root MuiButton-text exitButton"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="submit"
+    >
+      <span
+        className="MuiButton-label"
+      >
+        Exit
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`app with user, token 1`] = `
+<div
+  className="app"
+>
+  <Video />
+</div>
+`;
+
+exports[`app without token (with user) 1`] = `
+<div
+  className="app"
+>
+  <div
+    className="app_body"
+  >
+    <BrowserRouter>
+      <Leftpart />
+      <Switch>
+        <Route
+          path="/rooms/:roomId"
+        >
+          <Chat />
+        </Route>
+        <Route
+          path="/"
+        >
+          <Chat />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  </div>
+</div>
+`;
+
+exports[`app without user 1`] = `
+<div
+  className="app"
+>
+  <Login />
+</div>
+`;
+
+exports[`simulate click on material-ui iconbutton 1`] = `[Function]`;

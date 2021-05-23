@@ -1,0 +1,29 @@
+.video-container {
+  display: grid;
+  grid-auto-columns: auto;
+}
+
+video {
+  max-width: 400px;
+}
+
+.exitButton button {
+  text-transform: inherit !important;
+  background-color: steelblue !important;
+  color: white;
+  margin-top: 20px;
+}
+
+.exitButton {
+  text-align: center;
+}
+
+.roomName {
+  position: absolute;
+  top: -30px;
+  left: 16px;
+  color: steelblue;
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+}
