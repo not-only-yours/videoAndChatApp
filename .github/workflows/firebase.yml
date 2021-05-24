@@ -12,9 +12,13 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@master
       - name: Install Dependencies
-        run: yarn install
+        run: |
+          cd chatandvideo
+          yarn install
       - name: Build
-        run: yarn build
+        run: |
+          cd chatandvideo
+          yarn build
       - name: Archive Production Artifact
         uses: actions/upload-artifact@master
         with:
