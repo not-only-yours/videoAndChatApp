@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "chatpart-18f0f"
+    "default": "chatpart-18f0f",
+    "chatpart-18f0f": "chatpart-18f0f"
   }
 }
