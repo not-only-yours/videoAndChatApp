@@ -1,7 +1,7 @@
 import React from "react";
 import "./Login.css";
 import { Button } from "@material-ui/core";
-import { signIn } from "./Autorization";
+import { signIn } from "./authService";
 
 function Login() {
   const sp = require("./StateProvider");

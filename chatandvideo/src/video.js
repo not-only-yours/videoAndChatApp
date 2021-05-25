@@ -1,4 +1,4 @@
-import { signIn, twillioConnect } from "./Autorization";
+import { signIn, twillioConnect } from "./authService";
 import { actionTypes } from "./reducer";
 import React from "react";
 import { vid } from "./service";
