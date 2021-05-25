@@ -41,5 +41,5 @@ jobs:
         with:
           args: deploy --only hosting
         env:  
-          FIREBASE_TOKEN: 1//0c8nDn_zYtSpbCgYIARAAGAwSNgF-L9IrAYL1lrlWtgKcRTIOAMmeV1Tmq5rN3rUqRtIYYw0cC9_ucCwS8JI5XofUkXh9OWg1SA
+          FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN}}
           PROJECT_PATH: "chatandvideo"
