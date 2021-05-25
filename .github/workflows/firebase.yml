@@ -2,7 +2,7 @@ name: Firebase Deploy
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
@@ -40,6 +40,6 @@ jobs:
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
-        env:
-          FIREBASE_TOKEN: 1//0cde1B4twesAqCgYIARAAGAwSNgF-L9Ir8ySgKNkxlZgcU8OxGQ5lYwHpxyhk8OGHEWIqXKwNR
+        env:  
+          FIREBASE_TOKEN: 1//0c8nDn_zYtSpbCgYIARAAGAwSNgF-L9IrAYL1lrlWtgKcRTIOAMmeV1Tmq5rN3rUqRtIYYw0cC9_ucCwS8JI5XofUkXh9OWg1SA
           PROJECT_PATH: "chatandvideo"
