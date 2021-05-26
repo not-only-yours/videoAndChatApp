@@ -65,7 +65,7 @@
     "lint": "eslint src/.",
     "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
     "jest": "yarn test",
-    "coverage": "npm run test -- --coverage --watchAll=false"
+    "coverage": "npm run test -- --coverage"
   },
   "husky": {
     "hooks": {

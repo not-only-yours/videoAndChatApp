@@ -146,23 +146,23 @@ describe("shallow tests of modules", () => {
   });
 });
 
-describe("tests of onclick events", () => {
-  it("LeftChats onclick func", () => {
-    const app = shallow(<LeftChats addProp={true} />);
-    // jest.mock("./LeftChats", () => ({
-    //   createChat: jest.fn(() => {}),
-    // }));
-    const ans = app.find(".leftpart_chat").simulate("click");
-    expect(ans).toMatchSnapshot();
-  });
-
-  // it("simulate click on material-ui iconbutton", () => {
-  //   const onSearchClick = sinon.spy();
-  //   const wrapper = shallow(<Chat onSearchClick={onSearchClick} />);
-  //   wrapper.find(IconButton).simulate("click", { preventDefault: () => {} });
-  //   expect(onSearchClick).toMatchSnapshot();
-  // });
-});
+// describe("tests of onclick events", () => {
+//   it("LeftChats onclick func", () => {
+//     const app = shallow(<LeftChats addProp={true} />);
+//     // jest.mock("./LeftChats", () => ({
+//     //   createChat: jest.fn(() => {}),
+//     // }));
+//     const ans = app.find(".leftpart_chat").simulate("click");
+//     expect(ans).toMatchSnapshot();
+//   });
+//
+//   it("simulate click on material-ui iconbutton", () => {
+//     const onSearchClick = sinon.spy();
+//     const wrapper = shallow(<Chat onSearchClick={onSearchClick} />);
+//     wrapper.find(IconButton).simulate("click", { preventDefault: () => {} });
+//     expect(onSearchClick).toMatchSnapshot();
+//   });
+// });
 
 describe("firebase tests", () => {
   const firebase = require("firebase/app");

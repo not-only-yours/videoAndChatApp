@@ -1,6 +1,65 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Chat 1`] = `
+exports[`reducer and state provider tests StateProvider 1`] = `
+<ContextProvider
+  value={
+    Array [
+      Object {
+        "roomName": null,
+        "token": null,
+        "user": null,
+      },
+      [Function],
+    ]
+  }
+>
+  <App />
+</ContextProvider>
+`;
+
+exports[`shallow tests of modules app with user, token 1`] = `
+<div
+  className="app"
+>
+  <Video />
+</div>
+`;
+
+exports[`shallow tests of modules app without token (with user) 1`] = `
+<div
+  className="app"
+>
+  <div
+    className="app_body"
+  >
+    <BrowserRouter>
+      <Leftpart />
+      <Switch>
+        <Route
+          path="/rooms/:roomId"
+        >
+          <Chat />
+        </Route>
+        <Route
+          path="/"
+        >
+          <Chat />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  </div>
+</div>
+`;
+
+exports[`shallow tests of modules app without user 1`] = `
+<div
+  className="app"
+>
+  <Login />
+</div>
+`;
+
+exports[`shallow tests of modules testing Chat 1`] = `
 <div
   className="chat"
 >
@@ -53,39 +112,7 @@ exports[`Chat 1`] = `
 </div>
 `;
 
-exports[`LeftChats 1`] = `
-<a
-  href="/rooms/undefined"
-  onClick={[Function]}
->
-  <div
-    className="leftpart_chat"
-  >
-    <div
-      className="MuiAvatar-root MuiAvatar-circle MuiAvatar-colorDefault"
-    >
-      <svg
-        aria-hidden={true}
-        className="MuiSvgIcon-root MuiAvatar-fallback"
-        focusable="false"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
-        />
-      </svg>
-    </div>
-    <div
-      className="leftpartChat_info"
-    >
-      <h2 />
-      <p />
-    </div>
-  </div>
-</a>
-`;
-
-exports[`LeftChats addProp 1`] = `
+exports[`shallow tests of modules testing LeftChats with addProp 1`] = `
 <div
   className="leftpart_chat"
   onClick={[Function]}
@@ -96,7 +123,7 @@ exports[`LeftChats addProp 1`] = `
 </div>
 `;
 
-exports[`LeftChats key, id, name 1`] = `
+exports[`shallow tests of modules testing LeftChats with parameters key, id, name 1`] = `
 <Link
   to="/rooms/true"
 >
@@ -116,18 +143,7 @@ exports[`LeftChats key, id, name 1`] = `
 </Link>
 `;
 
-exports[`LeftChats onclick func 1`] = `
-<div
-  className="leftpart_chat"
-  onClick={[Function]}
->
-  <h2>
-    Добавити новий чатік
-  </h2>
-</div>
-`;
-
-exports[`Leftpart 1`] = `
+exports[`shallow tests of modules testing Leftpart 1`] = `
 <div
   className="leftpart"
 >
@@ -169,7 +185,7 @@ exports[`Leftpart 1`] = `
 </div>
 `;
 
-exports[`Login 1`] = `
+exports[`shallow tests of modules testing Login 1`] = `
 <div
   className="login"
 >
@@ -197,24 +213,39 @@ exports[`Login 1`] = `
 </div>
 `;
 
-exports[`StateProvider 1`] = `
-<ContextProvider
-  value={
-    Array [
-      Object {
-        "roomName": null,
-        "token": null,
-        "user": null,
-      },
-      [Function],
-    ]
-  }
+exports[`test modules with router test module LeftChats with snapshot 1`] = `
+<a
+  href="/rooms/undefined"
+  onClick={[Function]}
 >
-  <App />
-</ContextProvider>
+  <div
+    className="leftpart_chat"
+  >
+    <div
+      className="MuiAvatar-root MuiAvatar-circle MuiAvatar-colorDefault"
+    >
+      <svg
+        aria-hidden={true}
+        className="MuiSvgIcon-root MuiAvatar-fallback"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+        />
+      </svg>
+    </div>
+    <div
+      className="leftpartChat_info"
+    >
+      <h2 />
+      <p />
+    </div>
+  </div>
+</a>
 `;
 
-exports[`Video 1`] = `
+exports[`test modules with router test module Video with snapshot 1`] = `
 <div>
   <p
     className="roomName"
@@ -252,46 +283,13 @@ exports[`Video 1`] = `
 </div>
 `;
 
-exports[`app with user, token 1`] = `
+exports[`tests of onclick events LeftChats onclick func 1`] = `
 <div
-  className="app"
+  className="leftpart_chat"
+  onClick={[Function]}
 >
-  <Video />
+  <h2>
+    Добавити новий чатік
+  </h2>
 </div>
 `;
-
-exports[`app without token (with user) 1`] = `
-<div
-  className="app"
->
-  <div
-    className="app_body"
-  >
-    <BrowserRouter>
-      <Leftpart />
-      <Switch>
-        <Route
-          path="/rooms/:roomId"
-        >
-          <Chat />
-        </Route>
-        <Route
-          path="/"
-        >
-          <Chat />
-        </Route>
-      </Switch>
-    </BrowserRouter>
-  </div>
-</div>
-`;
-
-exports[`app without user 1`] = `
-<div
-  className="app"
->
-  <Login />
-</div>
-`;
-
-exports[`simulate click on material-ui iconbutton 1`] = `[Function]`;
