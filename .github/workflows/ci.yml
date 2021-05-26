@@ -1,4 +1,4 @@
-name: 'test my project'
+name: 'CI'
 on:
   push:
   pull_request:
@@ -8,19 +8,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
-        name: 'setup node'
+        name: 'setup'
         with:
           node-version: '14.x'
 
       - name: 'ci'
         run: |
-        cd chanandvideo
-        yarn ci
+         cd chanandvideo
+         yarn ci
       - name: 'lint'
         run: |
-        cd chanandvideo
-        yarn lint
+         cd chanandvideo
+         yarn lint
       - name: 'test'
         run: |
-        cd chanandvideo
-        yarn test
+         cd chanandvideo
+         yarn test
