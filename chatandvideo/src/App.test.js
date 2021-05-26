@@ -156,12 +156,12 @@ describe("tests of onclick events", () => {
     expect(ans).toMatchSnapshot();
   });
 
-  it("simulate click on material-ui iconbutton", () => {
-    const onSearchClick = sinon.spy();
-    const wrapper = shallow(<Chat onSearchClick={onSearchClick} />);
-    wrapper.find(IconButton).simulate("click", { preventDefault: () => {} });
-    expect(onSearchClick).toMatchSnapshot();
-  });
+  // it("simulate click on material-ui iconbutton", () => {
+  //   const onSearchClick = sinon.spy();
+  //   const wrapper = shallow(<Chat onSearchClick={onSearchClick} />);
+  //   wrapper.find(IconButton).simulate("click", { preventDefault: () => {} });
+  //   expect(onSearchClick).toMatchSnapshot();
+  // });
 });
 
 describe("firebase tests", () => {
