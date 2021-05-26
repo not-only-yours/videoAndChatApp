@@ -36,7 +36,7 @@ function Leftpart() {
       </div>
       <div className="leftpart_chats">
         <LeftChats addProp />
-        {rooms.mymap((room) => (
+        {rooms.map((room) => (
           <LeftChats key={room.id} id={room.id} name={room.data.name} />
         ))}
       </div>
