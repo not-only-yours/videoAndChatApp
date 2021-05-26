@@ -282,14 +282,3 @@ exports[`test modules with router test module Video with snapshot 1`] = `
   </div>
 </div>
 `;
-
-exports[`tests of onclick events LeftChats onclick func 1`] = `
-<div
-  className="leftpart_chat"
-  onClick={[Function]}
->
-  <h2>
-    Добавити новий чатік
-  </h2>
-</div>
-`;
