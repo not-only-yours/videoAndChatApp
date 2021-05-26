@@ -1,5 +1,6 @@
 name: 'CI'
 
+
 on:
   push:
     branches: [ master ]
@@ -7,26 +8,25 @@ on:
     branches: [ master ]
 
 jobs:
-  test-job:
+  build:
 
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x]
+        node-version: [12.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm test
-  eslint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: stefanoeb/eslint-action@1.0.2
-        with:
-          files: chatandvideo/src/
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run the tests
+      run: npm test
