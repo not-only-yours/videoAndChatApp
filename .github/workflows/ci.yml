@@ -13,8 +13,14 @@ jobs:
           node-version: '14.x'
 
       - name: 'ci'
-        run: yarn ci
+        run: |
+        cd chanandvideo
+        yarn ci
       - name: 'lint'
-        run: yarn lint
+        run: |
+        cd chanandvideo
+        yarn lint
       - name: 'test'
-        run: yarn test
+        run: |
+        cd chanandvideo
+        yarn test
