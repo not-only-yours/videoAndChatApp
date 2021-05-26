@@ -1,32 +1,24 @@
 name: 'CI'
-
-
 on:
   push:
-    branches: [ master ]
   pull_request:
-    branches: [ master ]
-
 jobs:
-  build:
-
+  test-job:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12.x]
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        name: 'setup'
+        with:
+          node-version: '14.x'
 
-    - name: Set up Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Run the tests
-      run: npm test
+      - name: 'set up'
+        run: npm i eslint
+      - name: 'lint'
+        run: |
+         cd chatandvideo
+         yarn lint
+      - name: 'test'
+        run: |
+         cd chatandvideo
+         yarn test
