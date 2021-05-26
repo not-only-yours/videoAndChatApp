@@ -14,13 +14,13 @@ jobs:
 
       - name: 'ci'
         run: |
-         cd chanandvideo
+         cd chatandvideo
          yarn ci
       - name: 'lint'
         run: |
-         cd chanandvideo
+         cd chatandvideo
          yarn lint
       - name: 'test'
         run: |
-         cd chanandvideo
+         cd chatandvideo
          yarn test
