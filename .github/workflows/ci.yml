@@ -12,10 +12,6 @@ jobs:
         with:
           node-version: '14.x'
 
-      - name: 'ci'
-        run: |
-         cd chatandvideo
-         yarn ci
       - name: 'lint'
         run: |
          cd chatandvideo
