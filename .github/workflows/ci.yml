@@ -12,6 +12,10 @@ jobs:
         with:
           node-version: '14.x'
 
+      - name: 'set up'
+        run: |
+         cd chatandvideo
+         npm i eslint
       - name: 'lint'
         run: |
          cd chatandvideo
