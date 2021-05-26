@@ -12,12 +12,14 @@ jobs:
         with:
           node-version: '14.x'
 
-      - name: 'lint'
-        run: |
-         yarn add eslint
-         cd chatandvideo
-         yarn lint
       - name: 'test'
         run: |
          cd chatandvideo
          yarn test
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: stefanoeb/eslint-action@1.0.2
+        with:
+          files: src/
