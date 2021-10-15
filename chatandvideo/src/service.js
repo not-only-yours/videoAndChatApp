@@ -3,6 +3,7 @@ import firebase from "firebase";
 import axios from "axios";
 import { actionTypes } from "./reducer";
 import TwilioVideo from "twilio-video";
+import { collection, query, where } from "firebase/firestore";
 
 export function jwtExists(roomId, user) {
   db.collection("rooms")
@@ -96,4 +97,25 @@ export function vid(dispatchToken) {
       token: false,
     });
   };
+}
+export function checkLoginAndPass(login, pass, dispatch) {
+  console.log(
+    db
+      .collection("users-roles")
+      .where("login", "==", login)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          //testlogin
+          //testpassword
+          console.log(doc.data().password, "==", pass);
+          if (doc.data().password === pass) {
+            dispatch({
+              type: actionTypes.SET_USER,
+              user: doc.data(),
+            });
+          }
+        });
+      })
+  );
 }
