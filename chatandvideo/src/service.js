@@ -73,9 +73,10 @@ export function idExists(id, setMessages) {
     });
 }
 
-export function createRoom(roomName) {
+export function createRoom(roomName, roles) {
   db.collection("rooms").add({
     name: roomName,
+    roles: roles,
   });
 }
 

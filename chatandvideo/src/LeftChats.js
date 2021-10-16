@@ -4,7 +4,8 @@ import { Avatar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { createRoom, idExists } from "./service";
 
-function LeftChats({ id, name, addProp }) {
+function LeftChats({ id, name, addProp, userRoles, roomRoles }) {
+  // console.log("U: ", userRoles, "\n R: ", roomRoles);
   const [messages, setMessages] = React.useState("");
   React.useEffect(() => {
     if (id) {
@@ -16,10 +17,11 @@ function LeftChats({ id, name, addProp }) {
     if (roomName) {
       // alert(`RoomName: ${roomName}`);
       // створити в firebase базу і пушити сюди її
-      createRoom(roomName);
+      //TODO: сделать отдельное view для выбора ролей из отдельной таблицы
+      createRoom(roomName, new Map("main"));
     }
   };
-  return !addProp ? (
+  return !(addProp && isProperties(userRoles, roomRoles)) ? (
     <Link to={`/rooms/${id}`}>
       <div className="leftpart_chat">
         <Avatar />
@@ -34,6 +36,11 @@ function LeftChats({ id, name, addProp }) {
       <h2>Добавити новий чатік</h2>
     </div>
   );
+}
+
+function isProperties(userRoles, roomRoles) {
+  // console.log("U: ", userRoles, "\n R", roomRoles);
+  return true;
 }
 
 export default LeftChats;
