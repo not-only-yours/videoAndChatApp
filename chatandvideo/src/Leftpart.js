@@ -41,8 +41,7 @@ function Leftpart() {
             key={room.id}
             id={room.id}
             name={room.data.name}
-            userRoles={user.roles}
-            roomRoles={room.role}
+            userId={user.id}
           />
         ))}
       </div>

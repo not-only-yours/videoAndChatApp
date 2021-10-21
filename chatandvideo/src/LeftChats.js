@@ -3,8 +3,9 @@ import "./LeftChats.css";
 import { Avatar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { createRoom, idExists } from "./service";
+import { isProperties } from "./service";
 
-function LeftChats({ id, name, addProp, userRoles, roomRoles }) {
+function LeftChats({ id, name, addProp, userId }) {
   // console.log("U: ", userRoles, "\n R: ", roomRoles);
   const [messages, setMessages] = React.useState("");
   React.useEffect(() => {
@@ -21,7 +22,7 @@ function LeftChats({ id, name, addProp, userRoles, roomRoles }) {
       createRoom(roomName, new Map("main"));
     }
   };
-  return !(addProp && isProperties(userRoles, roomRoles)) ? (
+  return !(addProp && isProperties(id, userId)) ? (
     <Link to={`/rooms/${id}`}>
       <div className="leftpart_chat">
         <Avatar />
@@ -36,11 +37,6 @@ function LeftChats({ id, name, addProp, userRoles, roomRoles }) {
       <h2>Добавити новий чатік</h2>
     </div>
   );
-}
-
-function isProperties(userRoles, roomRoles) {
-  // console.log("U: ", userRoles, "\n R", roomRoles);
-  return true;
 }
 
 export default LeftChats;

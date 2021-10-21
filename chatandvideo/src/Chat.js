@@ -17,7 +17,7 @@ function Chat() {
     try {
       event.preventDefault();
       serv.send(user.displayName, dispatch).then(() => {
-        serv.jwtExists(roomId, user.displayName);
+        serv.jwtExists(roomId, user.name);
       });
     } catch (e) {
       console.log(e);
@@ -63,7 +63,7 @@ function Chat() {
         {messages.map((message) => (
           <p
             className={`chat_message ${
-              message.name === user.displayName && "chat_reciever"
+              message.name === user.name && "chat_reciever"
             }`}
           >
             <span className="chat_name">{message.name}</span>
