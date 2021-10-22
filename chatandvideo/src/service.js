@@ -4,6 +4,7 @@ import axios from "axios";
 import { actionTypes } from "./reducer";
 import TwilioVideo from "twilio-video";
 import { collection, query, where } from "firebase/firestore";
+import React from "react";
 
 export function jwtExists(roomId, user) {
   db.collection("rooms")
@@ -120,40 +121,4 @@ export function checkLoginAndPass(login, pass, dispatch) {
         }
       });
     });
-}
-
-function getUserRoles(userId) {
-  db.collection("users-roles")
-    .doc(userId)
-    .collection("roles")
-    .orderBy("role", "asc")
-    .onSnapshot((snapshot) => {
-      snapshot.docs.map((doc) =>
-        console.log({
-          id: doc.id,
-          role: doc.data().role,
-        })
-      );
-    });
-}
-
-function getRoomRoles(userId) {
-  db.collection("rooms")
-    .doc(userId)
-    .collection("roles")
-    .orderBy("role", "asc")
-    .onSnapshot((snapshot) => {
-      snapshot.docs.map((doc) =>
-        console.log({
-          id: doc.id,
-          role: doc.data().role,
-        })
-      );
-    });
-}
-
-export function isProperties(userRoles, roomRoles) {
-  getRoomRoles(roomRoles);
-  getUserRoles(userRoles);
-  return true;
 }

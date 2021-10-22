@@ -3,14 +3,19 @@ import "./LeftChats.css";
 import { Avatar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { createRoom, idExists } from "./service";
-import { isProperties } from "./service";
+import db from "./firebase";
 
 function LeftChats({ id, name, addProp, userId }) {
-  // console.log("U: ", userRoles, "\n R: ", roomRoles);
   const [messages, setMessages] = React.useState("");
+  const [userRoles, setRoles] = React.useState("");
+  const [roomRoles, setRolesR] = React.useState("");
   React.useEffect(() => {
     if (id) {
       idExists(id, setMessages);
+      getRoomRoles(id, setRolesR);
+    }
+    if (userId) {
+      getUserRoles(userId, setRoles);
     }
   }, [id]);
   const createChat = () => {
@@ -22,7 +27,10 @@ function LeftChats({ id, name, addProp, userId }) {
       createRoom(roomName, new Map("main"));
     }
   };
-  return !(addProp && isProperties(id, userId)) ? (
+  const ans = isProperties(roomRoles, userRoles);
+  console.log("properties: ", !addProp);
+  /*eslint-disable */
+  return !addProp && ans ? (
     <Link to={`/rooms/${id}`}>
       <div className="leftpart_chat">
         <Avatar />
@@ -32,11 +40,54 @@ function LeftChats({ id, name, addProp, userId }) {
         </div>
       </div>
     </Link>
-  ) : (
-    <div onClick={createChat} className="leftpart_chat">
-      <h2>Добавити новий чатік</h2>
-    </div>
-  );
+        ) : (
+      <div onClick={createChat} className="leftpart_chat">
+        <h2>Добавити новий чатік</h2>
+      </div>
+        )
+    /*eslint-enable */
+}
+export default LeftChats;
+
+function getUserRoles(userId, setRoles) {
+  db.collection("users-roles")
+    .doc(userId)
+    .collection("roles")
+    .orderBy("role", "asc")
+    .onSnapshot((snapshot) => {
+      snapshot.docs.map((doc) =>
+        setRoles({
+          id: doc.id,
+          role: doc.data().role,
+        })
+      );
+    });
 }
 
-export default LeftChats;
+function getRoomRoles(userId, setRoles) {
+  db.collection("rooms")
+    .doc(userId)
+    .collection("roles")
+    .orderBy("role", "asc")
+    .onSnapshot((snapshot) => {
+      snapshot.docs.map((doc) =>
+        setRoles({
+          id: doc.id,
+          role: doc.data().role,
+        })
+      );
+    });
+}
+
+function isProperties(userRoles, roomRoles) {
+  if (userRoles.role && roomRoles.role) {
+    console.log("U:", userRoles.role, "R:", roomRoles.role);
+    console.log(
+      "is props: ",
+      userRoles.role.toString() === roomRoles.role.toString()
+    );
+    return userRoles.role.toString() === roomRoles.role.toString();
+  } else {
+    return false;
+  }
+}
