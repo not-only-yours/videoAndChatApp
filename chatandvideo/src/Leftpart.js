@@ -5,6 +5,7 @@ import AccessibleIcon from "@material-ui/icons/Accessible";
 import SearchIcon from "@material-ui/icons/Search";
 import InfoIcon from "@material-ui/icons/Info";
 import LeftChats from "./LeftChats";
+import { createRoom } from "./service";
 
 function Leftpart() {
   const serv = require("./service");
@@ -36,6 +37,9 @@ function Leftpart() {
       </div>
       <div className="leftpart_chats">
         <LeftChats addProp />
+        <div onClick={createChat} className="leftpart_chat">
+          <h2>Добавити новий чатік</h2>
+        </div>
         {rooms.map((room) => (
           <LeftChats
             key={room.id}
@@ -50,3 +54,13 @@ function Leftpart() {
 }
 
 export default Leftpart;
+
+const createChat = () => {
+  const roomName = prompt("Введіть назву чатіку");
+  if (roomName) {
+    // alert(`RoomName: ${roomName}`);
+    // створити в firebase базу і пушити сюди її
+    //TODO: сделать отдельное view для выбора ролей из отдельной таблицы
+    createRoom(roomName, new Map("main"));
+  }
+};

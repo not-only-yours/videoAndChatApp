@@ -18,15 +18,6 @@ function LeftChats({ id, name, addProp, userId }) {
       getUserRoles(userId, setRoles);
     }
   }, [id]);
-  const createChat = () => {
-    const roomName = prompt("Введіть назву чатіку");
-    if (roomName) {
-      // alert(`RoomName: ${roomName}`);
-      // створити в firebase базу і пушити сюди її
-      //TODO: сделать отдельное view для выбора ролей из отдельной таблицы
-      createRoom(roomName, new Map("main"));
-    }
-  };
   const ans = isProperties(roomRoles, userRoles);
   console.log("properties: ", !addProp);
   /*eslint-disable */
@@ -41,9 +32,7 @@ function LeftChats({ id, name, addProp, userId }) {
       </div>
     </Link>
         ) : (
-      <div onClick={createChat} className="leftpart_chat">
-        <h2>Добавити новий чатік</h2>
-      </div>
+      <div/>
         )
     /*eslint-enable */
 }
