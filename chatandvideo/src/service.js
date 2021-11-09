@@ -4,13 +4,14 @@ import axios from "axios";
 import { actionTypes } from "./reducer";
 import TwilioVideo from "twilio-video";
 import { collection, query, where } from "firebase/firestore";
+import React from "react";
 
 export function jwtExists(roomId, user) {
   db.collection("rooms")
     .doc(roomId)
     .collection("messages")
     .add({
-      message: `${user} connected to the video Room. You can join him by clicking the icon`,
+      message: `${user.name} connected to the video Room. You can join him by clicking the icon`,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
 }
@@ -38,7 +39,7 @@ export function roomNameExists(roomId, dispatchRoomName, setRoomName, setMessage
 export function sendMessageFun(roomId, input, user) {
   db.collection("rooms").doc(roomId).collection("messages").add({
     message: input,
-    name: user.displayName,
+    name: user.name,
     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
   });
 }
@@ -73,9 +74,10 @@ export function idExists(id, setMessages) {
     });
 }
 
-export function createRoom(roomName) {
+export function createRoom(roomName, roles) {
   db.collection("rooms").add({
     name: roomName,
+    roles: roles,
   });
 }
 
@@ -85,6 +87,7 @@ export function refreshDB(setRooms) {
       snapshot.docs.map((doc) => ({
         id: doc.id,
         data: doc.data(),
+        //roles: doc.data(),
       }))
     )
   );
@@ -98,24 +101,24 @@ export function vid(dispatchToken) {
     });
   };
 }
+
 export function checkLoginAndPass(login, pass, dispatch) {
-  console.log(
-    db
-      .collection("users-roles")
-      .where("login", "==", login)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          //testlogin
-          //testpassword
-          console.log(doc.data().password, "==", pass);
-          if (doc.data().password === pass) {
-            dispatch({
-              type: actionTypes.SET_USER,
-              user: doc.data(),
-            });
-          }
-        });
-      })
-  );
+  db.collection("users-roles")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        //console.log(doc.data().password, "==", pass);
+        if (doc.data().password === pass && doc.data().login === login) {
+          dispatch({
+            type: actionTypes.SET_USER,
+            user: {
+              id: doc.id,
+              name: doc.data().name,
+              login: doc.data().login,
+              password: doc.data().password,
+            },
+          });
+        }
+      });
+    });
 }

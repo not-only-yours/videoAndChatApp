@@ -1,3 +1,5 @@
+import db from "./firebase";
+
 export const initialState = {
   user: null,
   token: null,
@@ -11,7 +13,7 @@ export const actionTypes = {
 };
 
 const reducer = (state, action) => {
-  console.log(action);
+  //console.log(action);
   switch (action.type) {
     case actionTypes.SET_USER:
       return {
@@ -33,5 +35,4 @@ const reducer = (state, action) => {
       return state;
   }
 };
-
 export default reducer;
