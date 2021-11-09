@@ -36,7 +36,6 @@ function Leftpart() {
         </div>
       </div>
       <div className="leftpart_chats">
-        <LeftChats addProp />
         <div onClick={createChat} className="leftpart_chat">
           <h2>Добавити новий чатік</h2>
         </div>
@@ -61,6 +60,6 @@ const createChat = () => {
     // alert(`RoomName: ${roomName}`);
     // створити в firebase базу і пушити сюди її
     //TODO: сделать отдельное view для выбора ролей из отдельной таблицы
-    createRoom(roomName, new Map("main"));
+    createRoom(roomName, ["main role", "second role"]);
   }
 };

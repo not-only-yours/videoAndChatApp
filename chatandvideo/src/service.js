@@ -17,23 +17,34 @@ export function jwtExists(roomId, user) {
 }
 
 export function roomNameExists(roomId, dispatchRoomName, setRoomName, setMessages) {
-  db.collection("rooms")
-    .doc(roomId)
-    .onSnapshot((snapshot) => {
-      setRoomName(snapshot.data().name);
-      dispatchRoomName({
-        type: actionTypes.SET_ROOMNAME,
-        roomName: snapshot.data().name,
-      });
-    });
-
-  db.collection("rooms")
-    .doc(roomId)
-    .collection("messages")
-    .orderBy("timestamp", "asc")
-    .onSnapshot((snapshot) => {
-      setMessages(snapshot.docs.map((doc) => doc.data()));
-    });
+  if (roomId) {
+    try {
+      db.collection("rooms")
+        .doc(roomId)
+        .onSnapshot((snapshot) => {
+          if (snapshot.data()) {
+            setRoomName(snapshot.data().name);
+            dispatchRoomName({
+              type: actionTypes.SET_ROOMNAME,
+              roomName: snapshot.data().name,
+            });
+          }
+        });
+    } catch (error) {
+      console.log("Error 1: ", error);
+    }
+    try {
+      db.collection("rooms")
+        .doc(roomId)
+        .collection("messages")
+        .orderBy("timestamp", "asc")
+        .onSnapshot((snapshot) => {
+          setMessages(snapshot.docs.map((doc) => doc.data()));
+        });
+    } catch (error) {
+      console.log("Error 2: ", error);
+    }
+  }
 }
 
 export function sendMessageFun(roomId, input, user) {
@@ -77,7 +88,12 @@ export function idExists(id, setMessages) {
 export function createRoom(roomName, roles) {
   db.collection("rooms").add({
     name: roomName,
-    roles: roles,
+  });
+  roles.forEach((role) => {
+    console.log(role);
+    db.collection("rooms").doc(roomName).collection("roles").add({
+      role: role,
+    });
   });
 }
 

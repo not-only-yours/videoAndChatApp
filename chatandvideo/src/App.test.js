@@ -178,7 +178,7 @@ describe("firebase tests", () => {
     ],
   };
   const user = {
-    displayName: "dsa",
+    name: "dsa",
   };
 
   it("function sendMessageFun test", () => {
@@ -233,7 +233,7 @@ describe("firebase tests", () => {
     });
   });
   it("function createRoom test", () => {
-    createRoom("roomName");
+    createRoom("roomName", ["role"]);
     expect(firestoreMock.collection).toEqual({
       rooms: [
         {
