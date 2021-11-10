@@ -50,6 +50,7 @@ beforeEach(() => {
     useReducer: (initial, setter) => [initial, setter],
     createContext: jest.fn(),
   }));
+
   jest.mock("./Chat", () => ({
     handleSubmit: jest.fn().mockResolvedValue("test"),
   }));
@@ -70,6 +71,7 @@ beforeEach(() => {
     twillioConnect: (token, videoRoomName, localVidRef, remoteVidRef) => "aaa",
   }));
 });
+
 describe("test modules with router", () => {
   it("test module LeftChats with snapshot", () => {
     const container = renderer
