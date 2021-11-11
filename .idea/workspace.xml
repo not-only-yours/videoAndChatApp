@@ -21,7 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3f003c63-2c4b-49e3-a76b-b34261c8e95d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatandvideo/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/chatandvideo/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatandvideo/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/chatandvideo/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chatandvideo/src/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/chatandvideo/src/App.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatandvideo/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/chatandvideo/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,6 +170,7 @@
       <workItem from="1632513535117" duration="342000" />
       <workItem from="1633453092947" duration="640000" />
       <workItem from="1634287894256" duration="15015000" />
+      <workItem from="1636641177834" duration="1519000" />
     </task>
     <servers />
   </component>

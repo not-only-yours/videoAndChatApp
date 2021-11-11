@@ -26,7 +26,6 @@ import FirestoreMock from "./mockedFirebase";
 import db from "./firebase";
 import IconButton from "@material-ui/core/IconButton";
 import sinon from "sinon";
-
 expect.addSnapshotSerializer(createSerializer({ mode: "deep" }));
 configure({ adapter: new Adapter() });
 const firestoreMock = new FirestoreMock();
@@ -70,6 +69,10 @@ beforeEach(() => {
     signIn: jest.fn().mockResolvedValue("test"),
     twillioConnect: (token, videoRoomName, localVidRef, remoteVidRef) => "aaa",
   }));
+});
+
+afterAll(async () => {
+  firestoreMock.reset();
 });
 
 describe("test modules with router", () => {
