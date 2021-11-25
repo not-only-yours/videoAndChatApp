@@ -39,6 +39,7 @@ function LeftChats({ id, name, addProp, userId }) {
     }
     /*eslint-enable */
 }
+
 export default LeftChats;
 
 function getUserRoles(userRoles, userId, setRoles) {
@@ -47,15 +48,16 @@ function getUserRoles(userRoles, userId, setRoles) {
     .collection("roles")
     .orderBy("role", "asc")
     .onSnapshot((snapshot) => {
-      snapshot.docs.map((doc) =>
-        setRoles((userRoles) => [
-          ...userRoles,
-          {
-            id: doc.id,
-            role: doc.data().role,
-          },
-        ])
-      );
+      snapshot.docs.map((doc) => {
+        let element = {
+          id: doc.id,
+          role: doc.data().role,
+        };
+        console.log(element);
+        if (!userRoles.includes(element)) {
+          setRoles((role) => [...role, element]);
+        }
+      });
     });
 }
 
@@ -65,14 +67,16 @@ function getRoomRoles(roomRoles, userId, setRoles) {
     .collection("roles")
     .orderBy("role", "asc")
     .onSnapshot((snapshot) => {
+      // eslint-disable-next-line array-callback-return
       snapshot.docs.map((doc) => {
-        setRoles((roomRoles) => [
-          ...roomRoles,
-          {
-            id: doc.id,
-            role: doc.data().role,
-          },
-        ]);
+        let element = {
+          id: doc.id,
+          role: doc.data().role,
+        };
+        console.log(element);
+        if (!roomRoles.includes(element)) {
+          setRoles((roomRoles) => [...roomRoles, element]);
+        }
       });
     });
 }
