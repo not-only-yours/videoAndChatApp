@@ -21,10 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3f003c63-2c4b-49e3-a76b-b34261c8e95d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chatandvideo/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/chatandvideo/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chatandvideo/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/chatandvideo/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chatandvideo/src/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/chatandvideo/src/App.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chatandvideo/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/chatandvideo/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatandvideo/src/LeftChats.js" beforeDir="false" afterPath="$PROJECT_DIR$/chatandvideo/src/LeftChats.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatandvideo/src/Leftpart.js" beforeDir="false" afterPath="$PROJECT_DIR$/chatandvideo/src/Leftpart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatandvideo/src/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/chatandvideo/src/service.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +40,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1pNXIMBXNlnqdyi6Cx2X8EkbSrU" />
   <component name="ProjectLevelVcsManager">
@@ -170,7 +177,9 @@
       <workItem from="1632513535117" duration="342000" />
       <workItem from="1633453092947" duration="640000" />
       <workItem from="1634287894256" duration="15015000" />
-      <workItem from="1636641177834" duration="1519000" />
+      <workItem from="1636641177834" duration="2355000" />
+      <workItem from="1637507936052" duration="5195000" />
+      <workItem from="1637751865132" duration="5095000" />
     </task>
     <servers />
   </component>

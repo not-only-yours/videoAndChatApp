@@ -86,12 +86,28 @@ export function idExists(id, setMessages) {
 }
 
 export function createRoom(roomName, roles) {
+  let roomId;
   db.collection("rooms").add({
     name: roomName,
   });
+  db.collection("rooms")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        console.log("document name: " + doc.data().name + " room name" + roomName);
+        if (doc.data().name === roomName) {
+          console.log(
+            "used: document name: " + doc.data().name + " room name" + roomName
+          );
+          console.log("roomId: " + doc.id);
+          roomId = doc.id;
+        }
+      });
+    });
+  console.log(roomId + " Name:" + roomName);
   roles.forEach((role) => {
     console.log(role);
-    db.collection("rooms").doc(roomName).collection("roles").add({
+    db.collection("rooms").doc(roomId).collection("roles").add({
       role: role,
     });
   });

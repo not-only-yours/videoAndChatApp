@@ -8,16 +8,18 @@ import firebase from "./firebase";
 
 function LeftChats({ id, name, addProp, userId }) {
   const [messages, setMessages] = React.useState("");
-  const [userRoles, setRoles] = React.useState("");
-  const [roomRoles, setRolesR] = React.useState("");
+  const [userRoles, setRoles] = React.useState([]);
+  const [roomRoles, setRolesR] = React.useState([]);
   //const [properties, setProperties] = React.useState(
   //isProperties(roomRoles, userRoles, !addProp)
   //);
   React.useEffect(() => {
     idExists(id, setMessages);
-    getRoomRoles(id, setRolesR);
-    getUserRoles(userId, setRoles);
+    getRoomRoles(roomRoles, id, setRolesR);
+    getUserRoles(userRoles, userId, setRoles);
     //setProperties(isProperties(roomRoles, userRoles, !addProp));
+    console.log(userRoles);
+    console.log(roomRoles);
   }, [id]);
   //console.log("properties: ", !addProp);
   /*eslint-disable */
@@ -39,34 +41,44 @@ function LeftChats({ id, name, addProp, userId }) {
 }
 export default LeftChats;
 
-function getUserRoles(userId, setRoles) {
+function getUserRoles(userRoles, userId, setRoles) {
   db.collection("users-roles")
     .doc(userId)
     .collection("roles")
     .orderBy("role", "asc")
     .onSnapshot((snapshot) => {
       snapshot.docs.map((doc) =>
-        setRoles({
-          id: doc.id,
-          role: doc.data().role,
-        })
+        setRoles((userRoles) => [
+          ...userRoles,
+          {
+            id: doc.id,
+            role: doc.data().role,
+          },
+        ])
       );
     });
 }
 
-function getRoomRoles(userId, setRoles) {
+function getRoomRoles(roomRoles, userId, setRoles) {
   db.collection("rooms")
     .doc(userId)
     .collection("roles")
     .orderBy("role", "asc")
     .onSnapshot((snapshot) => {
-      snapshot.docs.map((doc) =>
-        setRoles({
-          id: doc.id,
-          role: doc.data().role,
-        })
-      );
+      snapshot.docs.map((doc) => {
+        setRoles((roomRoles) => [
+          ...roomRoles,
+          {
+            id: doc.id,
+            role: doc.data().role,
+          },
+        ]);
+      });
     });
+}
+
+function currentChecker(userRole, roomRole) {
+  return userRole.role.toString() === roomRole.role.toString();
 }
 
 function isProperties(userRoles, roomRoles, addprop) {
@@ -83,11 +95,13 @@ function isProperties(userRoles, roomRoles, addprop) {
       "time: ",
       new Date().getTime()
     );
-    /*console.log(
-      "is props: ",
-      userRoles.role.toString() === roomRoles.role.toString()
-    );*/
-    return userRoles.role.toString() === roomRoles.role.toString();
+    userRoles((Urole) => {
+      roomRoles.forEach((Rrole) => {
+        if (currentChecker(Urole, Rrole)) {
+          return true;
+        }
+      });
+    });
   } else {
     return false;
   }

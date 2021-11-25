@@ -60,6 +60,6 @@ const createChat = () => {
     // alert(`RoomName: ${roomName}`);
     // створити в firebase базу і пушити сюди її
     //TODO: сделать отдельное view для выбора ролей из отдельной таблицы
-    createRoom(roomName, ["main role", "second role"]);
+    createRoom(roomName, ["main role", "devops"]);
   }
 };
