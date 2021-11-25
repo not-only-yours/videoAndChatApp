@@ -103,14 +103,15 @@ export function createRoom(roomName, roles) {
           roomId = doc.id;
         }
       });
+    })
+    .then(() => {
+      roles.forEach((role) => {
+        console.log(role);
+        db.collection("rooms").doc(roomId).collection("roles").add({
+          role: role,
+        });
+      });
     });
-  console.log(roomId + " Name:" + roomName);
-  roles.forEach((role) => {
-    console.log(role);
-    db.collection("rooms").doc(roomId).collection("roles").add({
-      role: role,
-    });
-  });
 }
 
 export function refreshDB(setRooms) {
