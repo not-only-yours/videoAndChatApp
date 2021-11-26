@@ -15,24 +15,35 @@ function LeftChats({ id, name, addProp, userId }) {
   //isProperties(roomRoles, userRoles, !addProp)
   //);
 
-  React.useEffect(() => {
-    getRoomRoles(roomRoles, id, setRolesR).then(() => {
-      getUserRoles(userRoles, userId, setRoles).then(() => {
-        idExists(id, setMessages).then(() => {
-          setAnswerVal(answer(roomRoles, userRoles, addProp, id, name, messages));
-          console.log(userRoles);
-          console.log(roomRoles);
-          console.log("answer:", answerVal);
-        });
-      });
-    });
+  React.useEffect(async () => {
+    const roomRoles = getRoomRoles(id)
+    setRolesR(roomRoles)
+    const userRoles = getUserRoles(userId)
+    setRoles(userRoles)
+    
+//     getRoomRoles(roomRoles, id, setRolesR).then(() => {
+//       getUserRoles(userRoles, userId, setRoles).then(() => {
+//         idExists(id, setMessages).then(() => {
+//           setAnswerVal(answer(roomRoles, userRoles, addProp, id, name, messages));
+//           console.log(userRoles);
+//           console.log(roomRoles);
+//           console.log("answer:", answerVal);
+//         });
+//       });
+//     });
     //setProperties(isProperties(roomRoles, userRoles, !addProp));
   }, [id]);
   //console.log("properties: ", !addProp);
   /*eslint-disable */
     //console.log("is: ", isProperties(roomRoles, userRoles, !addProp), "result: ", properties,"time: ",new Date().getTime())
-           console.log("vivozu")
-            return answerVal
+//            console.log("vivozu")
+//             return answerVal
+  
+  console.log('roomRoles', roomRoles)
+  
+  return (
+    <div>{roomRoles.length}</div>
+  )
     /*eslint-enable */
 }
 
