@@ -16,9 +16,9 @@ function LeftChats({ id, name, addProp, userId }) {
   //);
 
   React.useEffect(async () => {
-    const roomRoles = getRoomRoles(id)
+    const roomRoles = await getRoomRoles(id)
     setRolesR(roomRoles)
-    const userRoles = getUserRoles(userId)
+    const userRoles = await getUserRoles(userId)
     setRoles(userRoles)
     
 //     getRoomRoles(roomRoles, id, setRolesR).then(() => {
