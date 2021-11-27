@@ -30,21 +30,15 @@ function LeftChats({ id, name, userId }) {
     const roomRole = await getRoomRoles(id);
     //console.log(!roomRoles.find((x) => x.id === roomRole.id));
     //console.log(roomRole.id);
-    if (!isInArray(roomRoles, roomRole)) {
-      const buff = roomRoles.push(roomRole);
-      setRolesR(buff);
-      //console.log(roomRole);
-      console.log(roomRoles);
-    }
+    setRolesR(roomRole);
+    //console.log(roomRole);
+    console.log(Array.isArray(roomRoles), roomRoles);
     const userRole = await getUserRoles(userId);
     //console.log(!userRoles.find((x) => x.id === userRole.id));
-    if (!isInArray(userRoles, userRole)) {
-      //console.log(buff);
-      const buff = userRoles.push(userRole);
-      setRoles(buff);
-      //console.log(userRole);
-      console.log(userRoles);
-    }
+    //console.log(buff);
+    setRoles(userRole);
+    //console.log(userRole);
+    console.log(Array.isArray(userRoles), userRoles);
 
     //     getRoomRoles(roomRoles, id, setRolesR).then(() => {
     //       getUserRoles(userRoles, userId, setRoles).then(() => {
@@ -63,7 +57,7 @@ function LeftChats({ id, name, userId }) {
 
   return (
     <div>
-      {isProperties(roomRoles, userRoles) && (
+      {isProperties(userRoles, roomRoles) && (
         <Link to={`/rooms/${id}`}>
           <div className="leftpart_chat">
             <Avatar />
@@ -87,14 +81,16 @@ const getUserRoles = (userId) =>
       .collection("roles")
       .orderBy("role", "asc")
       .onSnapshot((snapshot) => {
+        let bufferArray = [];
         // eslint-disable-next-line array-callback-return
         snapshot.docs.map((doc) => {
-          resolve({
+          bufferArray.push({
             id: doc.id,
             role: doc.data().role,
           });
           //console.log(element);
         });
+        resolve(bufferArray);
       });
   });
 
@@ -105,39 +101,42 @@ const getRoomRoles = (userId) =>
       .collection("roles")
       .orderBy("role", "asc")
       .onSnapshot((snapshot) => {
+        let bufferArray = [];
         // eslint-disable-next-line array-callback-return
         snapshot.docs.map((doc) => {
-          resolve({
+          bufferArray.push({
             id: doc.id,
             role: doc.data().role,
           });
         });
+        resolve(bufferArray);
       });
   });
 
 function currentChecker(userRole, roomRole) {
+  console.log("U: ", userRole, "R: ", roomRole);
   return userRole.role.toString() === roomRole.role.toString();
 }
 
 function isProperties(userRoles, roomRoles) {
-  if (userRoles.role && roomRoles.role) {
-    console.log(
-      "U:",
-      userRoles.role,
-      "R:",
-      roomRoles.role,
-      "addprop: ",
-      userRoles.role.toString() === roomRoles.role.toString(),
-      "time: ",
-      new Date().getTime()
-    );
-    userRoles.forEach((Urole) => {
-      roomRoles.forEach((Rrole) => {
-        if (currentChecker(Urole, Rrole)) {
+  console.log(userRoles, roomRoles);
+  if (userRoles.length > 0 && roomRoles.length > 0) {
+    // console.log(
+    //   "U:",
+    //   typeof userRoles,
+    //   "R:",
+    //   typeof roomRoles,
+    //   "time: ",
+    //   new Date().getTime()
+    // );
+    for (let Urole in userRoles) {
+      for (let Rrole in roomRoles) {
+        console.log(Urole, Rrole);
+        if (currentChecker(userRoles[Urole], roomRoles[Rrole])) {
           return true;
         }
-      });
-    });
+      }
+    }
   } else {
     return false;
   }
@@ -146,11 +145,11 @@ function isProperties(userRoles, roomRoles) {
 const isInArray = (arr, elem) => {
   //console.log(arr, elem);
   if (arr) {
-    arr.forEach((el) => {
+    for (let el in arr) {
       if (el === elem) {
         return true;
       }
-    });
+    }
   }
   return false;
 };
