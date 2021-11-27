@@ -34,6 +34,12 @@ function LeftChats({ id, name, userId }) {
     //console.log(roomRole);
     console.log(Array.isArray(roomRoles), roomRoles);
     const userRole = await getUserRoles(userId);
+    if (userRole.length === 0) {
+      userRole.push({
+        id: "GoogleLog",
+        role: "main role",
+      });
+    }
     //console.log(!userRoles.find((x) => x.id === userRole.id));
     //console.log(buff);
     setRoles(userRole);
