@@ -75,19 +75,15 @@ export const send = async (user, dispatch) => {
     });
 };
 
-export const idExists = (id, setMessages) =>
-  new Promise((resolve, reject) => {
-    resolve(
-      db
-        .collection("rooms")
-        .doc(id)
-        .collection("messages")
-        .orderBy("timestamp", "desc")
-        .onSnapshot((snapshot) => {
-          setMessages(snapshot.docs.map((doc) => doc.data()));
-        })
-    );
-  });
+export const idExists = (id, setMessages) => {
+  db.collection("rooms")
+    .doc(id)
+    .collection("messages")
+    .orderBy("timestamp", "desc")
+    .onSnapshot((snapshot) => {
+      setMessages(snapshot.docs.map((doc) => doc.data()));
+    });
+};
 
 export function createRoom(roomName, roles) {
   let roomId;

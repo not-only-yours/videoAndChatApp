@@ -10,98 +10,107 @@ function LeftChats({ id, name, addProp, userId }) {
   const [messages, setMessages] = React.useState("");
   const [userRoles, setRoles] = React.useState([]);
   const [roomRoles, setRolesR] = React.useState([]);
-  const [answerVal, setAnswerVal] = React.useState("");
-  //const [properties, setProperties] = React.useState(
   //isProperties(roomRoles, userRoles, !addProp)
   //);
 
-  React.useEffect(() => {
-    getRoomRoles(roomRoles, id, setRolesR).then(() => {
-      getUserRoles(userRoles, userId, setRoles).then(() => {
-        idExists(id, setMessages).then(() => {
-          setAnswerVal(answer(roomRoles, userRoles, addProp, id, name, messages));
-          console.log(userRoles);
-          console.log(roomRoles);
-          console.log("answer:", answerVal);
-        });
-      });
-    });
+  // React.useEffect(() => {
+  //   getRoomRoles(roomRoles, id, setRolesR).then(() => {
+  //     getUserRoles(userRoles, userId, setRoles).then(() => {
+  //       idExists(id, setMessages).then(() => {
+  //         setAnswerVal(answer(roomRoles, userRoles, addProp, id, name, messages));
+  //         console.log(userRoles);
+  //         console.log(roomRoles);
+  //         console.log("answer:", answerVal);
+  //       });
+  //     });
+  //   });
+  //   //setProperties(isProperties(roomRoles, userRoles, !addProp));
+  // }, [id]);
+  React.useEffect(async () => {
+    const roomRole = await getRoomRoles(id);
+    //console.log(!roomRoles.find((x) => x.id === roomRole.id));
+    //console.log(roomRole.id);
+    if (!isInArray(roomRoles, roomRole)) {
+      setRolesR(roomRoles.push(roomRole));
+      //console.log(roomRole);
+      //console.log(roomRoles);
+    }
+    const userRole = await getUserRoles(userId);
+    //console.log(!userRoles.find((x) => x.id === userRole.id));
+    if (!isInArray(userRoles, userRole)) {
+      //console.log(buff);
+      setRoles(userRoles.push(userRole));
+      //console.log(userRole);
+      //console.log(userRoles);
+    }
+
+    //     getRoomRoles(roomRoles, id, setRolesR).then(() => {
+    //       getUserRoles(userRoles, userId, setRoles).then(() => {
+    //         idExists(id, setMessages).then(() => {
+    //           setAnswerVal(answer(roomRoles, userRoles, addProp, id, name, messages));
+    //           console.log(userRoles);
+    //           console.log(roomRoles);
+    //           console.log("answer:", answerVal);
+    //         });
+    //       });
+    //     });
     //setProperties(isProperties(roomRoles, userRoles, !addProp));
   }, [id]);
-  //console.log("properties: ", !addProp);
-  /*eslint-disable */
-    //console.log("is: ", isProperties(roomRoles, userRoles, !addProp), "result: ", properties,"time: ",new Date().getTime())
-           console.log("vivozu")
-            return answerVal
-    /*eslint-enable */
+
+  //console.log("roomRoles", roomRoles);
+
+  return (
+    <div>
+      {isProperties(roomRoles, userRoles, !addProp) && (
+        <Link to={`/rooms/${id}`}>
+          <div className="leftpart_chat">
+            <Avatar />
+            <div className="leftpartChat_info">
+              <h2>{name}</h2>
+              <p>{messages[0]?.message}</p>
+            </div>
+          </div>
+        </Link>
+      )}
+    </div>
+  );
 }
 
 export default LeftChats;
 
-const answer = (roomRoles, userRoles, addProp, id, name, messages) => {
-  if (isProperties(roomRoles, userRoles, !addProp)) {
-    return (
-      <Link to={`/rooms/${id}`}>
-        <div className="leftpart_chat">
-          <Avatar />
-          <div className="leftpartChat_info">
-            <h2>{name}</h2>
-            <p>{messages[0]?.message}</p>
-          </div>
-        </div>
-      </Link>
-    );
-  } else {
-    return <div />;
-  }
-};
-
-const getUserRoles = (userRoles, userId, setRoles) =>
+const getUserRoles = (userId) =>
   new Promise((resolve, reject) => {
-    resolve(
-      db
-        .collection("users-roles")
-        .doc(userId)
-        .collection("roles")
-        .orderBy("role", "asc")
-        .onSnapshot((snapshot) => {
-          // eslint-disable-next-line array-callback-return
-          snapshot.docs.map((doc) => {
-            let element = {
-              id: doc.id,
-              role: doc.data().role,
-            };
-            //console.log(element);
-            if (!userRoles.includes(element)) {
-              setRoles((role) => [...role, element]);
-            }
+    db.collection("users-roles")
+      .doc(userId)
+      .collection("roles")
+      .orderBy("role", "asc")
+      .onSnapshot((snapshot) => {
+        // eslint-disable-next-line array-callback-return
+        snapshot.docs.map((doc) => {
+          resolve({
+            id: doc.id,
+            role: doc.data().role,
           });
-        })
-    );
+          //console.log(element);
+        });
+      });
   });
 
-const getRoomRoles = (roomRoles, userId, setRoles) =>
+const getRoomRoles = (userId) =>
   new Promise((resolve, reject) => {
-    resolve(
-      db
-        .collection("rooms")
-        .doc(userId)
-        .collection("roles")
-        .orderBy("role", "asc")
-        .onSnapshot((snapshot) => {
-          // eslint-disable-next-line array-callback-return
-          snapshot.docs.map((doc) => {
-            let element = {
-              id: doc.id,
-              role: doc.data().role,
-            };
-            //console.log(element);
-            if (!roomRoles.includes(element)) {
-              setRoles((roomRoles) => [...roomRoles, element]);
-            }
+    db.collection("rooms")
+      .doc(userId)
+      .collection("roles")
+      .orderBy("role", "asc")
+      .onSnapshot((snapshot) => {
+        // eslint-disable-next-line array-callback-return
+        snapshot.docs.map((doc) => {
+          resolve({
+            id: doc.id,
+            role: doc.data().role,
           });
-        })
-    );
+        });
+      });
   });
 
 function currentChecker(userRole, roomRole) {
@@ -133,3 +142,15 @@ function isProperties(userRoles, roomRoles, addprop) {
     return false;
   }
 }
+
+const isInArray = (arr, elem) => {
+  //console.log(arr, elem);
+  if (arr) {
+    arr.forEach((el) => {
+      if (el === elem) {
+        return true;
+      }
+    });
+  }
+  return false;
+};
