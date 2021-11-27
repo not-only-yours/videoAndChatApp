@@ -2,6 +2,7 @@ import React from "react";
 import "./Chat.css";
 import { Avatar, IconButton } from "@material-ui/core";
 import { VideoCall } from "@material-ui/icons";
+import serv from "./service";
 
 function Chat() {
   const serv = require("./service");
@@ -14,10 +15,13 @@ function Chat() {
   const { roomId } = rdom.useParams();
 
   const handleSubmit = async (event) => {
+    if (!user.displayName) {
+      user.displayName = user.name;
+    }
     try {
       event.preventDefault();
       serv.send(user.displayName, dispatch).then(() => {
-        serv.jwtExists(roomId, user.name);
+        serv.jwtExists(roomId, user.displayName);
       });
     } catch (e) {
       console.log(e);
@@ -28,6 +32,7 @@ function Chat() {
     if (roomId) {
       serv.roomNameExists(roomId, dispatch, setRoomName, setMessages);
     }
+    console.log("User:", user);
   }, [roomId]);
 
   const sendMessage = (e) => {
