@@ -22,7 +22,6 @@
     <list default="true" id="3f003c63-2c4b-49e3-a76b-b34261c8e95d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chatandvideo/src/LeftChats.js" beforeDir="false" afterPath="$PROJECT_DIR$/chatandvideo/src/LeftChats.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chatandvideo/src/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/chatandvideo/src/service.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +57,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
@@ -178,7 +178,8 @@
       <workItem from="1634287894256" duration="15015000" />
       <workItem from="1636641177834" duration="2355000" />
       <workItem from="1637507936052" duration="5195000" />
-      <workItem from="1637751865132" duration="29563000" />
+      <workItem from="1637751865132" duration="29940000" />
+      <workItem from="1638005364087" duration="5000" />
     </task>
     <servers />
   </component>

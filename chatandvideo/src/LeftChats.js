@@ -6,7 +6,7 @@ import { createRoom, idExists } from "./service";
 import db from "./firebase";
 import firebase from "./firebase";
 
-function LeftChats({ id, name, addProp, userId }) {
+function LeftChats({ id, name, userId }) {
   const [messages, setMessages] = React.useState("");
   const [userRoles, setRoles] = React.useState([]);
   const [roomRoles, setRolesR] = React.useState([]);
@@ -31,17 +31,19 @@ function LeftChats({ id, name, addProp, userId }) {
     //console.log(!roomRoles.find((x) => x.id === roomRole.id));
     //console.log(roomRole.id);
     if (!isInArray(roomRoles, roomRole)) {
-      setRolesR(roomRoles.push(roomRole));
+      const buff = roomRoles.push(roomRole);
+      setRolesR(buff);
       //console.log(roomRole);
-      //console.log(roomRoles);
+      console.log(roomRoles);
     }
     const userRole = await getUserRoles(userId);
     //console.log(!userRoles.find((x) => x.id === userRole.id));
     if (!isInArray(userRoles, userRole)) {
       //console.log(buff);
-      setRoles(userRoles.push(userRole));
+      const buff = userRoles.push(userRole);
+      setRoles(buff);
       //console.log(userRole);
-      //console.log(userRoles);
+      console.log(userRoles);
     }
 
     //     getRoomRoles(roomRoles, id, setRolesR).then(() => {
@@ -61,7 +63,7 @@ function LeftChats({ id, name, addProp, userId }) {
 
   return (
     <div>
-      {isProperties(roomRoles, userRoles, !addProp) && (
+      {isProperties(roomRoles, userRoles) && (
         <Link to={`/rooms/${id}`}>
           <div className="leftpart_chat">
             <Avatar />
@@ -117,16 +119,14 @@ function currentChecker(userRole, roomRole) {
   return userRole.role.toString() === roomRole.role.toString();
 }
 
-function isProperties(userRoles, roomRoles, addprop) {
-  if (userRoles.role && roomRoles.role && addprop) {
+function isProperties(userRoles, roomRoles) {
+  if (userRoles.role && roomRoles.role) {
     console.log(
       "U:",
       userRoles.role,
       "R:",
       roomRoles.role,
       "addprop: ",
-      addprop,
-      "result: ",
       userRoles.role.toString() === roomRoles.role.toString(),
       "time: ",
       new Date().getTime()
