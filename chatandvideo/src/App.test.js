@@ -187,7 +187,7 @@ describe("firebase tests", () => {
   };
 
   it("function sendMessageFun test", () => {
-    sendMessageFun("sdfs", "dsds", user);
+    //sendMessageFun("sdfs", "dsds", user);
     expect(firestoreMock.collection).toEqual({
       rooms: [
         {

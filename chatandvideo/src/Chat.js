@@ -15,9 +15,6 @@ function Chat() {
   const { roomId } = rdom.useParams();
 
   const handleSubmit = async (event) => {
-    if (!user.displayName) {
-      user.displayName = user.name;
-    }
     try {
       event.preventDefault();
       serv.send(user.displayName, dispatch).then(() => {
@@ -32,12 +29,15 @@ function Chat() {
     if (roomId) {
       serv.roomNameExists(roomId, dispatch, setRoomName, setMessages);
     }
-    console.log("User:", user);
+    if (!user.displayName) {
+      user.displayName = user.name;
+    }
+    console.log("User:", user.displayName);
   }, [roomId]);
 
   const sendMessage = (e) => {
     e.preventDefault();
-
+    //console.log(roomId, input, user);
     serv.sendMessageFun(roomId, input, user);
 
     console.log(input);
@@ -68,7 +68,7 @@ function Chat() {
         {messages.map((message) => (
           <p
             className={`chat_message ${
-              message.name === user.name && "chat_reciever"
+              message.name === user.displayName && "chat_reciever"
             }`}
           >
             <span className="chat_name">{message.name}</span>

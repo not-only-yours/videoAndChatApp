@@ -32,7 +32,7 @@ function LeftChats({ id, name, userId }) {
     //console.log(roomRole.id);
     setRolesR(roomRole);
     //console.log(roomRole);
-    console.log(Array.isArray(roomRoles), roomRoles);
+    //console.log(Array.isArray(roomRoles), roomRoles);
     const userRole = await getUserRoles(userId);
     if (userRole.length === 0) {
       userRole.push({
@@ -44,7 +44,7 @@ function LeftChats({ id, name, userId }) {
     //console.log(buff);
     setRoles(userRole);
     //console.log(userRole);
-    console.log(Array.isArray(userRoles), userRoles);
+    //console.log(Array.isArray(userRoles), userRoles);
 
     //     getRoomRoles(roomRoles, id, setRolesR).then(() => {
     //       getUserRoles(userRoles, userId, setRoles).then(() => {
@@ -120,12 +120,12 @@ const getRoomRoles = (userId) =>
   });
 
 function currentChecker(userRole, roomRole) {
-  console.log("U: ", userRole, "R: ", roomRole);
+  //console.log("U: ", userRole, "R: ", roomRole);
   return userRole.role.toString() === roomRole.role.toString();
 }
 
 function isProperties(userRoles, roomRoles) {
-  console.log(userRoles, roomRoles);
+  //console.log(userRoles, roomRoles);
   if (userRoles.length > 0 && roomRoles.length > 0) {
     // console.log(
     //   "U:",
@@ -137,7 +137,7 @@ function isProperties(userRoles, roomRoles) {
     // );
     for (let Urole in userRoles) {
       for (let Rrole in roomRoles) {
-        console.log(Urole, Rrole);
+        //console.log(Urole, Rrole);
         if (currentChecker(userRoles[Urole], roomRoles[Rrole])) {
           return true;
         }

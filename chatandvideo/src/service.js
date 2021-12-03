@@ -7,11 +7,12 @@ import { collection, query, where } from "firebase/firestore";
 import React from "react";
 
 export function jwtExists(roomId, user) {
+  console.log(user);
   db.collection("rooms")
     .doc(roomId)
     .collection("messages")
     .add({
-      message: `${user.name} connected to the video Room. You can join him by clicking the icon`,
+      message: `${user} connected to the video Room. You can join him by clicking the icon`,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
 }
@@ -48,9 +49,10 @@ export function roomNameExists(roomId, dispatchRoomName, setRoomName, setMessage
 }
 
 export function sendMessageFun(roomId, input, user) {
+  console.log(user);
   db.collection("rooms").doc(roomId).collection("messages").add({
     message: input,
-    name: user.name,
+    name: user.displayName,
     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
   });
 }
