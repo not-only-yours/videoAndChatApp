@@ -1,27 +1,30 @@
 import React from "react";
 import { getUserRoles } from "./LeftChats";
 import { actionTypes } from "./reducer";
-import serv from "./service";
+import { createRoom } from "./service";
 function CreateChat() {
   const sp = require("./StateProvider");
   const [input, setInput] = React.useState("");
   const [{ user }, dispatch] = sp.useStateValue();
 
-  const createRoom = (e) => {
+  const createRequest = (e) => {
     e.preventDefault();
     //console.log(roomId, input, user);
+
+    console.log(getCheckedRoles());
+    console.log(input);
+    sendRequest(input);
+  };
+
+  const sendRequest = (input) => {
     let roles = getCheckedRoles();
-    if (roles === []) {
+    if (roles.length === 0) {
       alert("Please, select role");
     } else if (input === "") {
       alert("Please, write name of group");
     } else {
       createRoom(input, roles);
     }
-    //console.log(getCheckedRoles());
-    //onsole.log(input);
-
-    setInput("");
   };
 
   const getCheckedRoles = () => {
@@ -67,7 +70,7 @@ function CreateChat() {
           <label htmlFor="scales">{role.role}</label>
         </div>
       ))}
-      <button type="submit" onClick={createRoom}>
+      <button type="submit" onClick={createRequest}>
         Create room
       </button>
     </div>
