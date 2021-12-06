@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f003c63-2c4b-49e3-a76b-b34261c8e95d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/chatandvideo/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/chatandvideo/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="3f003c63-2c4b-49e3-a76b-b34261c8e95d" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -85,7 +83,7 @@
       <recent name="C:\Users\User\WebstormProjects\videoAndChatApp" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="npm.coverage">
     <configuration name="All Tests" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -141,8 +139,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start" />
         <item itemvalue="npm.coverage" />
+        <item itemvalue="npm.start" />
         <item itemvalue="Jest.All Tests" />
         <item itemvalue="npm.jest" />
         <item itemvalue="Jest.firebase tests.function sendMessageFun test" />
