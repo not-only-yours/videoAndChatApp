@@ -7,6 +7,7 @@ export function signIn(dispatch) {
     auth
       .signInWithPopup(provider)
       .then((result) => {
+        result.user.roles = [];
         dispatch({
           type: actionTypes.SET_USER,
           user: result.user,

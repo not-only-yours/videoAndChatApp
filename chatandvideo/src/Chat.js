@@ -13,7 +13,7 @@ function Chat() {
   const [messages, setMessages] = React.useState([]);
   const [{ user }, dispatch] = sp.useStateValue();
   const { roomId } = rdom.useParams();
-
+  //console.log("I`m in Chat");
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();

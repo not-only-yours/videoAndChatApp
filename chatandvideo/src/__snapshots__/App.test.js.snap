@@ -41,6 +41,11 @@ exports[`shallow tests of modules app without token (with user) 1`] = `
           <Chat />
         </Route>
         <Route
+          path="/newRoom"
+        >
+          <CreateChat />
+        </Route>
+        <Route
           path="/"
         >
           <Chat />
@@ -151,14 +156,17 @@ exports[`shallow tests of modules testing Leftpart 1`] = `
   <div
     className="leftpart_chats"
   >
-    <div
-      className="leftpart_chat"
-      onClick={[Function]}
+    <Link
+      to="/newRoom"
     >
-      <h2>
-        Добавити новий чатік
-      </h2>
-    </div>
+      <div
+        className="leftpart_chat"
+      >
+        <h2>
+          Добавити новий чатік
+        </h2>
+      </div>
+    </Link>
   </div>
 </div>
 `;

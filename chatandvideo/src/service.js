@@ -113,6 +113,7 @@ export function createRoom(roomName, roles) {
           role: role,
         });
       });
+      alert("Room created!");
     });
 }
 
@@ -151,6 +152,7 @@ export function checkLoginAndPass(login, pass, dispatch) {
               name: doc.data().name,
               login: doc.data().login,
               password: doc.data().password,
+              roles: [],
             },
           });
         }

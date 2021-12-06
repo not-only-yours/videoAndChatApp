@@ -6,6 +6,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import InfoIcon from "@material-ui/icons/Info";
 import LeftChats from "./LeftChats";
 import { createRoom } from "./service";
+import { Link } from "react-router-dom";
 
 function Leftpart() {
   const serv = require("./service");
@@ -36,9 +37,11 @@ function Leftpart() {
         </div>
       </div>
       <div className="leftpart_chats">
-        <div onClick={createChat} className="leftpart_chat">
-          <h2>Добавити новий чатік</h2>
-        </div>
+        <Link to={"/newRoom"}>
+          <div className="leftpart_chat">
+            <h2>Добавити новий чатік</h2>
+          </div>
+        </Link>
         {rooms.map((room) => (
           <LeftChats
             key={room.id}
@@ -56,6 +59,7 @@ export default Leftpart;
 
 const createChat = () => {
   const roomName = prompt("Введіть назву чатіку");
+
   if (roomName) {
     // alert(`RoomName: ${roomName}`);
     // створити в firebase базу і пушити сюди її

@@ -10,29 +10,11 @@ function LeftChats({ id, name, userId }) {
   const [messages, setMessages] = React.useState("");
   const [userRoles, setRoles] = React.useState([]);
   const [roomRoles, setRolesR] = React.useState([]);
-  //isProperties(roomRoles, userRoles, !addProp)
-  //);
 
-  // React.useEffect(() => {
-  //   getRoomRoles(roomRoles, id, setRolesR).then(() => {
-  //     getUserRoles(userRoles, userId, setRoles).then(() => {
-  //       idExists(id, setMessages).then(() => {
-  //         setAnswerVal(answer(roomRoles, userRoles, addProp, id, name, messages));
-  //         console.log(userRoles);
-  //         console.log(roomRoles);
-  //         console.log("answer:", answerVal);
-  //       });
-  //     });
-  //   });
-  //   //setProperties(isProperties(roomRoles, userRoles, !addProp));
-  // }, [id]);
   React.useEffect(async () => {
+    //console.log(userId);
     const roomRole = await getRoomRoles(id);
-    //console.log(!roomRoles.find((x) => x.id === roomRole.id));
-    //console.log(roomRole.id);
     setRolesR(roomRole);
-    //console.log(roomRole);
-    //console.log(Array.isArray(roomRoles), roomRoles);
     const userRole = await getUserRoles(userId);
     if (userRole.length === 0) {
       userRole.push({
@@ -40,26 +22,8 @@ function LeftChats({ id, name, userId }) {
         role: "main role",
       });
     }
-    //console.log(!userRoles.find((x) => x.id === userRole.id));
-    //console.log(buff);
     setRoles(userRole);
-    //console.log(userRole);
-    //console.log(Array.isArray(userRoles), userRoles);
-
-    //     getRoomRoles(roomRoles, id, setRolesR).then(() => {
-    //       getUserRoles(userRoles, userId, setRoles).then(() => {
-    //         idExists(id, setMessages).then(() => {
-    //           setAnswerVal(answer(roomRoles, userRoles, addProp, id, name, messages));
-    //           console.log(userRoles);
-    //           console.log(roomRoles);
-    //           console.log("answer:", answerVal);
-    //         });
-    //       });
-    //     });
-    //setProperties(isProperties(roomRoles, userRoles, !addProp));
   }, [id]);
-
-  //console.log("roomRoles", roomRoles);
 
   return (
     <div>
@@ -80,7 +44,7 @@ function LeftChats({ id, name, userId }) {
 
 export default LeftChats;
 
-const getUserRoles = (userId) =>
+export const getUserRoles = (userId) =>
   new Promise((resolve, reject) => {
     db.collection("users-roles")
       .doc(userId)
@@ -125,16 +89,7 @@ function currentChecker(userRole, roomRole) {
 }
 
 function isProperties(userRoles, roomRoles) {
-  //console.log(userRoles, roomRoles);
   if (userRoles.length > 0 && roomRoles.length > 0) {
-    // console.log(
-    //   "U:",
-    //   typeof userRoles,
-    //   "R:",
-    //   typeof roomRoles,
-    //   "time: ",
-    //   new Date().getTime()
-    // );
     for (let Urole in userRoles) {
       for (let Rrole in roomRoles) {
         //console.log(Urole, Rrole);
@@ -147,15 +102,3 @@ function isProperties(userRoles, roomRoles) {
     return false;
   }
 }
-
-const isInArray = (arr, elem) => {
-  //console.log(arr, elem);
-  if (arr) {
-    for (let el in arr) {
-      if (el === elem) {
-        return true;
-      }
-    }
-  }
-  return false;
-};

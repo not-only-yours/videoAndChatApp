@@ -6,6 +6,7 @@ import Login from "./Login";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Video from "./video";
 import "./video.css";
+import CreateChat from "./CreateChat";
 
 function App() {
   const sp = require("./StateProvider");
@@ -22,6 +23,9 @@ function App() {
             <Switch>
               <Route path="/rooms/:roomId">
                 <Chat />
+              </Route>
+              <Route path="/newRoom">
+                <CreateChat />
               </Route>
               <Route path="/">
                 <Chat />
