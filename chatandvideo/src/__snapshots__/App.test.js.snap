@@ -138,6 +138,11 @@ exports[`shallow tests of modules testing Leftpart 1`] = `
       <WithStyles(ForwardRef(IconButton))>
         <Memo(ForwardRef(InfoIcon)) />
       </WithStyles(ForwardRef(IconButton))>
+      <WithStyles(ForwardRef(IconButton))>
+        <Memo(ForwardRef(ExitToAppRoundedIcon))
+          onClick={[Function]}
+        />
+      </WithStyles(ForwardRef(IconButton))>
     </div>
   </div>
   <div
