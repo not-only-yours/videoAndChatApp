@@ -142,6 +142,7 @@ export function checkLoginAndPass(login, pass, dispatch) {
   db.collection("users-roles")
     .get()
     .then((querySnapshot) => {
+      let checker = true;
       querySnapshot.forEach((doc) => {
         //console.log(doc.data().password, "==", pass);
         if (doc.data().password === pass && doc.data().login === login) {
@@ -155,7 +156,11 @@ export function checkLoginAndPass(login, pass, dispatch) {
               roles: [],
             },
           });
+          checker = false;
         }
       });
+      if (checker) {
+        alert("Please write correct login and password");
+      }
     });
 }

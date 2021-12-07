@@ -17,7 +17,7 @@ function Login() {
 
     console.log("login: " + login + "\n" + "password: " + pass);
 
-    setLogin("");
+    //setLogin("");
     setPass("");
   };
 
