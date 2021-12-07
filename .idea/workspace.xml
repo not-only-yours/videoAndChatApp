@@ -85,7 +85,7 @@
       <recent name="C:\Users\User\WebstormProjects\videoAndChatApp" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.eject">
+  <component name="RunManager" selected="npm.coverage (1)">
     <configuration name="All Tests" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -137,10 +137,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.coverage (1)" />
         <item itemvalue="npm.eject" />
         <item itemvalue="npm.lint" />
         <item itemvalue="npm.jest (1)" />
-        <item itemvalue="npm.coverage (1)" />
         <item itemvalue="Jest.All Tests" />
       </list>
     </recent_temporary>
