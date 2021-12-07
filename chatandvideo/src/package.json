@@ -8,7 +8,7 @@
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.1",
     "axios": "^0.21.1",
-    "firebase": "^8.3.0",
+    "firebase": "^8.10.0",
     "pretty": "^2.0.0",
     "react-dom": "^17.0.2",
     "react-native-scripts": "^2.0.1",
@@ -59,13 +59,13 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "CI=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src/.",
     "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
     "jest": "yarn test",
-    "coverage": "npm run test -- --coverage --watchAll=false"
+    "coverage": "npm run test -- --coverage"
   },
   "husky": {
     "hooks": {
