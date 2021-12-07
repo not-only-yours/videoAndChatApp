@@ -7,12 +7,21 @@ import InfoIcon from "@material-ui/icons/Info";
 import LeftChats from "./LeftChats";
 import { createRoom } from "./service";
 import { Link } from "react-router-dom";
+import { ExitToAppRounded } from "@material-ui/icons";
+import { actionTypes } from "./reducer";
 
 function Leftpart() {
   const serv = require("./service");
   const sp = require("./StateProvider");
   const [rooms, setRooms] = React.useState([]);
   const [{ user }, dispatch] = sp.useStateValue();
+
+  const exitToLogin = () => {
+    dispatch({
+      type: actionTypes.SET_USER,
+      user: false,
+    });
+  };
 
   React.useEffect(() => {
     return serv.refreshDB(setRooms);
@@ -27,6 +36,9 @@ function Leftpart() {
           </IconButton>
           <IconButton>
             <InfoIcon />
+          </IconButton>
+          <IconButton>
+            <ExitToAppRounded onClick={exitToLogin} />
           </IconButton>
         </div>
       </div>
