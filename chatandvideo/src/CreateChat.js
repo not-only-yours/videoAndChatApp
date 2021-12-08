@@ -1,7 +1,7 @@
 import React from "react";
-import { getUserRoles } from "./LeftChats";
+import { getCheckedRoles, getUserRoles, sendRequest } from "./service";
 import { actionTypes } from "./reducer";
-import { createRoom } from "./service";
+
 function CreateChat() {
   const sp = require("./StateProvider");
   const [input, setInput] = React.useState("");
@@ -14,28 +14,6 @@ function CreateChat() {
     console.log(getCheckedRoles());
     console.log(input);
     sendRequest(input);
-  };
-
-  const sendRequest = (input) => {
-    let roles = getCheckedRoles();
-    if (roles.length === 0) {
-      alert("Please, select role");
-    } else if (input === "") {
-      alert("Please, write name of group");
-    } else {
-      createRoom(input, roles);
-    }
-  };
-
-  const getCheckedRoles = () => {
-    let checkedRoles = [];
-    let checkboxes = document.querySelectorAll("input[type=checkbox]:checked");
-
-    for (let i = 0; i < checkboxes.length; i++) {
-      checkedRoles.push(checkboxes[i].id);
-    }
-    //console.log(checkedRoles);
-    return checkedRoles;
   };
 
   React.useEffect(async () => {
@@ -64,12 +42,18 @@ function CreateChat() {
         placeholder="Type a roomname..."
       />
       <p>Choose roles:</p>
-      {user.roles.map((role) => (
+      {user.roles ? (
+        user.roles.map((role) => (
+          <div>
+            <input type="checkbox" id={role.role} name="role" />
+            <label htmlFor="scales">{role.role}</label>
+          </div>
+        ))
+      ) : (
         <div>
-          <input type="checkbox" id={role.role} name="role" />
-          <label htmlFor="scales">{role.role}</label>
+          <h1>No roles</h1>
         </div>
-      ))}
+      )}
       <button type="submit" onClick={createRequest}>
         Create room
       </button>

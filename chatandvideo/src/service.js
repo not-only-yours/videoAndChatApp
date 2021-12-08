@@ -164,3 +164,84 @@ export function checkLoginAndPass(login, pass, dispatch) {
       }
     });
 }
+
+export const getUserRoles = (userId) =>
+  new Promise((resolve, reject) => {
+    db.collection("users-roles")
+      .doc(userId)
+      .collection("roles")
+      .orderBy("role", "asc")
+      .onSnapshot((snapshot) => {
+        let bufferArray = [];
+        // eslint-disable-next-line array-callback-return
+        snapshot.docs.map((doc) => {
+          bufferArray.push({
+            id: doc.id,
+            role: doc.data().role,
+          });
+          //console.log(element);
+        });
+        resolve(bufferArray);
+      });
+  });
+
+export const getRoomRoles = (userId) =>
+  new Promise((resolve, reject) => {
+    db.collection("rooms")
+      .doc(userId)
+      .collection("roles")
+      .orderBy("role", "asc")
+      .onSnapshot((snapshot) => {
+        let bufferArray = [];
+        // eslint-disable-next-line array-callback-return
+        snapshot.docs.map((doc) => {
+          bufferArray.push({
+            id: doc.id,
+            role: doc.data().role,
+          });
+        });
+        resolve(bufferArray);
+      });
+  });
+
+export function currentChecker(userRole, roomRole) {
+  //console.log("U: ", userRole, "R: ", roomRole);
+  return userRole.role.toString() === roomRole.role.toString();
+}
+
+export function isProperties(userRoles, roomRoles) {
+  if (userRoles.length > 0 && roomRoles.length > 0) {
+    for (let Urole in userRoles) {
+      for (let Rrole in roomRoles) {
+        //console.log(Urole, Rrole);
+        if (currentChecker(userRoles[Urole], roomRoles[Rrole])) {
+          return true;
+        }
+      }
+    }
+  } else {
+    return false;
+  }
+}
+
+export const getCheckedRoles = () => {
+  let checkedRoles = [];
+  let checkboxes = document.querySelectorAll("input[type=checkbox]:checked");
+
+  for (let i = 0; i < checkboxes.length; i++) {
+    checkedRoles.push(checkboxes[i].id);
+  }
+  //console.log(checkedRoles);
+  return checkedRoles;
+};
+
+export const sendRequest = (input) => {
+  let roles = getCheckedRoles();
+  if (roles.length === 0) {
+    alert("Please, select role");
+  } else if (input === "") {
+    alert("Please, write name of group");
+  } else {
+    createRoom(input, roles);
+  }
+};

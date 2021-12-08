@@ -26,6 +26,7 @@ import FirestoreMock from "./mockedFirebase";
 import db from "./firebase";
 import IconButton from "@material-ui/core/IconButton";
 import sinon from "sinon";
+import CreateChat from "./CreateChat";
 expect.addSnapshotSerializer(createSerializer({ mode: "deep" }));
 configure({ adapter: new Adapter() });
 const firestoreMock = new FirestoreMock();
@@ -311,5 +312,27 @@ describe("reducer and state provider tests", () => {
   it("reducer SET_ROOMNAME", () => {
     const d = reducer("aa", { type: actionTypes.SET_ROOMNAME });
     expect(d).toEqual({ 0: "a", 1: "a", user: undefined });
+  });
+});
+
+describe("test CreateChat servcie", () => {
+  it("test CreateChat snapshot", () => {
+    const wrapper = shallow(<CreateChat />);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  // it("simulate click on material-ui iconbutton", () => {
+  //   const onSearchClick = sinon.spy();
+  //   const wrapper = shallow(<Chat onSearchClick={onSearchClick} />);
+  //   wrapper
+  //     .find(document.getElementById("button"))
+  //     .simulate("click", { preventDefault: () => {} });
+  //   expect(onSearchClick).toMatchSnapshot();
+  // });
+});
+
+describe("service test", () => {
+  it("roomNameExsists function test", () => {
+    roomNameExists();
   });
 });

@@ -222,6 +222,36 @@ exports[`shallow tests of modules testing Login 1`] = `
 </div>
 `;
 
+exports[`test CreateChat servcie test CreateChat snapshot 1`] = `
+<div
+  className="chat"
+>
+  <h3>
+    Write RoomName
+  </h3>
+  <input
+    onChange={[Function]}
+    placeholder="Type a roomname..."
+    type="text"
+    value=""
+  />
+  <p>
+    Choose roles:
+  </p>
+  <div>
+    <h1>
+      No roles
+    </h1>
+  </div>
+  <button
+    onClick={[Function]}
+    type="submit"
+  >
+    Create room
+  </button>
+</div>
+`;
+
 exports[`test modules with router test module LeftChats with snapshot 1`] = `<div />`;
 
 exports[`test modules with router test module Video with snapshot 1`] = `

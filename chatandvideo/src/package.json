@@ -83,7 +83,7 @@
       "src/**/*.{js,jsx}",
       "!src/index.js",
       "!src/mockedFirebase.js",
-      "!src/Autorization.js"
+      "!src/authService.js"
     ]
   },
   "browserslist": {

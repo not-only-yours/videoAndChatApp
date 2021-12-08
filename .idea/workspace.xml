@@ -20,7 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f003c63-2c4b-49e3-a76b-b34261c8e95d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatandvideo/src/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/chatandvideo/src/App.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatandvideo/src/CreateChat.js" beforeDir="false" afterPath="$PROJECT_DIR$/chatandvideo/src/CreateChat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatandvideo/src/LeftChats.js" beforeDir="false" afterPath="$PROJECT_DIR$/chatandvideo/src/LeftChats.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatandvideo/src/__snapshots__/App.test.js.snap" beforeDir="false" afterPath="$PROJECT_DIR$/chatandvideo/src/__snapshots__/App.test.js.snap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chatandvideo/src/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/chatandvideo/src/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatandvideo/src/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/chatandvideo/src/service.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +91,7 @@
       <recent name="C:\Users\User\WebstormProjects\videoAndChatApp" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.All Tests">
+  <component name="RunManager" selected="npm.test">
     <configuration name="All Tests" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -95,7 +101,7 @@
       <scope-kind value="ALL" />
       <method v="2" />
     </configuration>
-    <configuration name="tests of onclick events" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="test Chat servcie" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/chatandvideo/node_modules/react-scripts" />
@@ -104,7 +110,7 @@
       <scope-kind value="SUITE" />
       <test-file value="$PROJECT_DIR$/chatandvideo/src/App.test.js" />
       <test-names>
-        <test-name value="tests of onclick events" />
+        <test-name value="test Chat servcie" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -144,11 +150,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Jest.All Tests" />
         <item itemvalue="npm.test" />
+        <item itemvalue="Jest.All Tests" />
+        <item itemvalue="Jest.test Chat servcie" />
         <item itemvalue="npm.lint" />
         <item itemvalue="Jest.tests of onclick events.LeftChats onclick func" />
-        <item itemvalue="Jest.tests of onclick events" />
       </list>
     </recent_temporary>
   </component>
