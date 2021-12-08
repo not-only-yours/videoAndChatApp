@@ -23,4 +23,8 @@ jobs:
       - name: 'test'
         run: |
          cd chatandvideo
-         yarn test
+         npm run jest
+      - name: 'coverage'
+        run: |
+         cd chatandvideo
+          npm run test -- --coverage --watchAll=false --detectOpenHandles

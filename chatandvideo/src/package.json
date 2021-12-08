@@ -62,15 +62,15 @@
     "build": "CI=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint ./",
+    "lint": "eslint src/.",
     "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
     "jest": "yarn test ",
     "coverage": "npm run test -- --coverage --watchAll=false --detectOpenHandles"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run coverage",
-      "pre-push": "npm run coverage"
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run lint"
     }
   },
   "lint-staged": {
@@ -80,7 +80,7 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "/**/*.{js,jsx}",
+      "src/**/*.{js,jsx}",
       "!src/index.js",
       "!src/mockedFirebase.js",
       "!src/Autorization.js"
