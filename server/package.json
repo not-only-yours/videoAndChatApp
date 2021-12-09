@@ -1,0 +1,14 @@
+{
+  "name": "sqlservergui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "firebase": "^9.6.0"
+  },
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "postgres",
+  "license": "ISC"
+}
