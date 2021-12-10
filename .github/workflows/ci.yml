@@ -23,7 +23,7 @@ jobs:
       - name: 'test'
         run: |
          cd chatandvideo
-         npm run jest
+         npm run jest --detectOpenHandles
       - name: 'coverage'
         run: |
          cd chatandvideo
