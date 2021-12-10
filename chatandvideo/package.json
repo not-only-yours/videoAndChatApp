@@ -64,7 +64,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint src/.",
     "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
-    "jest": "yarn test",
+    "jest": "yarn test --detectOpenHandles",
     "coverage": "npm run test -- --coverage"
   },
   "husky": {
