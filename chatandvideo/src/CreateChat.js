@@ -1,6 +1,7 @@
 import React from "react";
 import { getCheckedRoles, getUserRoles, sendRequest } from "./service";
 import { actionTypes } from "./reducer";
+import "./CreateChat.css";
 
 function CreateChat() {
   const sp = require("./StateProvider");
@@ -34,29 +35,34 @@ function CreateChat() {
   //console.log("I`m in CreateChat");
   return (
     <div className="chat">
-      <h3>Write RoomName</h3>
-      <input
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        type="text"
-        placeholder="Type a roomname..."
-      />
-      <p>Choose roles:</p>
-      {user.roles ? (
-        user.roles.map((role) => (
+      <div className="chat_header">
+        <h3>Write RoomName</h3>
+        <input
+          className="chat_header_input"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          type="text"
+          placeholder="Type a roomname..."
+        />
+      </div>
+      <div className="chat_body">
+        <h3 className="chat_body_h3">Choose roles:</h3>
+        {user.roles ? (
+          user.roles.map((role) => (
+            <div className="checkbox">
+              <input type="checkbox" id={role.role} name="role" />
+              <label htmlFor="scales">{role.role}</label>
+            </div>
+          ))
+        ) : (
           <div>
-            <input type="checkbox" id={role.role} name="role" />
-            <label htmlFor="scales">{role.role}</label>
+            <h1>No roles</h1>
           </div>
-        ))
-      ) : (
-        <div>
-          <h1>No roles</h1>
-        </div>
-      )}
-      <button type="submit" onClick={createRequest}>
-        Create room
-      </button>
+        )}
+        <button type="submit" className="c-button" onClick={createRequest}>
+          Create room
+        </button>
+      </div>
     </div>
   );
 }
