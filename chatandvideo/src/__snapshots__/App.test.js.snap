@@ -226,29 +226,41 @@ exports[`test CreateChat servcie test CreateChat snapshot 1`] = `
 <div
   className="chat"
 >
-  <h3>
-    Write RoomName
-  </h3>
-  <input
-    onChange={[Function]}
-    placeholder="Type a roomname..."
-    type="text"
-    value=""
-  />
-  <p>
-    Choose roles:
-  </p>
-  <div>
-    <h1>
-      No roles
-    </h1>
-  </div>
-  <button
-    onClick={[Function]}
-    type="submit"
+  <div
+    className="chat_header"
   >
-    Create room
-  </button>
+    <h3>
+      Write RoomName
+    </h3>
+    <input
+      className="chat_header_input"
+      onChange={[Function]}
+      placeholder="Type a roomname..."
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="chat_body"
+  >
+    <h3
+      className="chat_body_h3"
+    >
+      Choose roles:
+    </h3>
+    <div>
+      <h1>
+        No roles
+      </h1>
+    </div>
+    <button
+      className="c-button"
+      onClick={[Function]}
+      type="submit"
+    >
+      Create room
+    </button>
+  </div>
 </div>
 `;
 
