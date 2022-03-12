@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.7"
 services:
   app:
     build: chatandvideo
@@ -13,7 +13,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - vhost.conf:/etc/nginx/conf.d/vhost.conf
+      - ~/videoAndChatApp/vhost.conf:/etc/nginx/conf.d/vhost.conf
 
 networks:
   proxy:
