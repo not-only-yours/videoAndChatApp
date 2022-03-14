@@ -4,11 +4,22 @@ services:
     build: chatandvideo
     ports:
       - "3000:3000"
-    depends_on:
+    networks:
       - proxy
   proxy:
     image: nginx
     ports:
       - "80:80"
+      - "443:443"
+    networks:
+      - proxy
     volumes:
       - /home/ubuntu/videoAndChatApp/vhost.conf:/etc/nginx/conf.d/vhost.conf
+      - /etc/letsencrypt/live/nikitasdomain.tk/fullchain.pem:/etc/letsencrypt/live/nikitasdomain.tk/nikitasdomain.tk.crt
+      - /etc/letsencrypt/live/nikitasdomain.tk/privkey.pem:/etc/letsencrypt/live/nikitasdomain.tk/nikitasdomain.tk.key
+
+
+networks:
+  proxy:
+    external:
+      name: my-pre-existing-network
