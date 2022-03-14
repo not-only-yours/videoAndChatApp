@@ -1,3 +1,8 @@
+echo "clone repository"
+git clone https://github.com/not-only-yours/videoAndChatApp.git
+cd videoAndChatApp
+
+
 echo "get dependencies"
 apt update
 apt install docker.io
