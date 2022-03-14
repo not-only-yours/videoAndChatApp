@@ -4,17 +4,11 @@ services:
     build: chatandvideo
     ports:
       - "3000:3000"
-    networks:
+    depends_on:
       - proxy
   proxy:
     image: nginx
-    networks:
-      - proxy
     ports:
       - "80:80"
     volumes:
-      - ~/videoAndChatApp/vhost.conf:/etc/nginx/conf.d/vhost.conf
-
-networks:
-  proxy:
-    driver: custom-driver-1
+      - /home/ubuntu/videoAndChatApp/vhost.conf:/etc/nginx/conf.d/vhost.conf
