@@ -15,8 +15,8 @@ services:
       - proxy
     volumes:
       - /home/ubuntu/videoAndChatApp/vhost.conf:/etc/nginx/conf.d/vhost.conf
-      - /etc/letsencrypt/live/nikitasdomain.tk/fullchain.pem:/etc/letsencrypt/live/nikitasdomain.tk/nikitasdomain.tk.crt
-      - /etc/letsencrypt/live/nikitasdomain.tk/privkey.pem:/etc/letsencrypt/live/nikitasdomain.tk/nikitasdomain.tk.key
+      - /etc/letsencrypt/live/slave.nikitasdomain.tk/fullchain.pem:/etc/letsencrypt/live/slave.nikitasdomain.tk/slave.nikitasdomain.tk.crt
+      - /etc/letsencrypt/live/slave.nikitasdomain.tk/privkey.pem:/etc/letsencrypt/live/slave.nikitasdomain.tk/slave.nikitasdomain.tk.key
 
 
 networks:
