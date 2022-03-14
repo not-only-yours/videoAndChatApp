@@ -12,4 +12,4 @@ RUN npm install
 
 COPY . ./
 
-CMD ["npm", "start"]
+CMD ["node", "/app/node_modules/.bin/react-scripts", "--max-old-space-size=4096", "start"]
