@@ -6,18 +6,6 @@ services:
       - "3000:3000"
     networks:
       - proxy
-  proxy:
-    image: nginx:stable
-    ports:
-      - "80:80"
-      - "443:443"
-    networks:
-      - proxy
-    volumes:
-      - /home/ubuntu/videoAndChatApp/vhost.conf:/etc/nginx/conf.d/vhost.conf
-      - /etc/letsencrypt/live/slave.nikitasdomain.tk/fullchain.pem:/etc/letsencrypt/live/slave.nikitasdomain.tk/slave.nikitasdomain.tk.crt
-      - /etc/letsencrypt/live/slave.nikitasdomain.tk/privkey.pem:/etc/letsencrypt/live/slave.nikitasdomain.tk/slave.nikitasdomain.tk.key
-
 
 networks:
   proxy:
