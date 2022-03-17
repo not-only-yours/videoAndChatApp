@@ -5,7 +5,7 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - my-pre-existing-network
+      - proxy
 
 networks:
   proxy:
