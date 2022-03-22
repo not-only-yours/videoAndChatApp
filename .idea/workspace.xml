@@ -21,7 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3f003c63-2c4b-49e3-a76b-b34261c8e95d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/videoAndChatApp" beforeDir="false" afterPath="$PROJECT_DIR$/videoAndChatApp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatandvideo/src/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/chatandvideo/src/firebase.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/videoAndChatApp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +186,7 @@
       <workItem from="1641280793503" duration="12876000" />
       <workItem from="1641993552381" duration="818000" />
       <workItem from="1646924852356" duration="1987000" />
-      <workItem from="1647864900383" duration="3173000" />
+      <workItem from="1647864900383" duration="5224000" />
     </task>
     <servers />
   </component>
