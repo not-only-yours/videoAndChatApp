@@ -1,4 +1,3 @@
-
 echo "change folder"
 cd /opt/application/workspace/VideoChat
 
