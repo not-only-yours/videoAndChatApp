@@ -1,6 +1,7 @@
 version: "3.7"
 services:
   app:
+    container_name: videochat_app_1:{$BUILD_NUMBER}
     build: chatandvideo
     ports:
       - "3000:3000"
