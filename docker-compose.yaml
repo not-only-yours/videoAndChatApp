@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   app:
-    build: chatandvideo:${VERSION}
+    build: chatandvideo
     ports:
       - "3000:3000"
     networks:
