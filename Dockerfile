@@ -3,14 +3,14 @@ FROM node:16.13.1-alpine
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
-if [ "${PRODUCTION}" = "true" ]; then
+RUN if [ "${PRODUCTION}" = "true" ]; then
 COPY chatandvideo/package.json ./
 COPY chatandvideo/package-lock.json ./
 RUN npm install
 COPY chatandvideo ./
 CMD ["node", "/app/node_modules/.bin/react-scripts", "--max-old-space-size=4096", "start"];
 else
-if ["${NUMBER}" = "1"]; then
+RUN if ["${NUMBER}" = "1"]; then
 COPY TestingOne/package.json ./
 COPY TestingOne/package-lock.json ./
 RUN npm install
