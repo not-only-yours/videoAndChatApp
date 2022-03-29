@@ -9,7 +9,8 @@ COPY chatandvideo/package-lock.json ./
 RUN npm install
 COPY chatandvideo ./
 CMD ["node", "/app/node_modules/.bin/react-scripts", "--max-old-space-size=4096", "start"]
-else
+fi
+if [ "${PRODUCTION}" = "false" ]; then
 RUN if ["${NUMBER}" = "1"]; then
 COPY TestingOne/package.json ./
 COPY TestingOne/package-lock.json ./
