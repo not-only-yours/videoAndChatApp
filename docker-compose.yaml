@@ -3,7 +3,7 @@ services:
   app:
     image: videochat_app_test1:$BUILD_NUMBER
     container_name: videochat_app_1
-    build: chatandvideo
+    build: .
 #    ports:
 #      - "3000:3000"
     networks:
@@ -14,7 +14,7 @@ services:
   testOne:
     image: videochat_app_test2:$BUILD_NUMBER
     container_name: videochat_app_1
-    build: chatandvideo
+    build: .
 #    ports:
 #      - "3000:3000"
     networks:
@@ -25,7 +25,7 @@ services:
   testTwo:
     image: videochat_app_test3:$BUILD_NUMBER
     container_name: videochat_app_1
-    build: chatandvideo
+    build: .
 #    ports:
 #      - "3000:3000"
     networks:
@@ -36,7 +36,7 @@ services:
   testThree:
     image: videochat_app_test3:$BUILD_NUMBER
     container_name: videochat_app_1
-    build: chatandvideo
+    build: .
     #    ports:
     #      - "3000:3000"
     networks:
