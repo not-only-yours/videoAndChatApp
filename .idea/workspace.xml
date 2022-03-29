@@ -20,7 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f003c63-2c4b-49e3-a76b-b34261c8e95d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatandvideo/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +62,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/TestingOne" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -76,14 +78,17 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/TestingOne" />
+      <recent name="$PROJECT_DIR$/TestingTwo" />
+      <recent name="$PROJECT_DIR$/TestingThree" />
       <recent name="C:\Users\User\WebstormProjects\videoAndChatApp" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/TestingOne" />
       <recent name="$PROJECT_DIR$/ansible-playbook/tasks" />
       <recent name="C:\Users\User\WebstormProjects\videoAndChatApp\chatandvideo\src" />
       <recent name="C:\Users\User\WebstormProjects\videoAndChatApp\chatandvideo\src\__snapshots__" />
-      <recent name="C:\Users\User\WebstormProjects\videoAndChatApp\chatandvideo" />
     </key>
   </component>
   <component name="RunManager" selected="npm.test">
@@ -186,6 +191,7 @@
       <workItem from="1641993552381" duration="818000" />
       <workItem from="1646924852356" duration="1987000" />
       <workItem from="1647864900383" duration="5224000" />
+      <workItem from="1648538528872" duration="1859000" />
     </task>
     <servers />
   </component>

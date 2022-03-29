@@ -1,0 +1,305 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`reducer and state provider tests StateProvider 1`] = `
+<ContextProvider
+  value={
+    Array [
+      Object {
+        "roomName": null,
+        "token": null,
+        "user": null,
+      },
+      [Function],
+    ]
+  }
+>
+  <App />
+</ContextProvider>
+`;
+
+exports[`shallow tests of modules app with user, token 1`] = `
+<div
+  className="app"
+>
+  <Video />
+</div>
+`;
+
+exports[`shallow tests of modules app without token (with user) 1`] = `
+<div
+  className="app"
+>
+  <div
+    className="app_body"
+  >
+    <BrowserRouter>
+      <Leftpart />
+      <Switch>
+        <Route
+          path="/rooms/:roomId"
+        >
+          <Chat />
+        </Route>
+        <Route
+          path="/newRoom"
+        >
+          <CreateChat />
+        </Route>
+        <Route
+          path="/"
+        >
+          <Chat />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  </div>
+</div>
+`;
+
+exports[`shallow tests of modules app without user 1`] = `
+<div
+  className="app"
+>
+  <Login />
+</div>
+`;
+
+exports[`shallow tests of modules testing Chat 1`] = `
+<div
+  className="chat"
+>
+  <div
+    className="chat_header"
+  >
+    <WithStyles(ForwardRef(Avatar)) />
+    <div
+      className="chat_headerInfo"
+    >
+      <h3 />
+      <p>
+        Last seen
+         
+        Invalid Date
+      </p>
+    </div>
+    <div
+      className="chat_headerRight"
+    >
+      <WithStyles(ForwardRef(IconButton))
+        onClick={[Function]}
+      >
+        <Memo(ForwardRef(VideoCallIcon)) />
+      </WithStyles(ForwardRef(IconButton))>
+    </div>
+  </div>
+  <div
+    className="chat_body"
+  />
+  <div
+    className="chat_footer"
+  >
+    <form>
+      <input
+        onChange={[Function]}
+        placeholder="Type a message..."
+        type="text"
+        value=""
+      />
+      <button
+        id="button"
+        onClick={[Function]}
+        type="submit"
+      >
+        Send a message
+      </button>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`shallow tests of modules testing LeftChats with addProp 1`] = `<div />`;
+
+exports[`shallow tests of modules testing LeftChats with parameters key, id, name 1`] = `<div />`;
+
+exports[`shallow tests of modules testing Leftpart 1`] = `
+<div
+  className="leftpart"
+>
+  <div
+    className="leftpart_header"
+  >
+    <Memo(ForwardRef(AccessibleIcon)) />
+    <div
+      className="leftpart_headerRight"
+    >
+      <WithStyles(ForwardRef(IconButton))>
+        <Memo(ForwardRef(SearchIcon)) />
+      </WithStyles(ForwardRef(IconButton))>
+      <WithStyles(ForwardRef(IconButton))>
+        <Memo(ForwardRef(InfoIcon)) />
+      </WithStyles(ForwardRef(IconButton))>
+      <WithStyles(ForwardRef(IconButton))>
+        <Memo(ForwardRef(ExitToAppRoundedIcon))
+          onClick={[Function]}
+        />
+      </WithStyles(ForwardRef(IconButton))>
+    </div>
+  </div>
+  <div
+    className="leftpart_search"
+  >
+    <div
+      className="leftpart_searchContainer"
+    >
+      <Memo(ForwardRef(SearchIcon)) />
+      <input
+        placeholder="Print here dude"
+        type="text"
+      />
+    </div>
+  </div>
+  <div
+    className="leftpart_chats"
+  >
+    <Link
+      to="/newRoom"
+    >
+      <div
+        className="leftpart_chat"
+      >
+        <h2>
+          Добавити новий чатік
+        </h2>
+      </div>
+    </Link>
+  </div>
+</div>
+`;
+
+exports[`shallow tests of modules testing Login 1`] = `
+<div
+  className="login"
+>
+  <div
+    className="login_container"
+  >
+    <img
+      alt="google"
+      src="https://img.icons8.com/clouds/100/000000/google-logo.png"
+    />
+    <input
+      onChange={[Function]}
+      placeholder="Login"
+      type="text"
+      value=""
+    />
+    <input
+      onChange={[Function]}
+      placeholder="Password"
+      type="text"
+      value=""
+    />
+    <button
+      onClick={[Function]}
+      type="submit"
+    >
+      Sign in
+    </button>
+    <div
+      className="login_text"
+    >
+      <h1>
+        Sign in to Google
+      </h1>
+    </div>
+    <WithStyles(ForwardRef(Button))
+      onClick={[Function]}
+      type="submit"
+    >
+      Sign in With Google
+    </WithStyles(ForwardRef(Button))>
+  </div>
+</div>
+`;
+
+exports[`test CreateChat servcie test CreateChat snapshot 1`] = `
+<div
+  className="chat"
+>
+  <div
+    className="chat_header"
+  >
+    <h3>
+      Write RoomName
+    </h3>
+    <input
+      className="chat_header_input"
+      onChange={[Function]}
+      placeholder="Type a roomname..."
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="chat_body"
+  >
+    <h3
+      className="chat_body_h3"
+    >
+      Choose roles:
+    </h3>
+    <div>
+      <h1>
+        No roles
+      </h1>
+    </div>
+    <button
+      className="c-button"
+      onClick={[Function]}
+      type="submit"
+    >
+      Create room
+    </button>
+  </div>
+</div>
+`;
+
+exports[`test modules with router test module LeftChats with snapshot 1`] = `<div />`;
+
+exports[`test modules with router test module Video with snapshot 1`] = `
+<div>
+  <p
+    className="roomName"
+  />
+  <div />
+  <div />
+  <div
+    className="exitButton"
+  >
+    <button
+      className="MuiButtonBase-root MuiButton-root MuiButton-text exitButton"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="submit"
+    >
+      <span
+        className="MuiButton-label"
+      >
+        Exit
+      </span>
+    </button>
+  </div>
+</div>
+`;

@@ -61,6 +61,11 @@ node_modules/
 
 # Yarn Integrity file
 .yarn-integrity
-
+./TestingOne/node_modules
+./TestingTwo/node_modules
+./TestingThree/node_modules
+./TestingOne/coverage
+./TestingTwo/coverage
+./TestingThree/coverage
 # dotenv environment variables file
 .env
