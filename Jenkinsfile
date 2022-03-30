@@ -4,7 +4,7 @@ pipeline {
     }
 
     environment {
-        def BRANCH_NAME = 'thirdFeature'
+        def BRANCH_NAME = 'main'
     }
 
 
