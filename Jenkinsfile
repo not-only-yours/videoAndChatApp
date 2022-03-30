@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        def BRANCH_NAME = 'firstFeature'
+        def BRANCH_NAME = 'main'
     }
 
 
