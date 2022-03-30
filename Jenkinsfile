@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label '!windows'
-    }
+    agent any
 
     environment {
         def BRANCH_NAME = 'firstFeature'
