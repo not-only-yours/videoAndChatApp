@@ -19,7 +19,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f003c63-2c4b-49e3-a76b-b34261c8e95d" name="Default Changelist" comment="" />
+    <list default="true" id="3f003c63-2c4b-49e3-a76b-b34261c8e95d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/firstFeature" beforeDir="false" afterPath="$PROJECT_DIR$/features/firstFeature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/secondFeature" beforeDir="false" afterPath="$PROJECT_DIR$/features/secondFeature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/thirdFeature" beforeDir="false" afterPath="$PROJECT_DIR$/features/thirdFeature" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,7 +64,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/TestingOne" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/features/thirdFeature" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -73,10 +80,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/features/thirdFeature" />
+      <recent name="$PROJECT_DIR$/features/secondFeature" />
+      <recent name="$PROJECT_DIR$/features/firstFeature" />
       <recent name="$PROJECT_DIR$/TestingOne" />
       <recent name="$PROJECT_DIR$/TestingTwo" />
-      <recent name="$PROJECT_DIR$/TestingThree" />
-      <recent name="C:\Users\User\WebstormProjects\videoAndChatApp" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />

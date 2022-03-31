@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  app:
+    image: "nginx:stable"
+    container_name: nginx
+    build: .
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - proxy
+
+    volumes:
+      - /opt/application/VideoChat_${BRANCH}:/etc/nginx/conf.d/vhost.conf
+      - /etc/letsencrypt/live/${BRANCH}.nikitasdomain.tk/fullchain.pem:/etc/letsencrypt/live/${BRANCH}.nikitasdomain.tk/${BRANCH}.nikitasdomain.tk.crt
+      - /etc/letsencrypt/live/${BRANCH}.nikitasdomain.tk/privkey.pem:/etc/letsencrypt/live/${BRANCH}.nikitasdomain.tk/${BRANCH}.nikitasdomain.tk.key
+
+networks:
+  proxy:
+    external:
+      name: my-pre-existing-network
