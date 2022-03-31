@@ -14,9 +14,9 @@ pipeline {
                 node('VideoChat') {
                     git branch: BRANCH_NAME, url: 'https://github.com/not-only-yours/videoAndChatApp.git'
                     sh 'cd /opt/application/workspace/VideoChat_$BRANCH_NAME'
+                    sh 'cp /opt/application/workspace/VideoChat_$BRANCH_NAME/vhost.conf /opt/nginx/vhost.conf'
                     sh 'docker-compose up -d --force-recreate'
-                    sh 'docker ps | grep nginx && docker stop nginx && docker rm nginx'
-                    sh 'docker-compose up -d -f proxy-compose.yaml'
+                    sh 'docker exec nginx nginx -s reload'
                 }
             }
         }
