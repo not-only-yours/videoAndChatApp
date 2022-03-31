@@ -16,7 +16,6 @@ pipeline {
                     sh 'cd /opt/application/workspace/VideoChat_$BRANCH_NAME'
                     sh 'docker-compose up -d --force-recreate'
                     sh 'docker ps | grep nginx && docker stop nginx && docker rm nginx'
-                    
                     sh 'docker-compose up -d -f proxy-compose.yaml'
                 }
             }
