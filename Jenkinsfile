@@ -13,11 +13,11 @@ pipeline {
             steps {
                 node('VideoChat') {
                     git branch: BRANCH_NAME, url: 'https://github.com/not-only-yours/videoAndChatApp.git'
-                    sh 'cd /opt/application/workspace/VideoChat_$BRANCH'
+                    sh 'cd /opt/application/workspace/VideoChat_$BRANCH_NAME'
                     sh 'docker-compose up -d --force-recreate'
                     sh 'docker stop nginx'
                     sh 'docker rm nginx'
-                    sh 'docker-compose up -d -e BRANCH=$BRANCH -f proxy-compose.yaml'
+                    sh 'docker-compose up -d -f proxy-compose.yaml'
                 }
             }
         }
