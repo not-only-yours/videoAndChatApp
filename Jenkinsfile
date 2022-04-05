@@ -9,7 +9,8 @@ pipeline {
             steps {
                 node('VideoChat') {
                     script {
-                        echo BRANCH
+                        echo BRANCH[0]
+                        echo BRANCH[1]
                         BRANCH = BRANCH[1]
                         echo BRANCH
                     }
