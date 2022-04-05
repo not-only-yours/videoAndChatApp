@@ -1,7 +1,9 @@
 pipeline {
     agent any
+    
     environment {
-        def BRANCH = env.BRANCH_NAME.split('/')[1]
+        def BRANCH = env.BRANCH_NAME.split('/')
+        def BRANCH_PART = BRANCH[11, BRANCH.length() - 1]
     }
 
     stages {
