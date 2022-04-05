@@ -15,7 +15,7 @@ pipeline {
                     sh 'mkdir -p /etc/letsencrypt/live/current && cp /etc/letsencrypt/live/${BRANCH_LOVERCASE}.nikitasdomain.tk/fullchain.pem /etc/letsencrypt/live/current/'
                     sh 'cp /etc/letsencrypt/live/${BRANCH_LOVERCASE}.nikitasdomain.tk/privkey.pem /etc/letsencrypt/live/current'
                     sh "docker-compose up -d --force-recreate"
-                    sh 'docker exec nginx nginx -s reload'
+                    sh 'docker container restart nginx'
                 }
             }
         }
