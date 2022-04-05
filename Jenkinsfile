@@ -6,7 +6,7 @@ pipeline {
             steps {
                 node('VideoChat') {
                     script {
-                    env.(BRANCH_FOLDER, BRANCH) = env.BRANCH_NAME.split('/')
+                    (env.BRANCH_FOLDER, env.BRANCH) = env.BRANCH_NAME.split('/')
         
                     }
                     git branch: env.BRANCH_NAME, url: 'https://github.com/not-only-yours/videoAndChatApp.git'
