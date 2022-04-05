@@ -6,7 +6,10 @@ pipeline {
         stage('git pull') {
             steps {
                 node('VideoChat') {
-                    final BRANCH_NAME = BRANCH_NAME.substring(9,BRANCH_NAME.length())
+                    script {
+                    def buff = env.BRANCH_NAME.split('/')
+                    def BRANCH_NAME = buff[1]
+                    }
                     git branch: env.BRANCH_NAME, url: 'https://github.com/not-only-yours/videoAndChatApp.git'
                     sh 'cd /opt/application/workspace/VideoChat_features_$BRANCH_NAME'
                     sh 'sh /opt/nginx/script.sh $BRANCH_NAME'
