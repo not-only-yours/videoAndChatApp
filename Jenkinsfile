@@ -9,7 +9,9 @@ pipeline {
             steps {
                 node('VideoChat') {
                     script {
+                        echo BRANCH
                         BRANCH = BRANCH[1]
+                        echo BRANCH
                     }
                     git branch: env.BRANCH_NAME, url: 'https://github.com/not-only-yours/videoAndChatApp.git'
                     sh "cd /opt/application/workspace/VideoChat_features_${BRANCH}"
