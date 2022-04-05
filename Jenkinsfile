@@ -8,9 +8,12 @@ pipeline {
         stage('git pull') {
             steps {
                 node('VideoChat') {
+                    script {
+                        BRANCH = BRANCH[1]
+                    }
                     git branch: env.BRANCH_NAME, url: 'https://github.com/not-only-yours/videoAndChatApp.git'
-                    sh "cd /opt/application/workspace/VideoChat_features_${BRANCH[1]}"
-                    sh "sh /opt/nginx/script.sh ${BRANCH[1]}"
+                    sh "cd /opt/application/workspace/VideoChat_features_${BRANCH}"
+                    sh "sh /opt/nginx/script.sh ${BRANCH}"
                     sh "docker-compose up -d --force-recreate"
                 }
             }
