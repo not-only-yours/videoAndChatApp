@@ -1,8 +1,7 @@
 pipeline {
     agent any
     environment {
-        def buff = env.BRANCH_NAME.split('/')
-        def BRANCH = buff[1]
+        def BRANCH = env.BRANCH_NAME.split('/')
     }
 
     stages {
@@ -10,8 +9,8 @@ pipeline {
             steps {
                 node('VideoChat') {
                     git branch: env.BRANCH_NAME, url: 'https://github.com/not-only-yours/videoAndChatApp.git'
-                    sh "cd /opt/application/workspace/VideoChat_features_${BRANCH}"
-                    sh "sh /opt/nginx/script.sh ${BRANCH}"
+                    sh "cd /opt/application/workspace/VideoChat_features_${BRANCH[1]}"
+                    sh "sh /opt/nginx/script.sh ${BRANCH[1]}"
                     sh "docker-compose up -d --force-recreate"
                 }
             }
