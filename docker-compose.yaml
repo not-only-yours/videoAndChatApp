@@ -2,7 +2,7 @@ version: "3.7"
 services:
   app:
     image: videochat_app_1:$BRANCH.$BUILD_NUMBER
-    container_name: videochat_app_1_$BRANCH
+    container_name: videochat_app_1_$BRANCH_LOVERCASE
     build: .
 #    ports:
 #      - "3000:3000"
