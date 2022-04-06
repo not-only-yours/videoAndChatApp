@@ -14,7 +14,7 @@ pipeline {
                     sh "sudo sh /opt/nginx/script.sh ${BRANCH_LOVERCASE}"
                     
                     sh "docker-compose up -d --force-recreate"
-                    sh 'docker exec -it nginx nginx -s reload'
+                    sh 'docker exec nginx nginx -s reload'
                 }
             }
         }
