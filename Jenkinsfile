@@ -13,7 +13,7 @@ pipeline {
                     sh "cd /opt/application/workspace/VideoChat_features_${BRANCH}"
                     sh "sudo sh /opt/nginx/script.sh ${BRANCH_LOVERCASE}"
                     
-                    sh "docker-compose up -d --force-recreate"
+                    sh "docker-compose up -d --no-cache --force-recreate"
                     sh 'docker container restart nginx'
                 }
             }
