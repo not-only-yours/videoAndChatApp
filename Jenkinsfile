@@ -11,10 +11,10 @@ pipeline {
                     }
                     git branch: env.BRANCH_NAME, url: 'https://github.com/not-only-yours/videoAndChatApp.git'
                     sh "cd /opt/application/workspace/VideoChat_features_${BRANCH}"
-                    sh "sh /opt/nginx/script.sh ${BRANCH_LOVERCASE}"
+                    sh "sudo sh /opt/nginx/script.sh ${BRANCH_LOVERCASE}"
                     
                     sh "docker-compose up -d --force-recreate"
-                    sh 'docker container restart nginx'
+                    sh 'docker exec -it nginx nginx -s reload'
                 }
             }
         }
