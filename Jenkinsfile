@@ -14,6 +14,7 @@ pipeline {
                     sh "sh /opt/nginx/script.sh ${BRANCH_LOVERCASE}"
                     
                     sh "docker-compose up -d --force-recreate"
+                    sh "bash script.sh"
                     sh 'docker container restart nginx'
                 }
             }
