@@ -12,6 +12,10 @@ function getContainerId () {
  echo "$1" | sed 's/\:.*//'
 }
 
+function getProxyConfigFileName () {
+ echo "$1" | cut -d ":" -f2 | tr '[:upper:]' '[:lower:]'
+}
+
 for CONTAINER in $(containers); do
         isBranch=false
         for BRANCH in $(branches); do
@@ -26,6 +30,7 @@ for CONTAINER in $(containers); do
                 echo $(getContainerId $CONTAINER)
                 docker stop $(getContainerId $CONTAINER)
                 docker rm $(getContainerId $CONTAINER)
+                rm -f /opt/nginx/certificates/$(getProxyConfigFileName $CONTAINER).conf
         fi
 done
 
