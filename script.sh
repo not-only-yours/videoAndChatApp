@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd /opt/application/workspace/VideoChat_features_firstFeature
+
 function containers () {
  docker ps --format "{{.ID}}:{{.Image}}" | sed 's/:[^:]*//' | sed 's/\..*//'
 }
@@ -20,13 +22,12 @@ for CONTAINER in $(containers); do
         isBranch=false
         for BRANCH in $(branches); do
                 if [[ "$CONTAINER" = *"$BRANCH"* ]]; then
-                #echo $CONTAINER
-                #echo $BRANCH
-                $isBranch=true
+                echo "equals: $CONTAINER $BRANCH"
+                isBranch=true
                 fi
         done
 
-        if [ $isBranch == false ]; then
+        if [ $isBranch == false ] && [[ $CONTAINER = *"nginx"* ]]; then
                 echo $(getContainerId $CONTAINER)
                 docker stop $(getContainerId $CONTAINER)
                 docker rm $(getContainerId $CONTAINER)
@@ -35,3 +36,5 @@ for CONTAINER in $(containers); do
 done
 
 docker image prune -a -f
+
+
