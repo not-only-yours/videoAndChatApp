@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: ip-172-31-37-48  
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
