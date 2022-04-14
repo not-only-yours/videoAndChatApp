@@ -4,7 +4,7 @@ on:
   pull_request:
 jobs:
   test-job:
-    runs-on: [self-hosted, linux, x64, gpu]
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
