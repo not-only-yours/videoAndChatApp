@@ -38,4 +38,3 @@ done
 docker image prune -a -f
 
 docker container restart nginx
-
