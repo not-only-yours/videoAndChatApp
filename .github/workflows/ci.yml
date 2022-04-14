@@ -4,7 +4,7 @@ on:
   pull_request:
 jobs:
   test-job:
-    runs-on: ip-172-31-37-48
+    runs-on: [ip-172-31-37-48, linux, x64, gpu]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
