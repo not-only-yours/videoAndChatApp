@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: ip-172-31-37-48  
+    runs-on: [ip-172-31-37-48, linux, x64, gpu]
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
