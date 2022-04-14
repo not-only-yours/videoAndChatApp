@@ -14,11 +14,10 @@ jobs:
       - name: Install Dependencies
         run: |
           cd chatandvideo
-          npm yarn install
       - name: Build
         run: |
           cd chatandvideo
-          yarn build
+          npm build
       - name: Archive Production Artifact
         uses: actions/upload-artifact@master
         with:
