@@ -19,7 +19,7 @@ jobs:
       - name: 'lint'
         run: |
          cd chatandvideo
-         yarn lint
+         npm install lint
       - name: 'test'
         run: |
          cd chatandvideo
