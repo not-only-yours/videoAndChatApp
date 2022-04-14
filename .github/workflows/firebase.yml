@@ -14,7 +14,7 @@ jobs:
       - name: Install Dependencies
         run: |
           cd chatandvideo
-          yarn install
+          npm yarn install
       - name: Build
         run: |
           cd chatandvideo
