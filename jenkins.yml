@@ -11,4 +11,4 @@ execution:
       requests:
         - label: VideoChat
           method: GET
-          url: http://nikitasdomain.tk/
+          url: http://nikitasdomain.cf/
