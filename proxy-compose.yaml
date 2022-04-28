@@ -12,8 +12,8 @@ services:
 
     volumes:
       - /opt/application/VideoChat_$BRANCH_NAME:/etc/nginx/conf.d/vhost.conf
-      - /etc/letsencrypt/live/$BRANCH_NAME.nikitasdomain.tk/fullchain.pem:/etc/letsencrypt/live/$BRANCH_NAME.nikitasdomain.tk/$BRANCH_NAME.nikitasdomain.tk.crt
-      - /etc/letsencrypt/live/$BRANCH_NAME.nikitasdomain.tk/privkey.pem:/etc/letsencrypt/live/$BRANCH_NAME.nikitasdomain.tk/$BRANCH_NAME.nikitasdomain.tk.key
+      - /etc/letsencrypt/live/$BRANCH_NAME.nikitasdomain.cf/fullchain.pem:/etc/letsencrypt/live/$BRANCH_NAME.nikitasdomain.cf/$BRANCH_NAME.nikitasdomain.cf.crt
+      - /etc/letsencrypt/live/$BRANCH_NAME.nikitasdomain.cf/privkey.pem:/etc/letsencrypt/live/$BRANCH_NAME.nikitasdomain.cf/$BRANCH_NAME.nikitasdomain.cf.key
 
 networks:
   proxy:
