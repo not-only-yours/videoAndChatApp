@@ -11,6 +11,11 @@ services:
     environment:
       PRODUCTION: 'true'
       NUMBER: '1'
+    healthcheck:
+      test: curl --fail -s http://videochat_app_1_$BRANCH:3000/ || exit 1
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
 
 networks:
   proxy:
