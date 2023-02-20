@@ -1,24 +1,24 @@
-import React from "react";
-import "./Login.css";
-import { Button } from "@material-ui/core";
-import { signIn, signInInput } from "./authService";
+import React from 'react';
+import './Login.css';
+import { Button } from '@material-ui/core';
+import { signIn, signInInput } from './authService';
 
 function Login() {
-  const sp = require("./StateProvider");
-  const serv = require("./service");
+  const sp = require('./StateProvider');
+  const serv = require('./service');
   const [{}, dispatch] = sp.useStateValue();
-  const [login, setLogin] = React.useState("");
-  const [pass, setPass] = React.useState("");
+  const [login, setLogin] = React.useState('');
+  const [pass, setPass] = React.useState('');
 
   const signInInput = (e) => {
     e.preventDefault();
 
     serv.checkLoginAndPass(login, pass, dispatch);
 
-    console.log("login: " + login + "\n" + "password: " + pass);
+    console.log('login: ' + login + '\n' + 'password: ' + pass);
 
     //setLogin("");
-    setPass("");
+    setPass('');
   };
 
   return (

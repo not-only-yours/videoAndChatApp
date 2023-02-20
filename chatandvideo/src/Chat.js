@@ -1,15 +1,15 @@
-import React from "react";
-import "./Chat.css";
-import { Avatar, IconButton } from "@material-ui/core";
-import { VideoCall } from "@material-ui/icons";
-import serv from "./service";
+import React from 'react';
+import './Chat.css';
+import { Avatar, IconButton } from '@material-ui/core';
+import { VideoCall } from '@material-ui/icons';
+import serv from './service';
 
 function Chat() {
-  const serv = require("./service");
-  const rdom = require("react-router-dom");
-  const sp = require("./StateProvider");
-  const [input, setInput] = React.useState("");
-  const [roomName, setRoomName] = React.useState("");
+  const serv = require('./service');
+  const rdom = require('react-router-dom');
+  const sp = require('./StateProvider');
+  const [input, setInput] = React.useState('');
+  const [roomName, setRoomName] = React.useState('');
   const [messages, setMessages] = React.useState([]);
   const [{ user }, dispatch] = sp.useStateValue();
   const { roomId } = rdom.useParams();
@@ -32,7 +32,7 @@ function Chat() {
     if (!user.displayName) {
       user.displayName = user.name;
     }
-    console.log("User:", user.displayName);
+    console.log('User:', user.displayName);
   }, [roomId]);
 
   const sendMessage = (e) => {
@@ -42,7 +42,7 @@ function Chat() {
 
     console.log(input);
 
-    setInput("");
+    setInput('');
   };
 
   return (
@@ -52,9 +52,9 @@ function Chat() {
         <div className="chat_headerInfo">
           <h3>{roomName}</h3>
           <p>
-            Last seen{" "}
+            Last seen{' '}
             {new Date(
-              messages[messages.length - 1]?.timestamp?.toDate()
+              messages[messages.length - 1]?.timestamp?.toDate(),
             ).toUTCString()}
           </p>
         </div>
@@ -68,7 +68,7 @@ function Chat() {
         {messages.map((message) => (
           <p
             className={`chat_message ${
-              message.name === user.displayName && "chat_reciever"
+              message.name === user.displayName && 'chat_reciever'
             }`}
           >
             <span className="chat_name">{message.name}</span>

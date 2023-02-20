@@ -6,7 +6,7 @@ export default class FirestoreMock {
     this.mockOrderBy = jest.fn(() => this);
     this.FieldValue = {
       serverTimestamp: () => {
-        return "sasa";
+        return 'sasa';
       },
     };
     // methods that return promises
@@ -20,7 +20,7 @@ export default class FirestoreMock {
     class mockedSmapshot {
       data() {
         return {
-          name: "asa",
+          name: 'asa',
         };
       }
     }
@@ -33,7 +33,7 @@ export default class FirestoreMock {
 
   data() {
     return {
-      name: "sasa",
+      name: 'sasa',
     };
   }
 

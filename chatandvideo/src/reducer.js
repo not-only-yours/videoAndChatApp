@@ -1,4 +1,4 @@
-import db from "./firebase";
+import db from './firebase';
 
 export const initialState = {
   user: null,
@@ -7,9 +7,9 @@ export const initialState = {
 };
 
 export const actionTypes = {
-  SET_USER: "SET_USER",
-  SET_TOKEN: "SET_TOKEN",
-  SET_ROOMNAME: "SET_ROOMNAME",
+  SET_USER: 'SET_USER',
+  SET_TOKEN: 'SET_TOKEN',
+  SET_ROOMNAME: 'SET_ROOMNAME',
 };
 
 const reducer = (state, action) => {

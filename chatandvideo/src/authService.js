@@ -1,6 +1,7 @@
-import { auth, provider } from "./firebase";
-import { actionTypes } from "./reducer";
-import TwilioVideo from "twilio-video";
+import { auth, provider } from './firebase';
+import { actionTypes } from './reducer';
+import TwilioVideo from 'twilio-video';
+import React from 'react';
 
 export function signIn(dispatch) {
   return () => {
@@ -17,7 +18,13 @@ export function signIn(dispatch) {
   };
 }
 
-export function twillioConnect(token, videoRoomName, localVidRef, remoteVidRef) {
+export function twillioConnect(
+  token,
+  videoRoomName,
+  localVidRef,
+  remoteVidRef,
+  setRoomState,
+) {
   TwilioVideo.connect(token, {
     video: true,
     audio: true,
@@ -29,25 +36,26 @@ export function twillioConnect(token, videoRoomName, localVidRef, remoteVidRef) 
     });
 
     const addParticipant = (participant) => {
-      console.log("new participant!");
+      console.log('new participant!');
       console.log(participant);
       participant.tracks.forEach((publication) => {
         if (publication.isSubscribed) {
           const track = publication.track;
 
           remoteVidRef.current.appendChild(track.attach());
-          console.log("attached to remote video");
+          console.log('attached to remote video');
         }
       });
 
-      participant.on("trackSubscribed", (track) => {
-        console.log("track subscribed");
+      participant.on('trackSubscribed', (track) => {
+        console.log('track subscribed');
         remoteVidRef.current.appendChild(track.attach());
       });
     };
 
     room.participants.forEach(addParticipant);
-    room.on("participantConnected", addParticipant);
+    room.on('participantConnected', addParticipant);
+    setRoomState(room);
   });
   console.log(videoRoomName);
 }

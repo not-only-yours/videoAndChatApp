@@ -1,11 +1,11 @@
-import React from "react";
-import { getCheckedRoles, getUserRoles, sendRequest } from "./service";
-import { actionTypes } from "./reducer";
-import "./CreateChat.css";
+import React from 'react';
+import { getCheckedRoles, getUserRoles, sendRequest } from './service';
+import { actionTypes } from './reducer';
+import './CreateChat.css';
 
 function CreateChat() {
-  const sp = require("./StateProvider");
-  const [input, setInput] = React.useState("");
+  const sp = require('./StateProvider');
+  const [input, setInput] = React.useState('');
   const [{ user }, dispatch] = sp.useStateValue();
 
   const createRequest = (e) => {
@@ -21,8 +21,8 @@ function CreateChat() {
     //console.log(user.id);
     let userRole = await getUserRoles(user.id);
     userRole.push({
-      id: "GoogleLog",
-      role: "main role",
+      id: 'GoogleLog',
+      role: 'main role',
     });
     let buffUser = user;
     buffUser.roles = userRole;

@@ -1,19 +1,21 @@
-import { signIn, twillioConnect } from "./authService";
-import { actionTypes } from "./reducer";
-import React from "react";
-import { vid } from "./service";
-import { Button } from "@material-ui/core";
-const re = require("react");
+import { TwilioStop, twillioConnect } from './authService';
+import { actionTypes } from './reducer';
+import React from 'react';
+
+import { Button } from '@material-ui/core';
+import { vid } from './service';
+const re = require('react');
 
 function Video() {
-  const sp = require("./StateProvider");
+  const sp = require('./StateProvider');
   const [{ token, roomName }, dispatch] = sp.useStateValue();
   const localVidRef = re.useRef();
   const remoteVidRef = re.useRef();
-
-  re.useEffect(() => twillioConnect(token, roomName, localVidRef, remoteVidRef), [
-    token,
-  ]);
+  const [roomState, setRoomState] = React.useState([]);
+  re.useEffect(
+    () => twillioConnect(token, roomName, localVidRef, remoteVidRef, setRoomState),
+    [token],
+  );
 
   return (
     <div>
@@ -21,7 +23,11 @@ function Video() {
       <div ref={localVidRef} />
       <div ref={remoteVidRef} />
       <div className="exitButton">
-        <Button className="exitButton" type="submit" onClick={vid(dispatch)}>
+        <Button
+          className="exitButton"
+          type="submit"
+          onClick={vid(dispatch, roomState)}
+        >
           Exit
         </Button>
       </div>

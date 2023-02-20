@@ -1,11 +1,11 @@
-import React from "react";
-import "./LeftChats.css";
-import { Avatar } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import { getRoomRoles, getUserRoles, isProperties } from "./service";
+import React from 'react';
+import './LeftChats.css';
+import { Avatar } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { getRoomRoles, getUserRoles, isProperties } from './service';
 
 function LeftChats({ id, name, userId }) {
-  const [messages, setMessages] = React.useState("");
+  const [messages, setMessages] = React.useState('');
   const [userRoles, setRoles] = React.useState([]);
   const [roomRoles, setRolesR] = React.useState([]);
 
@@ -16,8 +16,8 @@ function LeftChats({ id, name, userId }) {
     const userRole = await getUserRoles(userId);
     if (userRole.length === 0) {
       userRole.push({
-        id: "GoogleLog",
-        role: "main role",
+        id: 'GoogleLog',
+        role: 'main role',
       });
     }
     setRoles(userRole);
