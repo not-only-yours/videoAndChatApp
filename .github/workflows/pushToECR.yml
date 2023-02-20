@@ -4,24 +4,6 @@ on:
   pull_request:
 
 jobs:
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
-      - name: Install Dependencies
-        run: |
-          cd chatandvideo
-      - name: Build
-        run: |
-          cd chatandvideo
-          npm build
-      - name: Archive Production Artifact
-        uses: actions/upload-artifact@master
-        with:
-          name: build
-          path: chatandvideo/build
   deploy:
     name: Deploy
     needs: build
