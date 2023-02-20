@@ -1,13 +1,12 @@
-name: Firebase Deploy
+name: 'build and push image to ECR'
 on:
   push:
-    branches:
-      - main
+  pull_request:
 
 jobs:
   build:
     name: Build
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
@@ -26,19 +25,31 @@ jobs:
   deploy:
     name: Deploy
     needs: build
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
-      - name: Download Artifact
-        uses: actions/download-artifact@master
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          name: build
-          path: chatandvideo/build
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
-        with:
-          args: deploy --only hosting
-        env:  
-          FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN}}
-          PROJECT_PATH: "chatandvideo"
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: ap-south-1
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Add SHORT_SHA env property with commit short sha
+        run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY_PATH: production-not-only-yoursvideochat
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY_PATH:$SHORT_SHA .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY_PATH:$SHORT_SHA
+
