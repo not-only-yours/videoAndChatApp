@@ -39,12 +39,12 @@ jobs:
         with:
           task-definition: task-definition.json
           container-name: ecs-fargate
-          image: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY_BACKEND }}:${{ env.SHORT_SHA }}
+          image: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY_PATH }}:${{ env.SHORT_SHA }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: ${{ steps.task-def-backend.outputs.task-definition }}
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: ecs-fargate
           cluster: production-MyCluster
           wait-for-service-stability: true
