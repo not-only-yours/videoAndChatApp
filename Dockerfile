@@ -6,6 +6,6 @@ COPY chatandvideo/package.json ./
 COPY chatandvideo/package-lock.json ./
 RUN npm install
 COPY chatandvideo ./
-
+RUN npm run format
 EXPOSE 3000
 CMD ["node", "/app/node_modules/.bin/react-scripts", "--max-old-space-size=4096", "start"]
