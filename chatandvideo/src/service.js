@@ -15,15 +15,15 @@ export function jwtExists(roomId, user) {
     });
 }
 
-export function roomNameExists(roomId, dispatchRoomName, setRoomName, setMessages) {
-  if (roomId) {
+export function roomNameExists(rId, dspRName, setRName, setMsg) {
+  if (rId) {
     try {
       db.collection('rooms')
-        .doc(roomId)
+        .doc(rId)
         .onSnapshot((snapshot) => {
           if (snapshot.data()) {
-            setRoomName(snapshot.data().name);
-            dispatchRoomName({
+            setRName(snapshot.data().name);
+            dspRName({
               type: actionTypes.SET_ROOMNAME,
               roomName: snapshot.data().name,
             });
@@ -34,11 +34,11 @@ export function roomNameExists(roomId, dispatchRoomName, setRoomName, setMessage
     }
     try {
       db.collection('rooms')
-        .doc(roomId)
+        .doc(rId)
         .collection('messages')
         .orderBy('timestamp', 'asc')
         .onSnapshot((snapshot) => {
-          setMessages(snapshot.docs.map((doc) => doc.data()));
+          setMsg(snapshot.docs.map((doc) => doc.data()));
         });
     } catch (error) {
       console.log('Error 2: ', error);
@@ -94,11 +94,7 @@ export function createRoom(roomName, roles) {
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        console.log('document name: ' + doc.data().name + ' room name' + roomName);
         if (doc.data().name === roomName) {
-          console.log(
-            'used: document name: ' + doc.data().name + ' room name' + roomName,
-          );
           console.log('roomId: ' + doc.id);
           roomId = doc.id;
         }
@@ -122,8 +118,8 @@ export function refreshDB(setRooms) {
         id: doc.id,
         data: doc.data(),
         //roles: doc.data(),
-      })),
-    ),
+      }))
+    )
   );
 }
 
