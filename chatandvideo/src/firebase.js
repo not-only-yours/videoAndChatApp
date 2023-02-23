@@ -1,9 +1,8 @@
 import firebase from 'firebase';
 
-const env = process.env.VideoChat;
-console.log(JSON.parse(env));
+const env = process.env;
+console.log(env);
 console.log(env.toString());
-console.log(typeof JSON.parse(env));
 const firebaseConfig = {
   apiKey: env.apiKey,
   authDomain: env.authDomain,
