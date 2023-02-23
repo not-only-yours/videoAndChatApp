@@ -1,5 +1,4 @@
-import { TwilioStop, twillioConnect } from './authService';
-import { actionTypes } from './reducer';
+import { tC } from './authService';
 import React from 'react';
 
 import { Button } from '@material-ui/core';
@@ -9,19 +8,16 @@ const re = require('react');
 function Video() {
   const sp = require('./StateProvider');
   const [{ token, roomName }, dispatch] = sp.useStateValue();
-  const lVRef = re.useRef();
-  const rVidRef = re.useRef();
+  const lVR = re.useRef();
+  const rVR = re.useRef();
   const [roomState, setRoomState] = React.useState([]);
-  re.useEffect(
-    () => twillioConnect(token, roomName, lVRef, rVidRef, setRoomState),
-    [token]
-  );
+  re.useEffect(() => tC(token, roomName, lVR, rVR, setRoomState), [token]);
 
   return (
     <div>
       <p className="roomName">{roomName}</p>
-      <div ref={lVRef} />
-      <div ref={rVidRef} />
+      <div ref={lVR} />
+      <div ref={rVR} />
       <div className="exitButton">
         <Button
           className="exitButton"

@@ -18,13 +18,7 @@ export function signIn(dispatch) {
   };
 }
 
-export function twillioConnect(
-  token,
-  videoRoomName,
-  localVidRef,
-  remoteVidRef,
-  setRoomState,
-) {
+export function tC(token, videoRoomName, localVidRef, remoteVidRef, setRoomState) {
   TwilioVideo.connect(token, {
     video: true,
     audio: true,
