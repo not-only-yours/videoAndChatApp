@@ -1,16 +1,18 @@
 import firebase from 'firebase';
 
-console.log(process.env['apiKey']);
-console.log(typeof process.env['apiKey']);
+const env = process.env.VideoChat;
+console.log(JSON.parse(env));
+console.log(env.toString());
+console.log(typeof JSON.parse(env));
 const firebaseConfig = {
-  apiKey: process.env['apiKey'],
-  authDomain: process.env['authDomain'],
-  projectId: process.env['projectId'],
-  storageBucket: process.env['storageBucket'],
-  messagingSenderId: process.env['messagingSenderId'],
-  appId: process.env['appId'],
-  measurementId: process.env['measurementId'],
-  databaseURL: process.env['databaseURL'],
+  apiKey: env.apiKey,
+  authDomain: env.authDomain,
+  projectId: env.projectId,
+  storageBucket: env.storageBucket,
+  messagingSenderId: env.messagingSenderId,
+  appId: env.appId,
+  measurementId: env.measurementId,
+  databaseURL: env.databaseURL,
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
