@@ -1,7 +1,8 @@
 import firebase from 'firebase';
 
 const env = process.env['VideoChat'];
-
+console.log(env);
+console.log(typeof env);
 const firebaseConfig = {
   apiKey: env.apiKey,
   authDomain: env.authDomain,
@@ -10,7 +11,7 @@ const firebaseConfig = {
   messagingSenderId: env.messagingSenderId,
   appId: env.appId,
   measurementId: env.measurementId,
-  databaseURL: env.databaseURL
+  databaseURL: env.databaseURL,
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
