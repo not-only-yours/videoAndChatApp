@@ -18,15 +18,15 @@ export function signIn(dispatch) {
   };
 }
 
-export function tC(token, videoRoomName, localVidRef, remoteVidRef, setRoomState) {
-  TwilioVideo.connect(token, {
+export function tC(tk, vRN, lVR, rVR, sRN) {
+  TwilioVideo.connect(tk, {
     video: true,
     audio: true,
-    name: videoRoomName,
+    name: vRN,
   }).then((room) => {
     // Attach the local video
     TwilioVideo.createLocalVideoTrack().then((track) => {
-      localVidRef.current.appendChild(track.attach());
+      lVR.current.appendChild(track.attach());
     });
 
     const addParticipant = (participant) => {
@@ -36,20 +36,20 @@ export function tC(token, videoRoomName, localVidRef, remoteVidRef, setRoomState
         if (publication.isSubscribed) {
           const track = publication.track;
 
-          remoteVidRef.current.appendChild(track.attach());
+          rVR.current.appendChild(track.attach());
           console.log('attached to remote video');
         }
       });
 
       participant.on('trackSubscribed', (track) => {
         console.log('track subscribed');
-        remoteVidRef.current.appendChild(track.attach());
+        rVR.current.appendChild(track.attach());
       });
     };
 
     room.participants.forEach(addParticipant);
     room.on('participantConnected', addParticipant);
-    setRoomState(room);
+    sRN(room);
   });
-  console.log(videoRoomName);
+  console.log(vRN);
 }
