@@ -2,7 +2,6 @@ import React from 'react';
 import './Chat.css';
 import { Avatar, IconButton } from '@material-ui/core';
 import { VideoCall } from '@material-ui/icons';
-import serv from './service';
 
 function Chat() {
   const serv = require('./service');
@@ -33,11 +32,11 @@ function Chat() {
       user.displayName = user.name;
     }
     console.log('User:', user.displayName);
-  }, [roomId]);
+  }, [dispatch, roomId, serv, user]);
 
   const sendMessage = (e) => {
     e.preventDefault();
-    //console.log(roomId, input, user);
+    console.log(roomId, input, user);
     serv.sendMessageFun(roomId, input, user);
 
     console.log(input);
@@ -45,18 +44,17 @@ function Chat() {
     setInput('');
   };
 
-  return (
-    <div className="chat">
+  const generateHeader = () => {
+    const date = new Date(
+      messages[messages.length - 1]?.timestamp?.toDate()
+    ).toUTCString();
+
+    return roomName ? (
       <div className="chat_header">
         <Avatar />
         <div className="chat_headerInfo">
           <h3>{roomName}</h3>
-          <p>
-            Last seen{' '}
-            {new Date(
-              messages[messages.length - 1]?.timestamp?.toDate(),
-            ).toUTCString()}
-          </p>
+          <p>Last seen {date}</p>
         </div>
         <div className="chat_headerRight">
           <IconButton onClick={handleSubmit}>
@@ -64,6 +62,38 @@ function Chat() {
           </IconButton>
         </div>
       </div>
+    ) : (
+      <div className="chat_header">
+        <div className="chat_headerInfo">
+          <h3>Welcome to VideoChat. Choice chat</h3>
+        </div>
+      </div>
+    );
+  };
+
+  const generateFooter = () => {
+    return roomName ? (
+      <div className="chat_footer">
+        <form>
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            type="text"
+            placeholder="Type a message..."
+          />
+          <button onClick={sendMessage} type="submit" id="button">
+            Send a message
+          </button>
+        </form>
+      </div>
+    ) : (
+      <div />
+    );
+  };
+
+  return (
+    <div className="chat">
+      {generateHeader()}
       <div className="chat_body">
         {messages.map((message) => (
           <p
@@ -79,19 +109,7 @@ function Chat() {
           </p>
         ))}
       </div>
-      <div className="chat_footer">
-        <form>
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            type="text"
-            placeholder="Type a message..."
-          />
-          <button onClick={sendMessage} type="submit" id="button">
-            Send a message
-          </button>
-        </form>
-      </div>
+      {generateFooter()}
     </div>
   );
 }

@@ -17,6 +17,7 @@ function CreateChat() {
     sendRequest(input);
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   React.useEffect(async () => {
     //console.log(user.id);
     let userRole = await getUserRoles(user.id);
@@ -31,7 +32,7 @@ function CreateChat() {
       user: buffUser,
     });
     console.log(user.roles);
-  }, [user]);
+  }, [dispatch, user]);
   //console.log("I`m in CreateChat");
   return (
     <div className="chat">

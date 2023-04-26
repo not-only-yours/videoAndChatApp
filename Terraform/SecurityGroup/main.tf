@@ -35,7 +35,7 @@ resource "aws_security_group_rule" "security-group-rule-egress-cidr" {
   if var.allow_all_outbound_traffic == false && var.egress_cidr_blocks != [] }
   security_group_id = aws_security_group.security_group.id
   type              = "egress"
-  protocol          = "tcp"
+  protocol          = "-1"
   from_port         = each.value.from_port
   to_port           = each.value.to_port
   cidr_blocks       = each.value.cidr_blocks
@@ -46,7 +46,7 @@ resource "aws_security_group_rule" "security-group-rule-egress-anywhere" {
   if var.allow_all_outbound_traffic == true && var.egress_cidr_blocks != [] }
   security_group_id = aws_security_group.security_group.id
   type              = "egress"
-  protocol          = "tcp"
+  protocol          = "-1"
   from_port         = each.value.from_port
   to_port           = each.value.to_port
   cidr_blocks       = ["0.0.0.0/0"]
@@ -70,7 +70,7 @@ resource "aws_security_group_rule" "security-group-rule-outbound-from-other-sg" 
   if var.allow_all_connection == false && var.outbound_security_groups != [] }
   security_group_id        = aws_security_group.security_group.id
   type                     = "egress"
-  protocol                 = "tcp"
+  protocol                 = "-1"
   from_port                = each.value.from_port
   to_port                  = each.value.to_port
   source_security_group_id = each.value.security_group

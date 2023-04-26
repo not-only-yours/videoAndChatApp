@@ -10,6 +10,7 @@ import CreateChat from './CreateChat';
 
 function App() {
   const sp = require('./StateProvider');
+  // eslint-disable-next-line no-unused-vars
   const [{ user, token }, dispatch] = sp.useStateValue();
 
   return (

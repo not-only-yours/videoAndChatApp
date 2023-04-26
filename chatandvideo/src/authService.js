@@ -1,7 +1,6 @@
 import { auth, provider } from './firebase';
 import { actionTypes } from './reducer';
 import TwilioVideo from 'twilio-video';
-import React from 'react';
 
 export function signIn(dispatch) {
   return () => {

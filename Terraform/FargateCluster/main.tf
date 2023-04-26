@@ -39,15 +39,10 @@ resource "aws_iam_role" "assume-role_backend" {
 resource "aws_iam_role" "execution_backend" {
   name               = "${var.environment}-${var.name}-task-execution-role"
   assume_role_policy = data.aws_iam_policy_document.task_assume.json
-  managed_policy_arns = var.rds_arn != "" ? [
-    aws_iam_policy.task_secrets_manager.arn,
-    aws_iam_policy.task_execution_permissions.arn,
-    aws_iam_policy.task_permissions.arn,
-    aws_iam_policy.task_rds.arn] : [
+  managed_policy_arns = [
     aws_iam_policy.task_secrets_manager.arn,
     aws_iam_policy.task_execution_permissions.arn,
   aws_iam_policy.task_permissions.arn]
-  #tags = var.tags
 }
 
 module "fargate-security-group" {
@@ -70,6 +65,7 @@ module "fargate-security-group" {
       description = "${var.environment}-${var.name} Fargate service security group egress all"
       from_port   = 0
       to_port     = 0
+      protocol  = "-1"
       cidr_blocks = ["0.0.0.0/0"]
   }]
 }
@@ -205,7 +201,7 @@ resource "aws_ecs_task_definition" "task" {
   %{if var.task_pseudo_terminal != null~}
   "pseudoTerminal": ${var.task_pseudo_terminal},
   %{~endif}
-  "environment": ${jsonencode(local.task_environment)},
+  "environment": ${jsonencode(var.task_environment)},
   "environmentFiles": ${jsonencode(local.task_environment_files)}
 }]
 EOF

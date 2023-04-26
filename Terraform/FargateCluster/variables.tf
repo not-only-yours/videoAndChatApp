@@ -177,6 +177,12 @@ variable "task_container_secrets" {
   type        = list(map(string))
 }
 
+variable "task_environment" {
+  description = "The environment variables to pass to a container."
+  default     = null
+  type        = list(map(string))
+}
+
 variable "operating_system_family" {
   description = "The operating system family for the task."
   default     = "LINUX"

@@ -68,12 +68,16 @@ variable "ecs_cluster_name" {
 variable "port" {
   default     = 80
   description = "backend port"
+}
 
+variable "container_port" {
+  default     = 3000
+  description = "backend port"
 }
 
 variable "dns_secret_name" {
   description = "name of dns secret"
-  default     = "VideoChat"
+  default     = "REACT_APP_VideoChat"
 }
 
 variable "healthcheck_path" {

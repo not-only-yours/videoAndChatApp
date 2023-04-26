@@ -82,7 +82,7 @@ describe('test modules with router', () => {
       .create(
         <Router>
           <LeftChats />
-        </Router>,
+        </Router>
       )
       .toJSON();
     expect(container).toMatchSnapshot();
@@ -103,7 +103,7 @@ describe('shallow tests of modules', () => {
       },
     };
     const container = shallow(
-      <LeftChats id={room.id} name={room.data.name} addProp={false} />,
+      <LeftChats id={room.id} name={room.data.name} addProp={false} />
     );
     expect(container).toMatchSnapshot();
   });
@@ -287,7 +287,7 @@ describe('reducer and state provider tests', () => {
     const container = shallow(
       <StateProvider initialState={initialState} reducer={reducer}>
         <App />
-      </StateProvider>,
+      </StateProvider>
     );
     expect(container).toMatchSnapshot();
   });

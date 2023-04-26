@@ -1,8 +1,6 @@
-import db, { auth, provider } from './firebase';
+import db from './firebase';
 import firebase from 'firebase';
 import { actionTypes } from './reducer';
-import React from 'react';
-import re from 'react';
 
 export function jwtExists(roomId, user) {
   console.log(user);
@@ -47,7 +45,11 @@ export function roomNameExists(rId, dspRName, setRName, setMsg) {
 }
 
 export function sendMessageFun(roomId, input, user) {
-  console.log(user);
+  console.log({
+    message: input,
+    name: user.displayName,
+    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+  });
   db.collection('rooms').doc(roomId).collection('messages').add({
     message: input,
     name: user.displayName,
@@ -218,6 +220,14 @@ export function isProperties(userRoles, roomRoles) {
   } else {
     return false;
   }
+}
+
+export function findPart(inp, name) {
+  return (
+    name.toLowerCase().includes(inp.input.toLowerCase()) ||
+    inp.input == null ||
+    inp.input === ''
+  );
 }
 
 export const getCheckedRoles = () => {

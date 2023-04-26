@@ -69,3 +69,9 @@ node_modules/
 ./TestingThree/coverage
 # dotenv environment variables file
 .env
+
+.idea
+.DS_Store
+
+Terraform/sectets.tf
+Terraform/terraform.tfstate.backup

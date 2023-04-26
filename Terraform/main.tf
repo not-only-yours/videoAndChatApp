@@ -101,17 +101,17 @@ module "fargate" {
 
   ecr_repository_arn     = module.ecr.arn
   task_container_image   = "${module.ecr.repository_url}:${var.container_image}"
-  task_definition_cpu    = 256
-  task_definition_memory = 512
+  task_definition_cpu    = 512
+  task_definition_memory = 4096
 
-  container_port                  = var.port
+  container_port                  = var.container_port
   task_container_assign_public_ip = false
 
 
   target_groups = [
     {
       target_group_name = "efs"
-      container_port    = var.port
+      container_port    = var.container_port
     }
   ]
 
