@@ -1,6 +1,4 @@
 import { tC } from './authService';
-import React from 'react';
-
 import { Button } from '@material-ui/core';
 import { vid } from './service';
 const re = require('react');
@@ -10,7 +8,7 @@ function Video() {
   const [{ token, roomName }, dispatch] = sp.useStateValue();
   const lVR = re.useRef();
   const rVR = re.useRef();
-  const [roomState, setRoomState] = React.useState([]);
+  const [roomState, setRoomState] = re.useState([]);
   re.useEffect(() => tC(token, roomName, lVR, rVR, setRoomState), [token]);
 
   return (

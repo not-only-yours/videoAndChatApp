@@ -129,6 +129,10 @@ export function vid(dispatchToken, RoomState) {
   return () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     RoomState.disconnect();
+    RoomState.localParticipant.tracks.forEach((publication) => {
+      const attachedElements = publication.track.detach();
+      attachedElements.forEach((element) => element.remove());
+    });
     dispatchToken({
       type: actionTypes.SET_TOKEN,
       token: false,

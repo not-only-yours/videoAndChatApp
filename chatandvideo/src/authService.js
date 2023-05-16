@@ -44,11 +44,27 @@ export function tC(tk, vRN, lVR, rVR, sRN) {
         console.log('track subscribed');
         rVR.current.appendChild(track.attach());
       });
+      participant.on('trackUnsubscribed', (track) =>
+        track.detach().forEach((element) => element.remove())
+      );
     };
 
     room.participants.forEach(addParticipant);
     room.on('participantConnected', addParticipant);
+    room.on('participantDisconnected', async () => {
+      room.participants.forEach(participantDisconnected);
+    });
     sRN(room);
+
+    const participantDisconnected = (participant) => {
+      room.participants = room.participants.filter(
+        (item) => item.identity !== participant.identity
+      );
+
+      if (room.activeRoom.participants?.size === 0) room.showRemote = false;
+      if (document.getElementById(participant.sid))
+        document.getElementById(participant.sid).remove();
+    };
   });
   console.log(vRN);
 }

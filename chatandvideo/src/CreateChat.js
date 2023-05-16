@@ -43,7 +43,7 @@ function CreateChat() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           type="text"
-          placeholder="Type a roomname..."
+          placeholder="Type a room name..."
         />
       </div>
       <div className="chat_body">

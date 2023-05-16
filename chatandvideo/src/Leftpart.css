@@ -36,8 +36,11 @@
 }
 
 .leftpart_searchContainer > input {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  padding: 20px;
   border: none;
-  margin-left: 10px;
 }
 
 .leftpart_chats {

@@ -1,6 +1,6 @@
 import React from 'react';
 import './Chat.css';
-import { Avatar, IconButton } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
 import { VideoCall } from '@material-ui/icons';
 
 function Chat() {
@@ -12,6 +12,7 @@ function Chat() {
   const [messages, setMessages] = React.useState([]);
   const [{ user }, dispatch] = sp.useStateValue();
   const { roomId } = rdom.useParams();
+  const messagesEndRef = React.useRef(null);
   //console.log("I`m in Chat");
   const handleSubmit = async (event) => {
     try {
@@ -24,6 +25,15 @@ function Chat() {
     }
   };
 
+  const scrollToBottom = () => {
+    console.log('Scroll');
+    messagesEndRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+      inline: 'nearest',
+    });
+  };
+
   React.useEffect(() => {
     if (roomId) {
       serv.roomNameExists(roomId, dispatch, setRoomName, setMessages);
@@ -31,15 +41,16 @@ function Chat() {
     if (!user.displayName) {
       user.displayName = user.name;
     }
-    console.log('User:', user.displayName);
-  }, [dispatch, roomId, serv, user]);
+  }, [dispatch, roomId, roomName, serv, user]);
+
+  React.useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   const sendMessage = (e) => {
     e.preventDefault();
     console.log(roomId, input, user);
     serv.sendMessageFun(roomId, input, user);
-
-    console.log(input);
 
     setInput('');
   };
@@ -51,10 +62,9 @@ function Chat() {
 
     return roomName ? (
       <div className="chat_header">
-        <Avatar />
         <div className="chat_headerInfo">
           <h3>{roomName}</h3>
-          <p>Last seen {date}</p>
+          <p>Last message {date}</p>
         </div>
         <div className="chat_headerRight">
           <IconButton onClick={handleSubmit}>
@@ -108,6 +118,7 @@ function Chat() {
             </span>
           </p>
         ))}
+        <div ref={messagesEndRef} />
       </div>
       {generateFooter()}
     </div>
