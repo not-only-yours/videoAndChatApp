@@ -1,0 +1,43 @@
+{
+  "rooms": [
+    {
+      "id": "1",
+      "name": "General",
+      "description": "General discussion room",
+      "createdAt": "2024-11-10T10:00:00Z",
+      "participants": 0
+    },
+    {
+      "id": "2",
+      "name": "Tech Talk",
+      "description": "Technology discussions",
+      "createdAt": "2024-11-10T11:00:00Z",
+      "participants": 0
+    }
+  ],
+  "messages": [
+    {
+      "id": "1",
+      "roomId": "1",
+      "text": "Welcome to the General room!",
+      "author": "System",
+      "timestamp": "2024-11-10T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "roomId": "2",
+      "text": "Welcome to Tech Talk!",
+      "author": "System",
+      "timestamp": "2024-11-10T11:00:00Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "displayName": "Test User",
+      "email": "test@example.com",
+      "photoURL": "https://via.placeholder.com/40"
+    }
+  ]
+}
+

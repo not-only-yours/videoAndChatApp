@@ -1,0 +1,26 @@
+# Test Dockerfile
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apk add --no-cache git
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies including dev dependencies
+RUN npm ci
+
+# Copy source code
+COPY . .
+
+# Create test results directory
+RUN mkdir -p test-results
+
+# Set environment for testing
+ENV NODE_ENV=test
+ENV CI=true
+
+# Run tests
+CMD ["npm", "run", "test:ci"]

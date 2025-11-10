@@ -1,0 +1,52 @@
+# Docker Compose for Development
+
+version: '3.8'
+
+services:
+  # React Development Server
+  app:
+    build:
+      context: ./chatandvideo
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./chatandvideo:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+    stdin_open: true
+    tty: true
+    networks:
+      - videochat-dev
+    command: npm start
+
+  # Firebase Emulators for local development
+  firebase:
+    image: node:18-alpine
+    ports:
+      - "4000:4000"  # Emulator Suite UI
+      - "9099:9099"  # Authentication
+      - "8080:8080"  # Cloud Firestore
+      - "9199:9199"  # Realtime Database
+    volumes:
+      - ./chatandvideo:/app
+      - firebase-dev-data:/app/.firebase
+    working_dir: /app
+    networks:
+      - videochat-dev
+    command: |
+      sh -c "
+        npm install -g firebase-tools &&
+        firebase emulators:start --only auth,firestore,database --project demo-videochat --host 0.0.0.0
+      "
+
+networks:
+  videochat-dev:
+    driver: bridge
+
+volumes:
+  firebase-dev-data:
