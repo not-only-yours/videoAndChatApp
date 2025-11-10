@@ -1,15 +1,3 @@
-variable "ACCESS_KEY" {
-  default     = "AKIA42TDPCWTGJTUVZGK"
-  description = "Amazon access_key"
-
-}
-
-variable "SECRET_KEY" {
-  default     = "ftQruaTuf3Wy9Xj3FONMogq5umMIHlKsEZrsDzbe"
-  description = "Amazon secret_key"
-
-}
-
 variable "aws-region" {
   default     = "ap-south-1"
   description = "Amazon region"
