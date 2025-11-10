@@ -1,0 +1,16 @@
+# Example Terraform Variables File
+# Copy this file to terraform.tfvars and update with your actual values
+# DO NOT COMMIT terraform.tfvars TO VERSION CONTROL
+
+# AWS Configuration
+aws-region = "eu-west-1"
+
+# Firebase Configuration - REPLACE WITH YOUR ACTUAL VALUES
+apiKey = "your-firebase-api-key-here"
+authDomain = "your-project-id.firebaseapp.com"
+projectId = "your-project-id"
+storageBucket = "your-project-id.appspot.com"
+messagingSenderId = "your-messaging-sender-id"
+appId = "your-app-id"
+measurementId = "your-measurement-id"
+databaseURL = "https://your-project-id.firebaseio.com"

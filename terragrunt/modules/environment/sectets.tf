@@ -1,37 +1,48 @@
 variable "aws-region" {
-  default     = "ap-south-1"
   description = "Amazon region"
-
+  type        = string
+  default     = "eu-west-1"
 }
 
 variable "apiKey" {
-  default = "AIzaSyCybuFbMNItTvWFSmhFr5NOVLEIzb2HyZw"
+  description = "Firebase API key"
+  type        = string
+  sensitive   = true
 }
 
 variable "authDomain" {
-  default = "videochatapp-3d7d5.firebaseapp.com"
+  description = "Firebase authentication domain"
+  type        = string
 }
 
 variable "projectId" {
-  default = "videochatapp-3d7d5"
+  description = "Firebase project ID"
+  type        = string
 }
 
 variable "storageBucket" {
-  default = "videochatapp-3d7d5.appspot.com"
+  description = "Firebase storage bucket"
+  type        = string
 }
 
 variable "messagingSenderId" {
-  default = "534185277677"
+  description = "Firebase messaging sender ID"
+  type        = string
+  sensitive   = true
 }
 
 variable "appId" {
-  default = "1:534185277677:web:8f646bdc25f269c422b4e4"
+  description = "Firebase app ID"
+  type        = string
+  sensitive   = true
 }
 
 variable "measurementId" {
-  default = "G-EBR83FKZWW"
+  description = "Google Analytics measurement ID"
+  type        = string
 }
 
 variable "databaseURL" {
-  default = "https://videochatapp-3d7d5.firebaseio.com"
+  description = "Firebase database URL"
+  type        = string
 }

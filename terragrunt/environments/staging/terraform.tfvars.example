@@ -1,0 +1,12 @@
+# Staging Environment Variables
+aws-region = "eu-west-1"
+
+# Firebase Staging Configuration
+apiKey = "your-staging-firebase-api-key"
+authDomain = "videochatapp-staging.firebaseapp.com"
+projectId = "videochatapp-staging"
+storageBucket = "videochatapp-staging.appspot.com"
+messagingSenderId = "staging-messaging-sender-id"
+appId = "staging-app-id"
+measurementId = "staging-measurement-id"
+databaseURL = "https://videochatapp-staging.firebaseio.com"

@@ -1,7 +1,7 @@
 variable "aws_region" {
   description = "AWS region for resource deployment."
   type        = string
-  default     = "ap-south-1"
+  default     = "eu-west-1"
 }
 
 variable "environment" {
@@ -42,7 +42,7 @@ variable "private_subnets" {
 }
 
 variable "availability_zones" {
-  default     = ["ap-south-1a", "ap-south-1b"]
+  default     = ["eu-west-1a", "eu-west-1b"]
   description = "This is example."
 }
 
@@ -52,7 +52,7 @@ variable "availability_zones" {
 
 variable "arn_certificate_for_HTTPS_connection_to_frontend_ALB" {
   description = "This is example."
-  default     = "arn:aws:acm:ap-south-1:881750644134:certificate/c5e91ffd-4014-418c-b41e-bc8bd1315825"
+  default     = "arn:aws:acm:eu-west-1:881750644134:certificate/c5e91ffd-4014-418c-b41e-bc8bd1315825"
 }
 
 variable "DNS" {

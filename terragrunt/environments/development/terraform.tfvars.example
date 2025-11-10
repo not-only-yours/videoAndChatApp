@@ -1,0 +1,12 @@
+# Development Environment Variables
+aws-region = "eu-west-1"
+
+# Firebase Development Configuration
+apiKey = "your-dev-firebase-api-key"
+authDomain = "videochatapp-dev.firebaseapp.com"
+projectId = "videochatapp-dev"
+storageBucket = "videochatapp-dev.appspot.com"
+messagingSenderId = "dev-messaging-sender-id"
+appId = "dev-app-id"
+measurementId = "dev-measurement-id"
+databaseURL = "https://videochatapp-dev.firebaseio.com"

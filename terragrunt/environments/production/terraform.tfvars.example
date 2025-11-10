@@ -1,0 +1,12 @@
+# Production Environment Variables
+aws-region = "eu-west-1"
+
+# Firebase Production Configuration
+apiKey = "your-prod-firebase-api-key"
+authDomain = "videochatapp-prod.firebaseapp.com"
+projectId = "videochatapp-prod"
+storageBucket = "videochatapp-prod.appspot.com"
+messagingSenderId = "prod-messaging-sender-id"
+appId = "prod-app-id"
+measurementId = "prod-measurement-id"
+databaseURL = "https://videochatapp-prod.firebaseio.com"

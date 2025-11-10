@@ -30,13 +30,13 @@ terraform {
 inputs = {
   environment = "development"
   description = "This is example."
-  aws_region = "ap-south-1"
+  aws_region = "eu-west-1"
   
   # VPC Configuration
   vpc_CIDR           = "10.2.0.0/16"
   public_subnets     = ["10.2.0.0/24", "10.2.2.0/24"]
   private_subnets    = ["10.2.1.0/24", "10.2.3.0/24"]
-  availability_zones = ["ap-south-1a", "ap-south-1b"]
+  availability_zones = ["eu-west-1a", "eu-west-1b"]
   
   # Application Configuration
   ecr_name        = "dev-videochat"
@@ -53,7 +53,7 @@ inputs = {
 |------|-------------|------|---------|:--------:|
 | environment | Environment name (dev/staging/prod) | `string` | - | yes |
 | description | Environment description | `string` | "This is example." | no |
-| aws_region | AWS region | `string` | "ap-south-1" | no |
+| aws_region | AWS region | `string` | "eu-west-1" | no |
 | vpc_CIDR | VPC CIDR block | `string` | "10.0.0.0/16" | no |
 | availability_zones | List of AZs | `list(string)` | - | yes |
 | public_subnets | Public subnet CIDRs | `list(string)` | - | yes |
