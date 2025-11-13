@@ -1,0 +1,319 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ${namespace}
+  labels:
+    name: ${namespace}
+    environment: ${environment}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ${name}-secrets
+  namespace: ${namespace}
+type: Opaque
+data:
+%{ for key, value in jsondecode(secrets) ~}
+  ${key}: ${base64encode(value)}
+%{ endfor ~}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ${name}-config
+  namespace: ${namespace}
+data:
+%{ for key, value in jsondecode(environment_variables) ~}
+  ${key}: "${value}"
+%{ endfor ~}
+  PORT: "${port}"
+  NODE_ENV: "${environment}"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${name}
+  namespace: ${namespace}
+  labels:
+    app: ${name}
+    environment: ${environment}
+spec:
+  replicas: ${replicas}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: ${name}
+  template:
+    metadata:
+      labels:
+        app: ${name}
+        environment: ${environment}
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "${port}"
+        prometheus.io/path: "/metrics"
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: videochat-app
+          image: %{ if ecr_repository_url != "" }${ecr_repository_url}:${image_version}%{ else }${image}:${image_version}%{ endif }
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: ${port}
+              protocol: TCP
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            capabilities:
+              drop:
+                - ALL
+              add:
+                - NET_BIND_SERVICE
+          env:
+            - name: PORT
+              value: "${port}"
+            - name: NODE_ENV
+              value: "${environment}"
+          envFrom:
+            - configMapRef:
+                name: ${name}-config
+            - secretRef:
+                name: ${name}-secrets
+                optional: true
+          resources:
+            requests:
+              cpu: ${cpu_request}
+              memory: ${memory_request}
+            limits:
+              cpu: ${cpu_limit}
+              memory: ${memory_limit}
+          livenessProbe:
+            httpGet:
+              path: ${health_check_path}
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: ${health_check_path}
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+          volumeMounts:
+            - name: tmp-volume
+              mountPath: /tmp
+            - name: cache-volume
+              mountPath: /app/.cache
+      volumes:
+        - name: tmp-volume
+          emptyDir: {}
+        - name: cache-volume
+          emptyDir: {}
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${name}-service
+  namespace: ${namespace}
+  labels:
+    app: ${name}
+    environment: ${environment}
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+      protocol: TCP
+  selector:
+    app: ${name}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ${name}-ingress
+  namespace: ${namespace}
+  labels:
+    app: ${name}
+    environment: ${environment}
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+%{ if certificate_arn != "" ~}
+    alb.ingress.kubernetes.io/certificate-arn: ${certificate_arn}
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+%{ else ~}
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+%{ endif ~}
+    alb.ingress.kubernetes.io/healthcheck-path: ${health_check_path}
+    alb.ingress.kubernetes.io/healthcheck-interval-seconds: '30'
+    alb.ingress.kubernetes.io/healthcheck-timeout-seconds: '5'
+    alb.ingress.kubernetes.io/healthy-threshold-count: '2'
+    alb.ingress.kubernetes.io/unhealthy-threshold-count: '3'
+spec:
+%{ if dns_domain != "" ~}
+  rules:
+    - host: ${dns_domain}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ${name}-service
+                port:
+                  number: 80
+%{ else ~}
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ${name}-service
+                port:
+                  number: 80
+%{ endif ~}
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ${name}-hpa
+  namespace: ${namespace}
+  labels:
+    app: ${name}
+    environment: ${environment}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: ${name}
+  minReplicas: ${replicas}
+  maxReplicas: %{ if environment == "production" }10%{ else }5%{ endif }
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 60
+      policies:
+        - type: Percent
+          value: 50
+          periodSeconds: 60
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+        - type: Percent
+          value: 25
+          periodSeconds: 60
+              value: "3"
+            - name: "CONNECT_STATUS_STORAGE_REPLICATION_FACTOR"
+              value: "3"
+            - name: "CONNECT_KEY_CONVERTER"
+              value: "org.apache.kafka.connect.json.JsonConverter"
+            - name: "CONNECT_VALUE_CONVERTER"
+              value: "org.apache.kafka.connect.json.JsonConverter"
+            - name: "CONNECT_KEY_CONVERTER_SCHEMAS_ENABLE"
+              value: "false"
+            - name: "CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE"
+              value: "false"
+            - name: "CONNECT_SECURITY_PROTOCOL"
+              value: "SASL_SSL"
+            - name: "CONNECT_SASL_MECHANISM"
+              value: "SCRAM-SHA-512"
+            - name: "CONNECT_SASL_JAAS_CONFIG"
+              value: "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"${configuration_username}\" password=\"${configuration_password}\";"
+            - name: "CONNECT_PLUGIN_PATH"
+              value: "/usr/share/java,/usr/share/confluent-hub-components"
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/kafka/connect-mirror-maker.properties
+              subPath: connect-mirror-maker.properties
+            - name: config-volume
+              mountPath: /etc/kafka/connect-log4j.properties
+              subPath: connect-log4j.properties
+            - name: kafka-connect-dir
+              mountPath: /etc/kafka-connect
+            - name: kafka-dir
+              mountPath: /etc/kafka
+            - name: temp-dir
+              mountPath: /tmp
+          livenessProbe:
+            httpGet:
+              path: /
+              port: ${port}
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            timeoutSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: ${port}
+            initialDelaySeconds: 30
+            periodSeconds: 20
+            timeoutSeconds: 10
+          resources:
+            requests:
+              cpu: "2000m"
+              memory: "2Gi"
+            limits:
+              cpu: "4000m"
+              memory: "4Gi"
+      volumes:
+        - name: config-volume
+          secret:
+            secretName: ${name}-config
+        - name: kafka-connect-dir
+          emptyDir: {}
+        - name: kafka-dir
+          emptyDir: {}
+        - name: temp-dir
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${name}-mm2
+  namespace: ${namespace}
+spec:
+  selector:
+    app: ${name}-mm2
+  ports:
+    - protocol: TCP
+      port: ${port}
+      targetPort: ${port}
+  type: ClusterIP

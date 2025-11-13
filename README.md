@@ -98,6 +98,77 @@ The application is deployed using:
 - **Infrastructure**: Terraform with Terragrunt
 - **CI/CD**: GitHub Actions
 
+## 🔬 Infrastructure Analysis
+
+Make informed infrastructure decisions with our **objective, data-driven analysis tools**:
+
+```bash
+# Setup analysis environment
+make analyze-setup
+
+# 🏗️ TERRAFORM ANALYSIS (NO DEPLOYMENT REQUIRED) 
+make analyze-terraform              # Compare options using Terraform configs
+make analyze-terraform-files        # Analyze your existing Terraform files
+
+# Quick analysis for your requirements
+make analyze-quick
+
+# 🎯 OBJECTIVE ANALYSIS (Real AWS data + AI insights)
+make analyze-objective
+
+# 📊 THIRD-PARTY DATA ANALYSIS (Industry surveys)
+make analyze-third-party
+
+# Monitor actual costs vs projections
+make analyze-monitor
+```
+
+### 🎯 **Perfect for Your Situation!**
+
+#### 🏗️ **Terraform-Based Analysis** - *No AWS Costs, No Deployment*
+- **Works with other projects in same account**: Only uses Terraform configs
+- **No deployment needed**: Estimates costs from infrastructure-as-code
+- **Static pricing data**: No AWS API calls that could affect billing
+- **Quick analysis**: Results in seconds, not hours of deployment
+
+#### 📊 **Why Terraform Analysis is Ideal:**
+```bash
+# Compare infrastructure options without spending money
+make analyze-terraform 500 4.0 8.0  # 500 users, 4 CPU, 8GB RAM
+
+# Analyze your actual Terraform files 
+make analyze-terraform-files         # Uses your ../terragrunt directory
+```
+
+**Benefits:**
+- ✅ **No AWS costs** - No resources deployed
+- ✅ **No interference** - Won't affect other projects in your account
+- ✅ **Fast results** - Analysis completes in seconds
+- ✅ **Accurate estimates** - Based on real AWS pricing, updated regularly
+- ✅ **Terraform-native** - Uses your actual infrastructure definitions
+
+### 🌟 Analysis Methods
+
+#### 📊 **Terraform Analysis** - *Perfect for Your Case*
+- **Static AWS pricing**: No API calls, no billing impact
+- **Terraform parsing**: Analyzes your actual `.tf` files
+- **Resource estimation**: Calculates costs from infrastructure definitions
+- **Multiple options**: Compares EC2, ECS, EKS without deployment
+
+#### 📈 **Third-Party Data Analysis** - *Independent Validation*
+- **CNCF Survey 2024**: 2,500+ organizations on cloud-native adoption
+- **Stack Overflow Survey**: 87,000+ developers on platform preferences  
+- **Datadog State of Cloud**: Real monitoring data from production systems
+- **Gartner Magic Quadrant**: Analyst evaluation of platforms
+
+#### 🔍 **Transparent Methodology**
+- **Data Sources Cited**: Every metric includes its source
+- **No Hidden Scoring**: All calculations explained
+- **Reproducible Results**: Same inputs = same outputs
+- **Real-World Examples**: Actual company usage patterns
+
+**[📋 Full Analysis Documentation →](tools/README.md)**
+
 ## 📖 Documentation
 
 Our comprehensive documentation is organized for easy navigation:

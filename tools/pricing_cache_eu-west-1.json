@@ -1,0 +1,94 @@
+{
+  "timestamp": "2025-11-13T17:10:14.800458",
+  "region": "eu-west-1",
+  "pricing": {
+    "region": "eu-west-1",
+    "ec2": {
+      "t3.micro": {
+        "hourly": 0.010608,
+        "monthly": 7.7418
+      },
+      "t3.small": {
+        "hourly": 0.021216,
+        "monthly": 15.4836
+      },
+      "t3.medium": {
+        "hourly": 0.042432,
+        "monthly": 30.977400000000003
+      },
+      "t3.large": {
+        "hourly": 0.084864,
+        "monthly": 61.954800000000006
+      },
+      "t3.xlarge": {
+        "hourly": 0.169728,
+        "monthly": 123.8994
+      },
+      "c5.large": {
+        "hourly": 0.08670000000000001,
+        "monthly": 63.291
+      },
+      "c5.xlarge": {
+        "hourly": 0.17340000000000003,
+        "monthly": 126.582
+      },
+      "c5.2xlarge": {
+        "hourly": 0.34680000000000005,
+        "monthly": 253.164
+      },
+      "m5.large": {
+        "hourly": 0.09792000000000001,
+        "monthly": 71.4816
+      },
+      "m5.xlarge": {
+        "hourly": 0.19584000000000001,
+        "monthly": 142.9632
+      },
+      "m5.2xlarge": {
+        "hourly": 0.39168000000000003,
+        "monthly": 285.9264
+      },
+      "r5.large": {
+        "hourly": 0.12852,
+        "monthly": 93.84
+      },
+      "r5.xlarge": {
+        "hourly": 0.25704,
+        "monthly": 187.68
+      }
+    },
+    "fargate": {
+      "cpu_per_vcpu_hour": 0.04250400000000001,
+      "memory_per_gb_hour": 0.00466725,
+      "cpu_monthly_per_vcpu": 31.051722240000004,
+      "memory_monthly_per_gb": 3.40970616
+    },
+    "eks": {
+      "cluster_hourly": 0.1,
+      "cluster_monthly": 73.05600000000001
+    },
+    "load_balancer": {
+      "alb_hourly": 0.0225,
+      "alb_monthly": 16.437600000000003,
+      "nlb_hourly": 0.0225,
+      "nlb_monthly": 16.437600000000003,
+      "lcu_hourly": 0.008,
+      "lcu_monthly": 5.844480000000001
+    },
+    "storage": {
+      "gp3_per_gb_month": 0.08,
+      "gp2_per_gb_month": 0.1,
+      "io1_per_gb_month": 0.125,
+      "io2_per_gb_month": 0.125,
+      "sc1_per_gb_month": 0.025,
+      "st1_per_gb_month": 0.045
+    },
+    "data_transfer": {
+      "out_to_internet_per_gb": 0.09,
+      "out_to_internet_first_gb_free": 1.0,
+      "cloudfront_per_gb": 0.085,
+      "between_regions_per_gb": 0.02
+    },
+    "last_updated": "2025-11-13T17:10:14.800448"
+  }
+}

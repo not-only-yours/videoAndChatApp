@@ -1,0 +1,98 @@
+# Infrastructure Analysis Configuration
+# Defines scenarios and preferences for EKS vs ECS comparison
+
+# Application requirements baseline
+application_requirements:
+  cpu_cores: 2.0
+  memory_gb: 4.0
+  storage_gb: 50
+  network_bandwidth_mbps: 100
+  expected_users: 500
+  peak_load_multiplier: 2.0
+
+# Analysis scenarios
+scenarios:
+  medium_app:
+    cpu_cores: 2.0
+    memory_gb: 4.0
+    storage_gb: 50
+    network_bandwidth_mbps: 100
+    expected_users: 500
+    peak_load_multiplier: 2.5
+    description: "Medium-sized video chat application with 500 concurrent users"
+
+  large_app:
+    cpu_cores: 8.0
+    memory_gb: 16.0
+    storage_gb: 200
+    network_bandwidth_mbps: 500
+    expected_users: 2000
+    peak_load_multiplier: 3.0
+    description: "Large-scale video chat application with 2000 concurrent users"
+
+# Analysis preferences (weights for scoring)
+preferences:
+  priority_cost: 35          # Weight for cost considerations (0-100)
+  priority_scalability: 30   # Weight for scalability features (0-100)
+  priority_reliability: 25   # Weight for reliability and uptime (0-100)
+  priority_security: 10      # Weight for security features (0-100)
+
+# Infrastructure options configuration
+infrastructure_options:
+  ecs:
+    name: "ECS Fargate"
+    type: "serverless_containers"
+    advantages:
+      - "Serverless container management"
+      - "Pay-per-use pricing model"
+      - "Quick scaling (2-3 minutes)"
+      - "Lower operational overhead"
+    disadvantages:
+      - "Limited customization"
+      - "Vendor lock-in to AWS"
+      - "Less ecosystem flexibility"
+
+  eks:
+    name: "EKS Kubernetes"
+    type: "managed_kubernetes"
+    advantages:
+      - "Full Kubernetes ecosystem"
+      - "Portable across cloud providers"
+      - "Rich tooling and community"
+      - "Advanced networking and security"
+    disadvantages:
+      - "Higher complexity"
+      - "More operational overhead"
+      - "Longer scaling times (3-5 minutes)"
+      - "Higher base costs"
+
+# Cost optimization recommendations
+cost_optimization:
+  ecs:
+    - "Use Fargate Spot for non-critical workloads"
+    - "Implement efficient auto-scaling policies"
+    - "Optimize container resource allocation"
+    - "Use CloudWatch for cost monitoring"
+
+  eks:
+    - "Use Spot instances for worker nodes"
+    - "Implement cluster autoscaler"
+    - "Use Reserved Instances for predictable workloads"
+    - "Optimize pod resource requests and limits"
+
+# Deployment considerations
+deployment:
+  regions:
+    - "eu-west-1"
+    - "us-east-1"
+    - "us-west-2"
+    - "ap-southeast-1"
+
+  environments:
+    - name: "eks"
+      description: "Kubernetes-based deployment"
+      terraform_path: "../terragrunt/environments/eks"
+
+    - name: "ecs"
+      description: "Fargate-based deployment"
+      terraform_path: "../terragrunt/environments/ecs"
